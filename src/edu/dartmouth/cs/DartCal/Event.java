@@ -16,15 +16,29 @@ public class Event implements Serializable {
 	private int	isRepeating;
 	private long id;
 	private long date;
+	private String classPeriod;
 
 public Event() {
 	this.eventName = "";
 	this.eventLocation = "";
 	this.eventDescription = "";
+	this.classPeriod = "";
 	this.startTime = System.currentTimeMillis();
 	this.endTime = System.currentTimeMillis();
 	this.isRepeating = 3;
 	this.date=System.currentTimeMillis();
+}
+public int getIsRepeating() {
+	return isRepeating;
+}
+public void setIsRepeating(int isRepeating) {
+	this.isRepeating = isRepeating;
+}
+public String getClassPeriod() {
+	return classPeriod;
+}
+public void setClassPeriod(String classPeriod) {
+	this.classPeriod = classPeriod;
 }
 public long getId(){
 	return id;
