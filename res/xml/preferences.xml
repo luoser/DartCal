@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >       	        
+        <ListPreference
+                android:key="repeating_event"
+                android:title="@string/title_repeating_event"
+                android:summary="@string/summary_unit_preference"
+                android:entries="@array/how_often_repeating"
+                android:entryValues="@array/unit_display_value"
+                android:dialogTitle="@string/dialog_title_repeating"/>
+</PreferenceScreen>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/photoLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <ImageView
+                android:id="@+id/imageProfile"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:contentDescription="your photo"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <requestFocus />
+            </ImageView>
+
+            <Button
+                android:id="@+id/btnChangePhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:onClick="onChangePhotoClicked"
+                android:text="Change Photo" >
+            </Button>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/nameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Name" />
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter your name"
+            android:inputType="textCapWords" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/classLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Class" />
+
+        <EditText
+            android:id="@+id/editClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter class"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/majorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Major" />
+
+        <EditText
+            android:id="@+id/editMajor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter your major" />
+
+        <!-- ADD SPACING HERE -->
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp" >
+        </View>
+
+        <!-- COURSE 1 -->
+
+        <TextView
+            android:id="@+id/course1name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #1 Name" />
+
+        <EditText
+            android:id="@+id/editCourse1name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter course name" />
+
+        <TextView
+            android:id="@+id/course1time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #1 Time" />
+
+        <Spinner
+            android:id="@+id/course1TimeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/course_time_periods" />
+
+        <TextView
+            android:id="@+id/course1loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #1 Location" />
+
+        <EditText
+            android:id="@+id/editCourse1loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter course location" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp" >
+        </View>
+
+        <!-- COURSE 2 -->
+
+        <TextView
+            android:id="@+id/course2name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #2 Name" />
+
+        <EditText
+            android:id="@+id/editCourse2name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter course name" />
+
+        <TextView
+            android:id="@+id/course2time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #2 Time" />
+
+        <Spinner
+            android:id="@+id/course2TimeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/course_time_periods" />
+
+        <TextView
+            android:id="@+id/course2loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #2 Location" />
+
+        <EditText
+            android:id="@+id/editCourse2loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter course location" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp" >
+        </View>
+
+        <!-- COURSE 3 -->
+
+        <TextView
+            android:id="@+id/course3name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #3 Name" />
+
+        <EditText
+            android:id="@+id/editCourse3name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter course name" />
+
+        <TextView
+            android:id="@+id/course3time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #3 Time" />
+
+        <Spinner
+            android:id="@+id/course3TimeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/course_time_periods" />
+
+        <TextView
+            android:id="@+id/course3loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #3 Location" />
+
+        <EditText
+            android:id="@+id/editCourse3loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter course location" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp" >
+        </View>
+
+        <!-- COURSE 4 -->
+
+        <TextView
+            android:id="@+id/course4name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #4 Name" />
+
+        <EditText
+            android:id="@+id/editCourse4name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter course name" />
+
+        <TextView
+            android:id="@+id/course4time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #4 Time" />
+
+        <Spinner
+            android:id="@+id/course4TimeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/course_time_periods" />
+
+        <TextView
+            android:id="@+id/course4loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Course #4 Location" />
+
+        <EditText
+            android:id="@+id/editCourse4loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter course location" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="15dp" >
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_weight="1"
+                android:onClick="onSaveClicked"
+                android:text="@string/button_save" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_weight="1"
+                android:onClick="onCancelClicked"
+                android:text="@string/button_cancel" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

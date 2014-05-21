@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DartCal</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="ui_tabname_weekly">weekly</string>
+    <string name="ui_tabname_friends">friends</string>
+    <string name="ui_tabname_term">term</string>
+    <string name="title_activity_weekly_fragment">WeeklyFragment</string>
+    <string name="title_activity_term_fragment">TermFragment</string>
+    <string name="title_activity_friends_fragment">FriendsFragment</string>
+    <string name="personal_calendar">Personal Calendar</string>
+    <string name="dartmouth_calendar">Dartmouth Calendar</string>
+    <string name="title_activity_weeks">WeeksActivity</string>
+    <string name="title_activity_weeks_calendar">WeeksCalendar</string>
+    <string name="add_button">Add Event</string>
+    <string name="title_activity_add_event">AddEvent</string>
+    <string name="title_repeating_event">Repeating Event?</string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
+
+    <string-array name="how_often_repeating">
+        <item>Every Day</item>
+        <item>Every Week</item>
+        <item>Every Month</item>
+    </string-array>
+    <string-array name="unit_display_value">
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="entries">
+        <item>Event Name</item>
+        <item>Location</item>
+        <item>Description</item>
+        <item>Event Start Time</item>
+        <item>Event End Time</item>
+    </string-array>
+
+    <string name="title_activity_manual_add_event">ManualAddEvent</string>
+    <string name="dialog_title_repeating">How Often?</string>
+    <string name="summary_unit_preference">Select how often the event repeats</string>
+    <string name="server_addr">http://10.31.199.176:8888</string>
+
+    <!-- Toast messages -->
+    <string name="save_message">Saved!</string>
+    <string name="cancel_message">Cancelled</string> <!-- Button Strings -->
+    <string name="button_save">Save</string>
+    <string name="button_cancel">Cancel</string> <!-- Dialog strings -->
+    <string name="profile_photo_file_name">profile_photo.png</string>
+    <string name="dialog_fragment_tag_photo_picker">dialog_fragment_photo_picker</string>
+    <string name="ui_profile_photo_content_description">Your profile photo:</string>
+    <string name="ui_profile_photo_picker_title">"Select profile image"</string>
+    <string name="ui_tab_start">Start</string>
+    <string name="ui_tab_history">History</string>
+    <string name="ui_tab_settings">Settings</string>
+
+    <string-array name="ui_profile_photo_picker_items">
+        <item>Take photo with camera</item>
+        <item>Choose image from gallery</item>
+    </string-array> <!-- Edit information strings -->
+    <string name="name_field">Enter name here</string>
+    <string name="email_field">Enter email here</string>
+    <string name="phone_field">e.g. 1112223333</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_male">Male</string>
+    <string name="class_field">e.g. 2015</string>
+    <string name="major_field">Enter major here</string>
+    <string name="button_change">Change</string>
+    <string name="button_ok">OK</string>
+    <string name="title_activity_shared_preferences">SharedPreferences</string>
+    <string name="photo_label">Profile picture:</string>
+    <string name="name_label">Name</string>
+    <string name="email_label">Email</string>
+    <string name="phone_label">Phone</string>
+    <string name="gender_label">Gender</string>
+    <string name="class_label">Class</string>
+    <string name="major_label">Major</string>
+    <string name="preference_name">Preferences</string>
+
+    <string-array name="course_time_periods">
+        <item>Early Drill</item>
+        <item>9L</item>
+        <item>10</item>
+        <item>10A</item>
+        <item>11</item>
+        <item>12</item>
+        <item>2</item>
+        <item>2A</item>
+        <item>3A</item>
+        <item>3B</item>
+        <item>Late Drill</item>
+    </string-array>
+
+</resources>
