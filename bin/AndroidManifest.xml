@@ -31,6 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name="edu.dartmouth.cs.DartCal.EditProfileActivity"
+            android:label="EditProfileActivity">
+            
+        </activity>
         <activity
             android:name="edu.dartmouth.cs.DartCal.WeeksActivity"
             android:label="@string/title_activity_weeks" >
