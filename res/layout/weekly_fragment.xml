@@ -205,16 +205,23 @@
         android:padding="0dp"
         android:scrollbars="none" >
 
-        <RelativeLayout
+        <FrameLayout
             android:id="@+id/calendarRelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="0dp" >
+			
+            <!-- VIEW FOR DRAWING OVER -->
+            <edu.dartmouth.cs.DartCal.WeeklyFragment.DrawView
+                android:id="@+id/drawingFrame"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
 
             <LinearLayout
                 android:id="@+id/calendarSplitterRelativeLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawingCacheQuality="low"
                 android:orientation="vertical" >
 
                 <LinearLayout
@@ -745,7 +752,7 @@
                         android:background="#B2BFBE" />
                 </LinearLayout>
             </LinearLayout>
-        </RelativeLayout>
+        </FrameLayout>
     </ScrollView>
 
 </LinearLayout>

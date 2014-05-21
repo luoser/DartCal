@@ -3,7 +3,11 @@ package edu.dartmouth.cs.DartCal;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class WeeklyFragment extends Fragment {
@@ -23,8 +28,65 @@ public class WeeklyFragment extends Fragment {
 	MenuItem officeHours;
 	MenuItem editProfile;
 
+	DrawView drawView;
+
 	// CheckBox xHours;
 	// CheckBox officeHours;
+	
+	private class MyDrawable extends Drawable{
+
+		@Override
+		public void draw(Canvas canvas) {
+			// TODO Auto-generated method stub
+			Paint paint = new Paint();
+			paint.setColor(Color.RED);
+			canvas.drawLine(0,0,50,50, paint);
+			canvas.drawLine(50,0,50,50, paint);
+
+			
+		}
+
+		@Override
+		public int getOpacity() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public void setAlpha(int arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void setColorFilter(ColorFilter arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+
+	// class to help draw things
+	private class DrawView extends View {
+		Paint paint = new Paint();
+
+		public DrawView(Context context) {
+			super(context);
+		}
+
+		@Override
+		public void onDraw(Canvas canvas) {
+			paint.setColor(Color.BLACK);
+			paint.setStrokeWidth(3);
+			canvas.drawRect(30, 30, 80, 80, paint);
+			paint.setStrokeWidth(0);
+			paint.setColor(Color.CYAN);
+			canvas.drawRect(33, 60, 77, 77, paint);
+			paint.setColor(Color.YELLOW);
+			canvas.drawRect(33, 33, 77, 60, paint);
+
+		}
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +99,13 @@ public class WeeklyFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+		
+		// create simple drawable and set it in image view
+//		((ImageView) getActivity().findViewById(R.id.drawImageView)).setImageDrawable(new MyDrawable());
+
+//		drawView = new DrawView(getActivity());
+//		drawView.setBackgroundColor(Color.WHITE);
+//		getActivity().setContentView(drawView);
 
 	}
 
@@ -76,7 +145,8 @@ public class WeeklyFragment extends Fragment {
 		return false;
 	}
 
-	// this function will get the data input by the user from the edit profile
+	// this function will get the data input by the user from the edit
+	// profile
 	// activity
 	public void retrieveCourseData() {
 
@@ -103,16 +173,6 @@ public class WeeklyFragment extends Fragment {
 		if (!course4.isEmpty())
 			drawPeriod(course4);
 
-	}
-
-}
-
-// class to help draw things
-abstract class DrawView extends View {
-	Paint paint = new Paint();
-
-	public DrawView(Context context) {
-		super(context);
 	}
 
 }

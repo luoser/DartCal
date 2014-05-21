@@ -64,7 +64,7 @@ int drawable ic_plusone_medium_off_client 0x7f02001a
 int drawable ic_plusone_small_off_client 0x7f02001b
 int drawable ic_plusone_standard_off_client 0x7f02001c
 int drawable ic_plusone_tall_off_client 0x7f02001d
-int id action_settings 0x7f06006a
+int id action_settings 0x7f06006b
 int id btnCancel 0x7f060028
 int id btnChangePhoto 0x7f060008
 int id btnDartmouthCalendar 0x7f060069
@@ -93,6 +93,7 @@ int id course4time 0x7f060023
 int id datePicker1 0x7f060035
 int id dayLabelsLinearLayout 0x7f060036
 int id dayMarkerView 0x7f06003a
+int id drawingFrame 0x7f06006a
 int id editClass 0x7f06000c
 int id editCourse1loc 0x7f060014
 int id editCourse1name 0x7f060010
@@ -115,14 +116,14 @@ int id hybrid 0x7f060004
 int id imageProfile 0x7f060007
 int id mainLayout 0x7f060005
 int id majorLabel 0x7f06000d
-int id menuitem_add 0x7f06006d
+int id menuitem_add 0x7f06006e
 int id mondayDate 0x7f06003d
 int id mondayDateTextView 0x7f06003c
 int id mondayHeaderRelativeLayout 0x7f06003b
 int id nameLabel 0x7f060009
 int id none 0x7f060000
 int id normal 0x7f060001
-int id officeHourCheckBox 0x7f06006c
+int id officeHourCheckBox 0x7f06006d
 int id photoLabel 0x7f060006
 int id preferences 0x7f060030
 int id satellite 0x7f060002
@@ -173,7 +174,7 @@ int id tuesdayHeaderRelativeLayout 0x7f06003e
 int id wednesdayDate 0x7f060043
 int id wednesdayDateTextView 0x7f060042
 int id wednesdayHeaderRelativeLayout 0x7f060041
-int id xHourCheckBox 0x7f06006b
+int id xHourCheckBox 0x7f06006c
 int integer google_play_services_version 0x7f080000
 int layout activity_edit_profile 0x7f030000
 int layout activity_main 0x7f030001

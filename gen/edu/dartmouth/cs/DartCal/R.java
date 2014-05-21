@@ -234,7 +234,7 @@ containing a value of this type.
         public static final int ic_plusone_tall_off_client=0x7f02001d;
     }
     public static final class id {
-        public static final int action_settings=0x7f06006a;
+        public static final int action_settings=0x7f06006b;
         public static final int btnCancel=0x7f060028;
         public static final int btnChangePhoto=0x7f060008;
         public static final int btnDartmouthCalendar=0x7f060069;
@@ -263,6 +263,7 @@ containing a value of this type.
         public static final int datePicker1=0x7f060035;
         public static final int dayLabelsLinearLayout=0x7f060036;
         public static final int dayMarkerView=0x7f06003a;
+        public static final int drawingFrame=0x7f06006a;
         public static final int editClass=0x7f06000c;
         public static final int editCourse1loc=0x7f060014;
         public static final int editCourse1name=0x7f060010;
@@ -285,14 +286,14 @@ containing a value of this type.
         public static final int imageProfile=0x7f060007;
         public static final int mainLayout=0x7f060005;
         public static final int majorLabel=0x7f06000d;
-        public static final int menuitem_add=0x7f06006d;
+        public static final int menuitem_add=0x7f06006e;
         public static final int mondayDate=0x7f06003d;
         public static final int mondayDateTextView=0x7f06003c;
         public static final int mondayHeaderRelativeLayout=0x7f06003b;
         public static final int nameLabel=0x7f060009;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
-        public static final int officeHourCheckBox=0x7f06006c;
+        public static final int officeHourCheckBox=0x7f06006d;
         public static final int photoLabel=0x7f060006;
         public static final int preferences=0x7f060030;
         public static final int satellite=0x7f060002;
@@ -343,7 +344,7 @@ containing a value of this type.
         public static final int wednesdayDate=0x7f060043;
         public static final int wednesdayDateTextView=0x7f060042;
         public static final int wednesdayHeaderRelativeLayout=0x7f060041;
-        public static final int xHourCheckBox=0x7f06006b;
+        public static final int xHourCheckBox=0x7f06006c;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f080000;

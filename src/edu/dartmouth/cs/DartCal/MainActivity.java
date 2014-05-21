@@ -23,24 +23,24 @@ public class MainActivity extends Activity {
 
 	private static final String TAB_KEY_INDEX = "tab_key";
 
-	private String SENDER_ID="72048596630";
+	private String SENDER_ID = "72048596630";
 	CheckBox xHourCheckBox;
 	CheckBox officeHoursCheckBox;
 	private GoogleCloudMessaging gcm;
 	private Context context;
 	private String regid;
-	public static String PROPERTY_REG_ID="reg_id";
+	public static String PROPERTY_REG_ID = "reg_id";
 	private static final String PROPERTY_APP_VERSION = "appVersion";
 	private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 	protected static final String TAG = null;
-	
-//	final OnClickListener mClickListener = new OnClickListener(){
-//		public void onClick(View v){
-//			updateFragmentView();
-//		}
-//	};
-	
-	//update fragment visibility based on current check box state
+
+	// final OnClickListener mClickListener = new OnClickListener(){
+	// public void onClick(View v){
+	// updateFragmentView();
+	// }
+	// };
+
+	// update fragment visibility based on current check box state
 
 	// CheckBox xHourCheckBox;
 	// CheckBox officeHoursCheckBox;
@@ -63,6 +63,7 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
 
 		// ActionBar
 		ActionBar actionbar = getActionBar();
@@ -109,21 +110,20 @@ public class MainActivity extends Activity {
 			actionbar.setSelectedNavigationItem(savedInstanceState.getInt(
 					TAB_KEY_INDEX, 0));
 		}
-		
+
 		// Check device for Play Services APK. If check succeeds, proceed with
 		// GCM registration.
 		/*
-		if (checkPlayServices()) {
-			gcm = GoogleCloudMessaging.getInstance(this);
-			regid = getRegistrationId(context);
-
-			if (regid.isEmpty()) {
-				registerInBackground();
-			}
-			
-		}
-		*/
+		 * if (checkPlayServices()) { gcm =
+		 * GoogleCloudMessaging.getInstance(this); regid =
+		 * getRegistrationId(context);
+		 * 
+		 * if (regid.isEmpty()) { registerInBackground(); }
+		 * 
+		 * }
+		 */
 	}
+
 	public String getRegistrationId(Context context) {
 		final SharedPreferences prefs = getGCMPreferences(context);
 		String registrationId = prefs.getString(PROPERTY_REG_ID, "");
@@ -141,6 +141,7 @@ public class MainActivity extends Activity {
 		}
 		return registrationId;
 	}
+
 	private boolean checkPlayServices() {
 		int resultCode = GooglePlayServicesUtil
 				.isGooglePlayServicesAvailable(this);
@@ -155,6 +156,7 @@ public class MainActivity extends Activity {
 		}
 		return true;
 	}
+
 	private void registerInBackground() {
 		new AsyncTask<Void, Void, String>() {
 			@Override
@@ -192,12 +194,14 @@ public class MainActivity extends Activity {
 				}
 				return msg;
 			}
+
 			@Override
 			protected void onPostExecute(String msg) {
 				Log.i(TAG, "gcm register msg: " + msg);
 			}
 		}.execute(null, null, null);
 	}
+
 	private void storeRegistrationId(Context context, String regId) {
 		final SharedPreferences prefs = getGCMPreferences(context);
 		int appVersion = getAppVersion(context);
@@ -206,6 +210,7 @@ public class MainActivity extends Activity {
 		editor.putInt(PROPERTY_APP_VERSION, appVersion);
 		editor.commit();
 	}
+
 	private SharedPreferences getGCMPreferences(Context context) {
 		// This sample app persists the registration ID in shared preferences,
 		// but
@@ -213,6 +218,7 @@ public class MainActivity extends Activity {
 		return getSharedPreferences(MainActivity.class.getSimpleName(),
 				Context.MODE_PRIVATE);
 	}
+
 	private static int getAppVersion(Context context) {
 		try {
 			PackageInfo packageInfo = context.getPackageManager()
@@ -223,14 +229,6 @@ public class MainActivity extends Activity {
 			throw new RuntimeException("Could not get package name: " + e);
 		}
 	}
-	
-
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		MenuInflater inflater = getMenuInflater();
-//		inflater.inflate(R.menu.main, menu);
-//		return true;
-//	}
 
 	// @Override
 	// public boolean onCreateOptionsMenu(Menu menu) {
@@ -239,6 +237,12 @@ public class MainActivity extends Activity {
 	// return true;
 	// }
 
+	// @Override
+	// public boolean onCreateOptionsMenu(Menu menu) {
+	// MenuInflater inflater = getMenuInflater();
+	// inflater.inflate(R.menu.main, menu);
+	// return true;
+	// }
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {

@@ -1,13 +1,12 @@
 package edu.dartmouth.cs.DartCal;
 
 //import com.google.android.gcm.GCMBaseIntentService;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 import android.app.IntentService;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 
 public class GCMIntentService extends IntentService {
