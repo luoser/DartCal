@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.database.SQLException;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
@@ -31,6 +32,7 @@ public class ManualAddEvent extends Activity {
 		datasource = new EventDbHelper(this);
 		mEvent=new Event();
 		mFriend=new Friend();
+		mFriend.setName("USER");
 	}
 
 	@Override
@@ -39,7 +41,7 @@ public class ManualAddEvent extends Activity {
 		getMenuInflater().inflate(R.menu.manual_add_event, menu);
 		return true;
 	}
-	public void onSaveBtClicked(View v) throws IOException {
+	public void onSaveBtClicked(View v) throws IOException, SQLException, ClassNotFoundException {
 		//Event Name
 		EditText mEdit1;
 		mEdit1   = (EditText)findViewById(R.id.editText1);
@@ -94,10 +96,29 @@ public class ManualAddEvent extends Activity {
 		mEvent.setEventDescription(description);
 		mEvent.setRepeating(repeating);
 		
+		//datasource.
 		ArrayList<Event> mySchedule=new ArrayList<Event>();
 		mySchedule.add(mEvent);
 		mFriend.setSchedule(mySchedule);
-		datasource.insertEntry(mFriend);
+		Friend fr=new Friend();
+		try {
+			fr  = datasource.fetchEntryByIndex(0);
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(fr == null)
+			datasource.insertEntry(mFriend);
+		else{
+			fr = datasource.fetchEntryByIndex(0);
+			fr.getSchedule().add(mEvent);
+			datasource.insertEntry(fr);
+		}
 		finish();
 	}
 

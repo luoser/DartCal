@@ -16,7 +16,6 @@ public class Friend {
 	private ArrayList<Event> schedule;
 	
 	public Friend(){
-		this.id = -1;
 		this.name = "";
 		this.schedule = new ArrayList<Event>();
 	}
@@ -63,10 +62,10 @@ public class Friend {
 		ByteArrayInputStream b = new ByteArrayInputStream(array);
 		
 		ObjectInputStream o = new ObjectInputStream(b);
-		
-		
-		for(int i = 0; i < array.length; i++){
+//		if(array != null)
+//		System.out.println(array.length/sizeof(Event));
+//		for(int i = 0; i < array.length; i++){
 			schedule.add((Event) o.readObject());
-		}
+//		}
 	}
 }

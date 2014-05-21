@@ -58,15 +58,26 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		this.close();
 	}
 
-	public static long insertEntry(Friend friend) throws IOException{
+	public long insertEntry(Friend friend) throws IOException, SQLException, ClassNotFoundException{
+		database = getWritableDatabase();
 		mFriend = friend;
+		long id = friend.getId();
+		long id2;
 		ContentValues value = new ContentValues();
 		value.put(KEY_ROWID, mFriend.getId());
 		value.put(KEY_NAME, mFriend.getName());
 		value.put(KEY_SCHEDULE, mFriend.getScheduleByteArray());
-		long id = database.insert(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
+		
+		if((this.fetchEntryByIndex(id)) == null){
 
-		return id;
+		id2 = database.insert(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
+		
+		}
+		else{
+		id2 =	database.replace(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
+			
+		}
+		return id2;
 	}
 	
 	public void removeEntry(long rowIndex){
@@ -97,6 +108,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		
 		friend.setId(cursor.getLong(cursor.getColumnIndex(KEY_ROWID)));
 		friend.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+		System.out.println("here!!");
 		friend.setScheduleFromByteArray(cursor.getBlob(cursor.getColumnIndex(KEY_SCHEDULE)));
 		
 		return friend;
