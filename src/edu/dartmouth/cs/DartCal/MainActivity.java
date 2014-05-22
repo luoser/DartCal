@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,8 @@ public class MainActivity extends Activity {
 	private static final String PROPERTY_APP_VERSION = "appVersion";
 	private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 	protected static final String TAG = null;
+	
+	DrawView drawView;
 
 	// final OnClickListener mClickListener = new OnClickListener(){
 	// public void onClick(View v){
@@ -63,6 +66,10 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+//		 drawView = new DrawView(this);
+//		 drawView.setBackgroundColor(Color.WHITE);
+//		 setContentView(drawView);
 
 
 		// ActionBar
