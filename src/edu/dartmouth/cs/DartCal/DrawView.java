@@ -19,9 +19,9 @@ import android.view.View;
 public class DrawView extends View {
 	Paint paint = new Paint();
 	
-	private boolean is110mins;	// i.e. 2A
-	private boolean is65mins;	// i.e. 10
-	private boolean isXhour;
+	private boolean is110mins = false;	// i.e. 2A
+	private boolean is65mins = false;	// i.e. 10
+	private boolean isXhour = false;
 	
 	public DrawView(Context context) {
 		super(context);
@@ -38,6 +38,17 @@ public class DrawView extends View {
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 //		setMeasuredDimension(measureWidth(widthMeasureSpec),
 //				measureHeight(heightMeasureSpec));
+		
+		// account for xhour size.....?
+		if (is110mins)
+			setMeasuredDimension(100, 250);
+		
+		if (is65mins)
+			setMeasuredDimension(100, 150);
+		
+		if (isXhour)
+			setMeasuredDimension(100, 100);
+		
 		setMeasuredDimension(100, 100);
 	}
 
