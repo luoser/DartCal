@@ -13,11 +13,13 @@ import java.util.ArrayList;
 public class Friend {
 	private long id;
 	private String name;
-	private ArrayList<Event> schedule;
+	public ArrayList<Event> schedule;
+	public int scheduleSize;
 	
 	public Friend(){
 		this.name = "";
 		this.schedule = new ArrayList<Event>();
+		this.scheduleSize = 0;
 	}
 
 	public long getId() {
@@ -62,10 +64,8 @@ public class Friend {
 		ByteArrayInputStream b = new ByteArrayInputStream(array);
 		
 		ObjectInputStream o = new ObjectInputStream(b);
-//		if(array != null)
-//		System.out.println(array.length/sizeof(Event));
-//		for(int i = 0; i < array.length; i++){
+		for(int i = 0; i < scheduleSize; i++){
 			schedule.add((Event) o.readObject());
-//		}
+		}
 	}
 }

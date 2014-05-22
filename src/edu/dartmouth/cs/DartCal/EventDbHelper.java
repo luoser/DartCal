@@ -15,12 +15,12 @@ import android.util.Log;
 
 public class EventDbHelper extends SQLiteOpenHelper {
 	public static Friend mFriend;
-	//public static SQLiteDatabase database;
 	public static int DATABASE_VERSION = 1;
 	public static final String TABLE_NAME_ENTRIES = "ENTRIES";
 	public static String DATABASE_NAME = "eventDB";
 	public static final String KEY_ROWID = "_id";
 	public static final String KEY_NAME = "name";
+	public static final String	KEY_SIZE = "size";
 	public static final String KEY_SCHEDULE = "schedule";
 	private static String[] allColumns = {KEY_ROWID, KEY_NAME, KEY_SCHEDULE};
 
@@ -31,13 +31,14 @@ public class EventDbHelper extends SQLiteOpenHelper {
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ KEY_NAME
 			+ " TEXT, "
+			+ KEY_SIZE
+			+ " INTEGER, "
 			+ KEY_SCHEDULE + " BLOB " + ");";
 
 
 	public EventDbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		mFriend = new Friend();
-		//database = getWritableDatabase();
 	}
 
 	public void onCreate(SQLiteDatabase database) {
@@ -50,39 +51,21 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		database.execSQL("DROP TABLE IF EXISTS ");
 		onCreate(database);
 	}
-	/*
-	public void open() throws SQLException {
-		database = this.getWritableDatabase();
-	}
 
-	public void close() {
-		this.close();
-	}
-*/
 	public long insertEntry(Friend friend) throws IOException, SQLException, ClassNotFoundException{
 		SQLiteDatabase dbObj;
+		dbObj=getWritableDatabase();
 		mFriend = friend;
-		long id = friend.getId();
-		long id2;
+		
 		ContentValues value = new ContentValues();
-		//value.put(KEY_ROWID, mFriend.getId());
 		value.put(KEY_NAME, mFriend.getName());
 		value.put(KEY_SCHEDULE, mFriend.getScheduleByteArray());
-		/*
-		if((this.fetchEntryByIndex(id)) == null){
-			Log.i("TAG","INSIDE IF");
-			dbObj=getWritableDatabase();
-			id2 = dbObj.insert(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
+		value.put(KEY_SIZE, mFriend.scheduleSize);
 		
-		}
-		else{
-		*/
-			//Log.i("TAG","INSIDE ELSE");
-			dbObj=getWritableDatabase();
-			id2 =	dbObj.insert(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
-		//}
+		long id = dbObj.insert(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
 		dbObj.close();
-		return id2;
+		
+		return id;
 	}
 	
 	public void removeEntry(long rowIndex){
@@ -97,7 +80,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 
 		Cursor cursor = dbObj.query(true, TABLE_NAME_ENTRIES, allColumns,
 				KEY_ROWID + "=" + rowId, null, null, null, null, null);
-
+		
 		if (cursor.moveToFirst()) {
 			friend = cursorToEntry(cursor);
 		}
@@ -113,7 +96,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		
 		friend.setId(cursor.getLong(cursor.getColumnIndex(KEY_ROWID)));
 		friend.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
-		System.out.println("here!!");
+		friend.scheduleSize = cursor.getInt(cursor.getColumnIndex(KEY_SIZE));
 		friend.setScheduleFromByteArray(cursor.getBlob(cursor.getColumnIndex(KEY_SCHEDULE)));
 		
 		return friend;
