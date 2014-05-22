@@ -2,7 +2,9 @@ package edu.dartmouth.cs.DartCal;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -21,7 +23,7 @@ import android.widget.Toast;
 
 public class ManualAddEvent extends Activity {
 	private PersonalEventDbHelper datasource;
-	private EventDbHelper db;
+	//private EventDbHelper db;
 	private Friend mFriend;
 	private Event mEvent;
 	ArrayList<Event> mySchedule;
@@ -31,7 +33,7 @@ public class ManualAddEvent extends Activity {
 		setContentView(R.layout.activity_manual_add_event);
 		mySchedule=new ArrayList<Event>();
 		datasource = new PersonalEventDbHelper(this);
-		db= new EventDbHelper(this);
+		//db= new EventDbHelper(this);
 		mEvent=new Event();
 		mFriend=new Friend();
 		mFriend.setName("USER");
@@ -48,7 +50,7 @@ public class ManualAddEvent extends Activity {
 		EditText mEdit1;
 		mEdit1   = (EditText)findViewById(R.id.editText1);
 		String eventName=mEdit1.getText().toString();
-		Log.i("TAG",eventName);
+		Log.i("TAG","TRYING TO GET EVENT"+eventName);
 		//Location
 		EditText mEdit2;
 		mEdit2   = (EditText)findViewById(R.id.editText2);
@@ -75,8 +77,8 @@ public class ManualAddEvent extends Activity {
 		//Date
 		DatePicker mDatePicker1;
 		mDatePicker1= (DatePicker) findViewById(R.id.datePicker1);
-		Date date=new Date();
-		long myDate=date.getTime();
+		Calendar myCal= new GregorianCalendar();
+		//myCal.set
 		//Repeating
 		int repeating=3;
 		SharedPreferences settings =PreferenceManager.getDefaultSharedPreferences(this);
@@ -97,13 +99,20 @@ public class ManualAddEvent extends Activity {
 		mEvent.setEndTime(myEndTime);
 		mEvent.setEventDescription(description);
 		mEvent.setRepeating(repeating);
-		/*
+		
 		datasource.insertEntry(mEvent);
-		Log.i("TAG","MY ENTRY "+datasource.fetchEntryByIndex(0).getDate());
+		Log.i("TAG","MY EVENT myStartTime"+myStartTime);
+		Log.i("TAG","MY EVENT myEndTime"+myEndTime);
+		Log.i("TAG","MY EVENT date"+myDate);
+		for (int i=0;i<datasource.fetchEntries().size();i++){
+			Log.i("TAG","INSIDE DATABASE StartTime"+datasource.fetchEntries().get(i).getStartTime());
+			Log.i("TAG","INSIDE DATABASE EndTime"+datasource.fetchEntries().get(i).getEndTime());
+			Log.i("TAG","INSIDE DATABASE Date"+datasource.fetchEntries().get(i).getDate());
+		//Log.i("TAG","MY ENTRY "+datasource.fetchEntryByIndex(0).getDate());
 		Log.i("TAG","MY DATE DEFAULT "+Long.toString(System.currentTimeMillis()));
-		*/
-		db.insertEntry(mFriend);
-		Log.i("TAG",Integer.toString(mFriend.getSchedule().size()));
+		}
+		//db.insertEntry(mFriend);
+		//Log.i("TAG",Integer.toString(mFriend.getSchedule().size()));
 		
 		/*
 		ArrayList<Event> mySchedule=new ArrayList<Event>();

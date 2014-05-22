@@ -2,6 +2,7 @@ package edu.dartmouth.cs.DartCal;
 
 import java.io.IOException;
 import java.io.StreamCorruptedException;
+import java.util.ArrayList;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -131,6 +132,26 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		event.setEventDescription(cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
 		
 		return event;
+	}
+	public ArrayList<Event> fetchEntries() throws StreamCorruptedException, ClassNotFoundException, IOException {
+		SQLiteDatabase database=getWritableDatabase();
+		
+		ArrayList<Event> entries = new ArrayList<Event>();
+
+		Cursor cursor = database.query(TABLE_NAME_ENTRIES,
+				allColumns, null, null, null, null, null);
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			Event entry = cursorToEntry(cursor);
+			entries.add(entry);
+			cursor.moveToNext();
+		}
+		// Make sure to close the cursor
+		cursor.close();
+		
+		database.close();
+		return entries;
 	}
 	
 
