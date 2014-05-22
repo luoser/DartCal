@@ -211,10 +211,26 @@
             android:layout_height="wrap_content"
             android:padding="0dp" >
 
+            <!-- VIEW FOR DRAWING OVER -->
+			<!-- FINDING THE COLUMNS -->
             <edu.dartmouth.cs.DartCal.DrawView
-                android:id="@+id/drawingFrame"
+                android:id="@+id/sunday7to8"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp" />
+
+            <edu.dartmouth.cs.DartCal.DrawView
+                android:id="@+id/monday7to8"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="66dp" />
+
+            <edu.dartmouth.cs.DartCal.DrawView
+                android:id="@+id/tuesday7to8"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="118dp" />
+
 
             <LinearLayout
                 android:id="@+id/calendarSplitterRelativeLayout"
@@ -222,8 +238,6 @@
                 android:layout_height="wrap_content"
                 android:drawingCacheQuality="low"
                 android:orientation="vertical" >
-
-                <!-- VIEW FOR DRAWING OVER -->
 
                 <LinearLayout
                     android:layout_width="match_parent"

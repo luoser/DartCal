@@ -1,3 +1,10 @@
+/**
+ * DartCal
+ * File: MainActivity.java
+ * Authors: Will McConnell, Lisa Luo, Paul Champeau
+ * Created: 5/21/14
+ */
+
 package edu.dartmouth.cs.DartCal;
 
 import java.io.IOException;

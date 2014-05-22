@@ -124,34 +124,6 @@ public class WeeklyFragment extends Fragment {
 		return false;
 	}
 
-	// this function will get the data input by the user from the edit
-	// profile
-	// activity
-	public void retrieveCourseData() {
 
-	}
-
-	// this will draw the specific block for the period onto the calendar
-	public void drawPeriod(String period) {
-
-	}
-
-	// this function will draw the blocks onto the schedule.
-	public void drawCourses(String course1, String course2, String course3,
-			String course4) {
-
-		if (!course1.isEmpty())
-			drawPeriod(course1);
-
-		if (!course2.isEmpty())
-			drawPeriod(course2);
-
-		if (!course3.isEmpty())
-			drawPeriod(course3);
-
-		if (!course4.isEmpty())
-			drawPeriod(course4);
-
-	}
 
 }

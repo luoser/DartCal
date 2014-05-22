@@ -1,3 +1,10 @@
+/**
+ * DartCal
+ * File: DrawView.java
+ * Author: Lisa Luo
+ * Modified: 5/21/14
+ */
+
 package edu.dartmouth.cs.DartCal;
 
 import android.content.Context;
@@ -7,10 +14,15 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+
 // class to help draw things
 public class DrawView extends View {
 	Paint paint = new Paint();
-
+	
+	private boolean is110mins;	// i.e. 2A
+	private boolean is65mins;	// i.e. 10
+	private boolean isXhour;
+	
 	public DrawView(Context context) {
 		super(context);
 	}
@@ -76,9 +88,9 @@ public class DrawView extends View {
 
 	@Override
 	public void onDraw(Canvas canvas) {
-		paint.setColor(Color.BLACK);
-		paint.setStrokeWidth(3);
-		canvas.drawRect(30, 30, 80, 80, paint);
+		
+		// need to distinguish how long to draw them....
+
 		paint.setStrokeWidth(0);
 		paint.setColor(Color.CYAN);
 		canvas.drawRect(33, 60, 77, 77, paint);

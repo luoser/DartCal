@@ -16,13 +16,14 @@ public class Event implements Serializable {
 	private int	isRepeating;
 	private long id;
 	private long date;
-	private String classPeriod;
+//	private String classPeriod;
+	private int classPeriod;	// value will come from spinner
 
 public Event() {
 	this.eventName = "";
 	this.eventLocation = "";
 	this.eventDescription = "";
-	this.classPeriod = "";
+	this.classPeriod = -1;
 	this.startTime = System.currentTimeMillis();
 	this.endTime = System.currentTimeMillis();
 	this.isRepeating = 3;
@@ -34,10 +35,10 @@ public int getIsRepeating() {
 public void setIsRepeating(int isRepeating) {
 	this.isRepeating = isRepeating;
 }
-public String getClassPeriod() {
+public int getClassPeriod() {
 	return classPeriod;
 }
-public void setClassPeriod(String classPeriod) {
+public void setClassPeriod(int classPeriod) {
 	this.classPeriod = classPeriod;
 }
 public long getId(){
