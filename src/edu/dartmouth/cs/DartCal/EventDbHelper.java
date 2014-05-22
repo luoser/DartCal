@@ -22,7 +22,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 	public static final String KEY_NAME = "name";
 	public static final String	KEY_SIZE = "size";
 	public static final String KEY_SCHEDULE = "schedule";
-	private static String[] allColumns = {KEY_ROWID, KEY_NAME, KEY_SCHEDULE};
+	private static String[] allColumns = {KEY_ROWID, KEY_NAME, KEY_SIZE, KEY_SCHEDULE};
 
 	private static final String CREATE_TABLE_ENTRIES = "CREATE TABLE IF NOT EXISTS "
 			+ TABLE_NAME_ENTRIES
@@ -52,7 +52,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		onCreate(database);
 	}
 
-	public long insertEntry(Friend friend) throws IOException, SQLException, ClassNotFoundException{
+	public long insertEntry(Friend friend) throws IOException {
 		SQLiteDatabase dbObj;
 		dbObj=getWritableDatabase();
 		mFriend = friend;
@@ -63,6 +63,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		value.put(KEY_SIZE, mFriend.scheduleSize);
 		
 		long id = dbObj.insert(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
+		
 		dbObj.close();
 		
 		return id;
@@ -76,6 +77,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 	
 	public Friend fetchEntryByIndex(long rowId) throws SQLException, StreamCorruptedException, ClassNotFoundException, IOException {
 		SQLiteDatabase dbObj = getReadableDatabase();
+		
 		Friend friend = null;
 
 		Cursor cursor = dbObj.query(true, TABLE_NAME_ENTRIES, allColumns,
