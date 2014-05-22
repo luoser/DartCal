@@ -20,7 +20,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class ManualAddEvent extends Activity {
-	private EventDbHelper datasource;
+	private PersonalEventDbHelper datasource;
+	private EventDbHelper db;
 	private Friend mFriend;
 	private Event mEvent;
 	ArrayList<Event> mySchedule;
@@ -29,7 +30,8 @@ public class ManualAddEvent extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_manual_add_event);
 		mySchedule=new ArrayList<Event>();
-		datasource = new EventDbHelper(this);
+		datasource = new PersonalEventDbHelper(this);
+		db= new EventDbHelper(this);
 		mEvent=new Event();
 		mFriend=new Friend();
 		mFriend.setName("USER");
@@ -69,7 +71,7 @@ public class ManualAddEvent extends Activity {
 		Time endTime = new Time();
 		endTime.hour = mTimePicker2.getCurrentHour();
 		endTime.minute = mTimePicker2.getCurrentMinute();
-		long myEndTime = startTime.toMillis(false);
+		long myEndTime = endTime.toMillis(false);
 		//Date
 		DatePicker mDatePicker1;
 		mDatePicker1= (DatePicker) findViewById(R.id.datePicker1);
@@ -95,30 +97,37 @@ public class ManualAddEvent extends Activity {
 		mEvent.setEndTime(myEndTime);
 		mEvent.setEventDescription(description);
 		mEvent.setRepeating(repeating);
+		/*
+		datasource.insertEntry(mEvent);
+		Log.i("TAG","MY ENTRY "+datasource.fetchEntryByIndex(0).getDate());
+		Log.i("TAG","MY DATE DEFAULT "+Long.toString(System.currentTimeMillis()));
+		*/
+		db.insertEntry(mFriend);
+		Log.i("TAG",Integer.toString(mFriend.getSchedule().size()));
 		
-		//datasource.
+		/*
 		ArrayList<Event> mySchedule=new ArrayList<Event>();
 		mySchedule.add(mEvent);
 		mFriend.setSchedule(mySchedule);
-		Friend fr=new Friend();
-		try {
-			fr  = datasource.fetchEntryByIndex(0);
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(fr == null)
+		Friend fr=null;
+		//fr  = datasource.fetchEntryByIndex(0);
+		//Log.i("TAG","FRIEND"+fr.toString());
+		//if(fr == null)
+		
+		if (){
 			datasource.insertEntry(mFriend);
-		else{
-			fr = datasource.fetchEntryByIndex(0);
-			fr.getSchedule().add(mEvent);
-			datasource.insertEntry(fr);
 		}
+		else{
+		
+			Log.i("TAG","ALL UP IN DIS BITCH");
+			fr = datasource.fetchEntryByIndex(0);
+			Log.i("TAG",Integer.toString(fr.getSchedule().size()));
+			fr.getSchedule().add(fr.getSchedule().size(), mEvent);
+			datasource.insertEntry(fr);
+		
+		Log.i("TAG","MY ID BE ALL LIKE "+Long.toString(datasource.fetchEntryByIndex(0).getId())+"MY NAME IS "+
+				datasource.fetchEntryByIndex(0).getSchedule());
+			*/
 		finish();
 	}
 

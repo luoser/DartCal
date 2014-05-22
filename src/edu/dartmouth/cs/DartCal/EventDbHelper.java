@@ -11,10 +11,11 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class EventDbHelper extends SQLiteOpenHelper {
 	public static Friend mFriend;
-	public static SQLiteDatabase database;
+	//public static SQLiteDatabase database;
 	public static int DATABASE_VERSION = 1;
 	public static final String TABLE_NAME_ENTRIES = "ENTRIES";
 	public static String DATABASE_NAME = "eventDB";
@@ -36,7 +37,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 	public EventDbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		mFriend = new Friend();
-		database = getWritableDatabase();
+		//database = getWritableDatabase();
 	}
 
 	public void onCreate(SQLiteDatabase database) {
@@ -49,7 +50,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		database.execSQL("DROP TABLE IF EXISTS ");
 		onCreate(database);
 	}
-
+	/*
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
@@ -57,33 +58,37 @@ public class EventDbHelper extends SQLiteOpenHelper {
 	public void close() {
 		this.close();
 	}
-
+*/
 	public long insertEntry(Friend friend) throws IOException, SQLException, ClassNotFoundException{
-		database = getWritableDatabase();
+		SQLiteDatabase dbObj;
 		mFriend = friend;
 		long id = friend.getId();
 		long id2;
 		ContentValues value = new ContentValues();
-		value.put(KEY_ROWID, mFriend.getId());
+		//value.put(KEY_ROWID, mFriend.getId());
 		value.put(KEY_NAME, mFriend.getName());
 		value.put(KEY_SCHEDULE, mFriend.getScheduleByteArray());
-		
+		/*
 		if((this.fetchEntryByIndex(id)) == null){
-
-		id2 = database.insert(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
+			Log.i("TAG","INSIDE IF");
+			dbObj=getWritableDatabase();
+			id2 = dbObj.insert(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
 		
 		}
 		else{
-		id2 =	database.replace(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
-			
-		}
+		*/
+			//Log.i("TAG","INSIDE ELSE");
+			dbObj=getWritableDatabase();
+			id2 =	dbObj.insert(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
+		//}
+		dbObj.close();
 		return id2;
 	}
 	
 	public void removeEntry(long rowIndex){
-		database = getWritableDatabase();
-		database.delete(TABLE_NAME_ENTRIES, KEY_ROWID + "=" + rowIndex, null);
-		database.close();
+		SQLiteDatabase dbObj=getWritableDatabase();
+		dbObj.delete(TABLE_NAME_ENTRIES, KEY_ROWID + "=" + rowIndex, null);
+		dbObj.close();
 	}
 	
 	public Friend fetchEntryByIndex(long rowId) throws SQLException, StreamCorruptedException, ClassNotFoundException, IOException {
