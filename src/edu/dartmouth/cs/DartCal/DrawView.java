@@ -26,11 +26,21 @@ public class DrawView extends View {
 	
 	// unrotated
 	private int TIME_7AM_TOP = 19;
-	private int TIME_9L_TOP = 147;
-	private int TIME_9L_BOTTOM = 225;
+	private int TIME_9L_TOP = 144;
+	private int TIME_9L_BOTTOM = 224;
 	private int TIME_10AM_TOP = 237;
-	private int TIME_10_BOTTOM = 320;
+	private int TIME_10_BOTTOM = 317;
 	private int TIME_10A_BOTTOM = 370;
+	private int TIME_11_TOP = 330;
+	private int TIME_11_BOTTOM = 410;
+	private int TIME_12_TOP = 423;
+	private int TIME_12_BOTTOM = 503;
+	private int TIME_2PM_TOP = 530;
+	private int TIME_2A_BOTTOM = 663;
+	private int TIME_2_TOP = 513;
+	private int TIME_2_BOTTOM = 593;
+	private int TIME_3PM_TOP = 603;
+	private int TIME_3A_BOTTOM = 735;
 	
 	private int MONDAY_LEFT = 117;
 	private int MONDAY_RIGHT = 199;
@@ -54,8 +64,6 @@ public class DrawView extends View {
 	// allows for insertion into xml
 	public DrawView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-
-		// init sample view
 	}
 
 	@Override
@@ -119,7 +127,7 @@ public class DrawView extends View {
 		int course1Time = 2; // 10
 		int course2Time = 3; // 10A
 		int course3Time = 1;
-		int course4Time;
+		int course4Time = 4;
 
 		// default user color
 		int mint = getResources().getColor(R.color.mint_green);
@@ -133,14 +141,24 @@ public class DrawView extends View {
 			
 			// draw course 1
 			drawCourse(course1Time, canvas);
-			drawCourse(course2Time, canvas);
-			drawCourse(course3Time, canvas);
 			
 			// draw course 2
-			
+			drawCourse(course2Time, canvas);
+
 			// draw course 3
-			
+			drawCourse(course3Time, canvas);
+
 			// draw course 4
+			drawCourse(course4Time, canvas);
+			
+			drawCourse(0, canvas);
+			drawCourse(5, canvas);
+			drawCourse(6, canvas);
+			drawCourse(7, canvas);
+			drawCourse(8, canvas);
+			drawCourse(9, canvas);
+			drawCourse(10, canvas);
+			drawCourse(11, canvas);
 
 		}
 
@@ -151,6 +169,7 @@ public class DrawView extends View {
 
 		// Early drill
 		case 0:
+			
 
 		// 9L
 		case 1:
@@ -178,20 +197,41 @@ public class DrawView extends View {
 		
 		// 11	
 		case 4:
+			canvas.drawRect(MONDAY_LEFT, TIME_11_TOP, MONDAY_RIGHT, TIME_11_BOTTOM, paint);
+			canvas.drawRect(WEDNESDAY_LEFT, TIME_11_TOP, WEDNESDAY_RIGHT, TIME_11_BOTTOM, paint);
+			canvas.drawRect(FRIDAY_LEFT, TIME_11_TOP, FRIDAY_RIGHT, TIME_11_BOTTOM, paint);
 		
 		// 12
 		case 5:
+			canvas.drawRect(MONDAY_LEFT, TIME_12_TOP, MONDAY_RIGHT, TIME_12_BOTTOM, paint);
 			
 		// 2	
 		case 6:
+			canvas.drawRect(MONDAY_LEFT, TIME_2_TOP, MONDAY_RIGHT, TIME_2_BOTTOM, paint);
+
+			
+		// 2A
 		case 7:
+			canvas.drawRect(TUESDAY_LEFT, TIME_2PM_TOP, TUESDAY_RIGHT, TIME_2A_BOTTOM, paint);
+			canvas.drawRect(THURSDAY_LEFT, TIME_2PM_TOP, THURSDAY_RIGHT, TIME_2A_BOTTOM, paint);
+		
+		// 3A	
 		case 8:
+			canvas.drawRect(MONDAY_LEFT,  TIME_3PM_TOP, MONDAY_RIGHT, TIME_3A_BOTTOM, paint);
+			
+		// 3B	
 		case 9:
+			
+		// Afternoon Drill
 		case 10:
+		
+		// Evening Drill
 		case 11:
+			
 		default:
 			break;
 		}
 
 	}
+	
 }
