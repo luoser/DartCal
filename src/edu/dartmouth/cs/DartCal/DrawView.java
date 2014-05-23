@@ -164,16 +164,16 @@ public class DrawView extends View {
 
 			drawCourse(0, canvas);
 			drawXhour(0, canvas);
-			
+
 			drawCourse(5, canvas);
 			drawXhour(5, canvas);
-			
+
 			drawCourse(6, canvas);
 			drawXhour(6, canvas);
-			
+
 			drawCourse(7, canvas);
 			drawXhour(7, canvas);
-			
+
 			drawCourse(8, canvas);
 			drawXhour(7, canvas);
 
@@ -320,7 +320,7 @@ public class DrawView extends View {
 		paint.setColor(green);
 
 		switch (period) {
-		
+
 		// 8
 		case 1:
 			canvas.drawRect(WEDNESDAY_LEFT, TIME_8_TOP, WEDNESDAY_RIGHT,
@@ -342,33 +342,38 @@ public class DrawView extends View {
 
 			// 10A
 		case 5:
-			canvas.drawRect(WEDNESDAY_LEFT,  TIME_3PM_TOP, WEDNESDAY_RIGHT, TIME_2A_BOTTOM, paint);
+			canvas.drawRect(WEDNESDAY_LEFT, TIME_3PM_TOP, WEDNESDAY_RIGHT,
+					TIME_2A_BOTTOM, paint);
 
 			// 11
 		case 6:
-			canvas.drawRect(TUESDAY_LEFT, TIME_12PM_TOP, TUESDAY_RIGHT, TIME_1250PM_BOTTOM, paint);
-	
+			canvas.drawRect(TUESDAY_LEFT, TIME_12PM_TOP, TUESDAY_RIGHT,
+					TIME_1250PM_BOTTOM, paint);
+
 			// 12
 		case 7:
-			canvas.drawRect(TUESDAY_LEFT, TIME_1PM_TOP, TUESDAY_RIGHT, TIME_150PM_BOTTOM, paint);
+			canvas.drawRect(TUESDAY_LEFT, TIME_1PM_TOP, TUESDAY_RIGHT,
+					TIME_150PM_BOTTOM, paint);
 
 			// 2
 		case 8:
-			canvas.drawRect(THURSDAY_LEFT, TIME_1PM_TOP, THURSDAY_RIGHT, TIME_150PM_BOTTOM, paint);
+			canvas.drawRect(THURSDAY_LEFT, TIME_1PM_TOP, THURSDAY_RIGHT,
+					TIME_150PM_BOTTOM, paint);
 
 			// 2A
 		case 9:
-			canvas.drawRect(WEDNESDAY_LEFT, TIME_415, WEDNESDAY_RIGHT, TIME_505, paint);
+			canvas.drawRect(WEDNESDAY_LEFT, TIME_415, WEDNESDAY_RIGHT,
+					TIME_505, paint);
 
 			// 3A
 		case 10:
-			canvas.drawRect(MONDAY_LEFT, TIME_5PM_TOP, MONDAY_RIGHT, TIME_550, paint);
+			canvas.drawRect(MONDAY_LEFT, TIME_5PM_TOP, MONDAY_RIGHT, TIME_550,
+					paint);
 
 			// 3B
 		case 11:
-			canvas.drawRect(MONDAY_LEFT, TIME_5PM_TOP, MONDAY_RIGHT, TIME_550, paint);
-
-
+			canvas.drawRect(MONDAY_LEFT, TIME_5PM_TOP, MONDAY_RIGHT, TIME_550,
+					paint);
 		}
 
 	}
