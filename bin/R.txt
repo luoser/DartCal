@@ -64,6 +64,7 @@ int drawable ic_plusone_medium_off_client 0x7f02001a
 int drawable ic_plusone_small_off_client 0x7f02001b
 int drawable ic_plusone_standard_off_client 0x7f02001c
 int drawable ic_plusone_tall_off_client 0x7f02001d
+int drawable schedule 0x7f02001e
 int id action_settings 0x7f06006d
 int id btnCancel 0x7f060028
 int id btnChangePhoto 0x7f060008
@@ -187,7 +188,8 @@ int layout fragment_edit_profile 0x7f030005
 int layout friends_fragment 0x7f030006
 int layout myevent 0x7f030007
 int layout term_fragment 0x7f030008
-int layout weekly_fragment 0x7f030009
+int layout testview 0x7f030009
+int layout weekly_fragment 0x7f03000a
 int menu add_event 0x7f0c0000
 int menu edit_profile 0x7f0c0001
 int menu friends 0x7f0c0002

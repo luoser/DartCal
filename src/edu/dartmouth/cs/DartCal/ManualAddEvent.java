@@ -93,7 +93,7 @@ public class ManualAddEvent extends Activity {
 			repeating=2;
 		}
 		mEvent.setEventName(eventName);
-		mEvent.setDate(myDate);
+//		mEvent.setDate(myDate);
 		mEvent.setEventLocation(location);
 		mEvent.setStartTime(myStartTime);
 		mEvent.setEndTime(myEndTime);
@@ -103,7 +103,7 @@ public class ManualAddEvent extends Activity {
 		datasource.insertEntry(mEvent);
 		Log.i("TAG","MY EVENT myStartTime"+myStartTime);
 		Log.i("TAG","MY EVENT myEndTime"+myEndTime);
-		Log.i("TAG","MY EVENT date"+myDate);
+//		Log.i("TAG","MY EVENT date"+myDate);
 		for (int i=0;i<datasource.fetchEntries().size();i++){
 			Log.i("TAG","INSIDE DATABASE StartTime"+datasource.fetchEntries().get(i).getStartTime());
 			Log.i("TAG","INSIDE DATABASE EndTime"+datasource.fetchEntries().get(i).getEndTime());

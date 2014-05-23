@@ -232,6 +232,7 @@ containing a value of this type.
         public static final int ic_plusone_small_off_client=0x7f02001b;
         public static final int ic_plusone_standard_off_client=0x7f02001c;
         public static final int ic_plusone_tall_off_client=0x7f02001d;
+        public static final int schedule=0x7f02001e;
     }
     public static final class id {
         public static final int action_settings=0x7f06006d;
@@ -361,7 +362,8 @@ containing a value of this type.
         public static final int friends_fragment=0x7f030006;
         public static final int myevent=0x7f030007;
         public static final int term_fragment=0x7f030008;
-        public static final int weekly_fragment=0x7f030009;
+        public static final int testview=0x7f030009;
+        public static final int weekly_fragment=0x7f03000a;
     }
     public static final class menu {
         public static final int add_event=0x7f0c0000;

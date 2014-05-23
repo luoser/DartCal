@@ -35,36 +35,6 @@ public class WeeklyFragment extends Fragment {
 	// CheckBox xHours;
 	// CheckBox officeHours;
 
-	private class MyDrawable extends Drawable {
-
-		@Override
-		public void draw(Canvas canvas) {
-			// TODO Auto-generated method stub
-			Paint paint = new Paint();
-			paint.setColor(Color.RED);
-			canvas.drawLine(0, 0, 50, 50, paint);
-			canvas.drawLine(50, 0, 50, 50, paint);
-		}
-
-		@Override
-		public int getOpacity() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public void setAlpha(int arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void setColorFilter(ColorFilter arg0) {
-			// TODO Auto-generated method stub
-		}
-	}
-
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -82,9 +52,9 @@ public class WeeklyFragment extends Fragment {
 		// getActivity().findViewById(R.id.drawImageView)).setImageDrawable(new
 		// MyDrawable());
 
-//		 drawView = new DrawView(mContext);
+		// drawView = new DrawView(mContext);
 		// drawView.setBackgroundColor(Color.WHITE);
-//		 ((Activity) mContext).setContentView(drawView);
+		// ((Activity) mContext).setContentView(drawView);
 
 	}
 
@@ -124,6 +94,33 @@ public class WeeklyFragment extends Fragment {
 		return false;
 	}
 
+	private class MyDrawable extends Drawable {
 
+		@Override
+		public void draw(Canvas canvas) {
+			// TODO Auto-generated method stub
+			Paint paint = new Paint();
+			paint.setColor(Color.RED);
+			canvas.drawLine(0, 0, 50, 50, paint);
+			canvas.drawLine(50, 0, 50, 50, paint);
+		}
+
+		@Override
+		public int getOpacity() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public void setAlpha(int arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void setColorFilter(ColorFilter arg0) {
+			// TODO Auto-generated method stub
+		}
+	}
 
 }
