@@ -89,7 +89,8 @@
         <item>2A</item>
         <item>3A</item>
         <item>3B</item>
-        <item>Late Drill</item>
+        <item>Afternoon Drill</item>
+        <item>Evening Drill</item>
     </string-array>
 
 </resources>

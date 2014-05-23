@@ -30,7 +30,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class EditProfileActivity extends Activity {
-	
+
 	public static final int REQUEST_CODE_TAKE_FROM_CAMERA = 0;
 	public static final int REQUEST_CODE_CHOOSE_FROM_GALLERY = 1;
 	public static final int REQUEST_CODE_CROP_PHOTO = 2;
@@ -70,10 +70,11 @@ public class EditProfileActivity extends Activity {
 			loadUserData();
 		}
 	}
-	
+
 	// avoid popping up right away.........???
 	public void supressKeyboard() {
-	    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); 
+		getWindow().setSoftInputMode(
+				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	}
 
 	@Override
@@ -92,30 +93,28 @@ public class EditProfileActivity extends Activity {
 		}
 	}
 
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.main, menu);
-//		return true;
-//	}
+	// @Override
+	// public boolean onCreateOptionsMenu(Menu menu) {
+	// // Inflate the menu; this adds items to the action bar if it is present.
+	// getMenuInflater().inflate(R.menu.main, menu);
+	// return true;
+	// }
 
 	// BUTTON CLICKS
 	// Save user data, including picture, and close the application.
 	public void onSaveClicked(View v) {
-		
-		
-		
+
 		saveUserData();
 		// Make a Toast informing the user their information is saved.
-		Toast.makeText(getApplicationContext(),
-				"Saved", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT)
+				.show();
 		finish();
 	}
 
 	// Display a Toast and cancel application.
 	public void onCancelClicked(View v) {
-		Toast.makeText(getApplicationContext(),
-				"Cancelled", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT)
+				.show();
 		// Close the activity.
 		finish();
 	}
@@ -312,6 +311,27 @@ public class EditProfileActivity extends Activity {
 		mKey = getString(R.string.major_field);
 		mValue = mPrefs.getString(mKey, " ");
 		((EditText) findViewById(R.id.editMajor)).setText(mValue);
+
+		// Load course information
+		// Course 1 name
+		mKey = "Course #1 Name";
+		mValue = mPrefs.getString(mKey, " ");
+		((EditText) findViewById(R.id.editCourse1name)).setText(mValue);
+		
+		// Course 1 Time
+		mKey = "Course #1 Time";
+		Spinner mSpinnerSelection = (Spinner) findViewById(R.id.course1TimeSpinner);
+		mSpinnerSelection.setSelection(mPrefs.getInt(mKey, 0));
+		
+		mKey = "Course #1 Location";
+		mValue = mPrefs.getString(mKey, " ");
+		((EditText) findViewById(R.id.editCourse1loc)).setText(mValue);
+		
+		// Course 2
+		
+		// Course 3
+		
+		// Course 4
 	}
 
 	private void saveUserData() {
@@ -345,9 +365,6 @@ public class EditProfileActivity extends Activity {
 				.getText().toString();
 		mEditor.putString(mKey, mValue);
 
-		// Read which index the radio is checked.
-		mKey = getString(R.string.gender_label);
-
 		// Save class information
 		mKey = getString(R.string.class_field);
 		mValue = (String) ((EditText) findViewById(R.id.editClass)).getText()
@@ -360,13 +377,33 @@ public class EditProfileActivity extends Activity {
 				.toString();
 		mEditor.putString(mKey, mValue);
 
+		// Save course information
+		// Course name
+		mKey = "Course #1 Name";
+		mValue = (String) ((EditText) findViewById(R.id.editCourse1name))
+				.getText().toString();
+		mEditor.putString(mKey, mValue);
+
+		// Course time period
+		mKey = "Course #1 Time";
+		Spinner mSpinnerSelection = (Spinner) findViewById(R.id.course1TimeSpinner);
+		int selectedCourse = mSpinnerSelection.getSelectedItemPosition();
+		mEditor.putInt(mKey, selectedCourse);
+
+		// Course location
+		mKey = "Course #1 Location";
+		mValue = (String) ((EditText) findViewById(R.id.editCourse1loc))
+				.getText().toString();
+		mEditor.putString(mKey, mValue);
+		
+		// Course 2
+		
+		// Course 3
+		
+		// Course 4
+
 		// Commit all the changes into the shared preference
 		mEditor.commit();
-
-	}
-	
-	public int getClassPeriod(){
-		
 	}
 
 }

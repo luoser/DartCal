@@ -46,16 +46,6 @@ public class WeeklyFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-
-		// create simple drawable and set it in image view
-		// ((ImageView)
-		// getActivity().findViewById(R.id.drawImageView)).setImageDrawable(new
-		// MyDrawable());
-
-		// drawView = new DrawView(mContext);
-		// drawView.setBackgroundColor(Color.WHITE);
-		// ((Activity) mContext).setContentView(drawView);
-
 	}
 
 	@Override
@@ -63,7 +53,7 @@ public class WeeklyFragment extends Fragment {
 
 		// add the menu items and set the ids for click listeners
 		xHours = menu.add(0, 0, 0, "X-Hours");
-		officeHours = menu.add(0, 1, 1, "Office Hours");
+		officeHours = menu.add(0, 1, 1, "View Schedule Diagram");
 		editProfile = menu.add(0, 2, 2, "Edit Profile");
 
 		super.onCreateOptionsMenu(menu, inflater);
@@ -77,14 +67,18 @@ public class WeeklyFragment extends Fragment {
 		int itemId = item.getItemId();
 
 		switch (itemId) {
+		// xHours selected
 		case (0):
 			Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
 					.show();
 			break;
 		case (1):
-			Toast.makeText(getActivity(), "Office Hours on", Toast.LENGTH_SHORT)
-					.show();
+			// will display the official weekly diagram...?
+//			Intent intent = new Intent(getActivity(), displayDiagram.class);
+//			startActivity(intent);
 			break;
+
+		// edit profile selected
 		case (2):
 			Intent intent = new Intent(getActivity(), EditProfileActivity.class);
 			startActivity(intent);

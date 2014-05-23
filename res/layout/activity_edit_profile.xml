@@ -48,14 +48,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="7dp"
-            android:text="Name" />
+            android:text="@string/name_label" />
 
         <EditText
             android:id="@+id/editName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Enter your name"
+            android:hint="@string/name_field"
             android:inputType="textCapWords" >
 
             <requestFocus />
