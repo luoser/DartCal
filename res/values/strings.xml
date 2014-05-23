@@ -80,7 +80,9 @@
 
     <string-array name="course_time_periods">
         <item>Early Drill</item>
+        <item>8</item>
         <item>9L</item>
+        <item>9S</item>
         <item>10</item>
         <item>10A</item>
         <item>11</item>
