@@ -747,26 +747,14 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- VIEW FOR DRAWING OVER -->
-            <!-- FINDING THE COLUMNS -->
-
+            <!-- This is the view for drawing over -->
             <edu.dartmouth.cs.DartCal.DrawView
                 android:id="@+id/sunday7to8"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="15dp" />
 
-            <edu.dartmouth.cs.DartCal.DrawView
-                android:id="@+id/monday7to8"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="66dp" />
 
-            <edu.dartmouth.cs.DartCal.DrawView
-                android:id="@+id/tuesday7to8"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="118dp" />
         </FrameLayout>
     </ScrollView>
 

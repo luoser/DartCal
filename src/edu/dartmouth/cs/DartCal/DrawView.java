@@ -24,6 +24,8 @@ public class DrawView extends View {
 	private boolean is65mins = false; // i.e. 10
 	private boolean isXhour = false;
 
+	private boolean isRotated = MainActivity.isRotated;
+
 	public DrawView(Context context) {
 		super(context);
 	}
@@ -37,20 +39,9 @@ public class DrawView extends View {
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		// setMeasuredDimension(measureWidth(widthMeasureSpec),
-		// measureHeight(heightMeasureSpec));
+		setMeasuredDimension(measureWidth(widthMeasureSpec),
+				measureHeight(heightMeasureSpec));
 
-		// account for xhour size.....?
-		if (is110mins)
-			setMeasuredDimension(100, 250);
-
-		if (is65mins)
-			setMeasuredDimension(100, 150);
-
-		if (isXhour)
-			setMeasuredDimension(100, 100);
-
-		setMeasuredDimension(100, 100);
 	}
 
 	/**
@@ -92,7 +83,7 @@ public class DrawView extends View {
 		int specSize = MeasureSpec.getSize(measureSpec);
 
 		if (specMode == MeasureSpec.UNSPECIFIED) {
-			// Here we say how Heigh to be
+			// Here we say how high to be
 			result = specSize;
 		}
 		return result;
@@ -103,12 +94,27 @@ public class DrawView extends View {
 
 		// need to distinguish how long to draw the time blocks...
 
-		paint.setStrokeWidth(0);
-		paint.setColor(Color.GREEN);
-		canvas.drawRect(20, 10, 90, 70, paint);
+		int mint = getResources().getColor(R.color.mint_green);
 
+		paint.setStrokeWidth(0);
+		paint.setColor(mint);
+		canvas.drawRect(30, 10, 90, 80, paint);
+
+		canvas.drawRect(100, 10, 190, 80, paint);
+		
+		// wider spacing here
+		if (isRotated) {
+
+			if (is110mins)
+				setMeasuredDimension(100, 250);
+
+			if (is65mins)
+				setMeasuredDimension(100, 150);
+
+			if (isXhour)
+				setMeasuredDimension(100, 100);
+		}
 
 	}
-
 
 }

@@ -364,5 +364,9 @@ public class EditProfileActivity extends Activity {
 		mEditor.commit();
 
 	}
+	
+	public int getClassPeriod(){
+		
+	}
 
 }

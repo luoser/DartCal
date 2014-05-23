@@ -8,6 +8,7 @@
 package edu.dartmouth.cs.DartCal;
 
 import java.io.IOException;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
@@ -17,12 +18,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.Toast;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -43,6 +46,7 @@ public class MainActivity extends Activity {
 	protected static final String TAG = null;
 	
 	DrawView drawView;
+	public static boolean isRotated;
 
 	// final OnClickListener mClickListener = new OnClickListener(){
 	// public void onClick(View v){
@@ -108,6 +112,9 @@ public class MainActivity extends Activity {
 		actionbar.addTab(mWeeklyTab);
 		actionbar.addTab(mFriendsTab);
 		actionbar.addTab(mTermTab);
+		
+		// check for screen rotation to know how to draw things...
+		checkRotation();
 
 		// Watch check box clicks
 		// xHourCheckBox = (CheckBox) findViewById(R.id.xHourCheckBox);
@@ -117,9 +124,6 @@ public class MainActivity extends Activity {
 
 		// restore to navigation
 		if (savedInstanceState != null) {
-			Toast.makeText(getApplicationContext(),
-					"tab is " + savedInstanceState.getInt(TAB_KEY_INDEX, 0),
-					Toast.LENGTH_SHORT).show();
 
 			actionbar.setSelectedNavigationItem(savedInstanceState.getInt(
 					TAB_KEY_INDEX, 0));
@@ -136,6 +140,20 @@ public class MainActivity extends Activity {
 		 * 
 		 * }
 		 */
+	}
+	
+	public boolean checkRotation(){
+		Display display = ((WindowManager) this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+		int rotation = display.getRotation();
+		
+		// there is no rotation
+		if (rotation == 0)
+			return false;
+			
+		
+		// can be rotated 180 or 270 i believe
+		System.out.println("rotated");
+		return true;
 	}
 
 	public String getRegistrationId(Context context) {
@@ -261,11 +279,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		Toast.makeText(
-				this,
-				"onSaveInstanceState: tab is"
-						+ getActionBar().getSelectedNavigationIndex(),
-				Toast.LENGTH_SHORT).show();
+
 		outState.putInt(TAB_KEY_INDEX, getActionBar()
 				.getSelectedNavigationIndex());
 

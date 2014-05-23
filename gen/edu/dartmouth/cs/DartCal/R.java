@@ -183,8 +183,10 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f050006;
         public static final int common_signin_btn_light_text_focused=0x7f050007;
         public static final int common_signin_btn_light_text_pressed=0x7f050005;
-        public static final int common_signin_btn_text_dark=0x7f05000a;
-        public static final int common_signin_btn_text_light=0x7f05000b;
+        public static final int common_signin_btn_text_dark=0x7f05000c;
+        public static final int common_signin_btn_text_light=0x7f05000d;
+        public static final int mint_green=0x7f05000a;
+        public static final int spring_green=0x7f05000b;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -232,10 +234,11 @@ containing a value of this type.
         public static final int ic_plusone_small_off_client=0x7f02001b;
         public static final int ic_plusone_standard_off_client=0x7f02001c;
         public static final int ic_plusone_tall_off_client=0x7f02001d;
-        public static final int schedule=0x7f02001e;
+        public static final int logo=0x7f02001e;
+        public static final int schedule=0x7f02001f;
     }
     public static final class id {
-        public static final int action_settings=0x7f06006d;
+        public static final int action_settings=0x7f06006b;
         public static final int btnCancel=0x7f060028;
         public static final int btnChangePhoto=0x7f060008;
         public static final int btnDartmouthCalendar=0x7f060069;
@@ -286,15 +289,14 @@ containing a value of this type.
         public static final int imageProfile=0x7f060007;
         public static final int mainLayout=0x7f060005;
         public static final int majorLabel=0x7f06000d;
-        public static final int menuitem_add=0x7f060070;
-        public static final int monday7to8=0x7f06006b;
+        public static final int menuitem_add=0x7f06006e;
         public static final int mondayDate=0x7f06003d;
         public static final int mondayDateTextView=0x7f06003c;
         public static final int mondayHeaderRelativeLayout=0x7f06003b;
         public static final int nameLabel=0x7f060009;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
-        public static final int officeHourCheckBox=0x7f06006f;
+        public static final int officeHourCheckBox=0x7f06006d;
         public static final int photoLabel=0x7f060006;
         public static final int preferences=0x7f060030;
         public static final int satellite=0x7f060002;
@@ -340,14 +342,13 @@ containing a value of this type.
         public static final int time9pmTextView=0x7f06005e;
         public static final int timePicker1=0x7f060032;
         public static final int timePicker2=0x7f060033;
-        public static final int tuesday7to8=0x7f06006c;
         public static final int tuesdayDate=0x7f060040;
         public static final int tuesdayDateTextView=0x7f06003f;
         public static final int tuesdayHeaderRelativeLayout=0x7f06003e;
         public static final int wednesdayDate=0x7f060043;
         public static final int wednesdayDateTextView=0x7f060042;
         public static final int wednesdayHeaderRelativeLayout=0x7f060041;
-        public static final int xHourCheckBox=0x7f06006e;
+        public static final int xHourCheckBox=0x7f06006c;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f080000;
