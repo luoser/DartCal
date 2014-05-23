@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
 	private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 	protected static final String TAG = null;
 	
-	DrawView drawView;
+//	DrawView drawView = new DrawView(this);
 	public static boolean isRotated;
 
 	// final OnClickListener mClickListener = new OnClickListener(){

@@ -31,9 +31,7 @@ public class WeeklyFragment extends Fragment {
 
 	DrawView drawView;
 	Context mContext = getActivity();
-
-	// CheckBox xHours;
-	// CheckBox officeHours;
+	public static boolean xHoursOn = false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,11 +40,12 @@ public class WeeklyFragment extends Fragment {
 		return inflater.inflate(R.layout.weekly_fragment, container, false);
 	}
 
-	// @Override
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 	}
+
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -69,13 +68,17 @@ public class WeeklyFragment extends Fragment {
 		switch (itemId) {
 		// xHours selected
 		case (0):
+			xHoursOn = true;
+
 			Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
 					.show();
+
 			break;
 		case (1):
 			// will display the official weekly diagram...?
-//			Intent intent = new Intent(getActivity(), displayDiagram.class);
-//			startActivity(intent);
+			// Intent intent = new Intent(getActivity(), displayDiagram.class);
+			// startActivity(intent);
+
 			break;
 
 		// edit profile selected

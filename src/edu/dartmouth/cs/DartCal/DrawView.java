@@ -21,6 +21,7 @@ public class DrawView extends View {
 	Paint paint = new Paint();
 
 	private boolean isRotated = MainActivity.isRotated;
+	private boolean xHoursOn = WeeklyFragment.xHoursOn;
 	private int BLOCK_CEILING = 10;
 	private int BLOCK_LEFT_BOUND = 30; // for sundays
 
@@ -56,19 +57,20 @@ public class DrawView extends View {
 	private static int TIME_3B_BOTTOM = 808;
 
 	// Day boundaries
-	private int MONDAY_LEFT = 117;
-	private int MONDAY_RIGHT = 199;
-	private int TUESDAY_LEFT = 224;
-	private int TUESDAY_RIGHT = 306;
-	private int WEDNESDAY_LEFT = 334;
-	private int WEDNESDAY_RIGHT = 416;
-	private int THURSDAY_LEFT = 441;
-	private int THURSDAY_RIGHT = 523;
-	private int FRIDAY_LEFT = 549;
-	private int FRIDAY_RIGHT = 631;
+	private static int MONDAY_LEFT = 117;
+	private static int MONDAY_RIGHT = 199;
+	private static int TUESDAY_LEFT = 224;
+	private static int TUESDAY_RIGHT = 306;
+	private static int WEDNESDAY_LEFT = 334;
+	private static int WEDNESDAY_RIGHT = 416;
+	private static int THURSDAY_LEFT = 441;
+	private static int THURSDAY_RIGHT = 523;
+	private static int FRIDAY_LEFT = 549;
+	private static int FRIDAY_RIGHT = 631;
 
 	public DrawView(Context context) {
 		super(context);
+		
 	}
 
 	// allows for insertion into xml
@@ -132,7 +134,7 @@ public class DrawView extends View {
 
 	@Override
 	public void onDraw(Canvas canvas) {
-
+		
 		// fetch course information from the database
 		int course1Time = 2;
 		int course2Time = 3;
@@ -145,58 +147,48 @@ public class DrawView extends View {
 		// need to distinguish how long to draw the time blocks
 		// also distinguish rotation
 		if (!isRotated) {
+	
 
 			// draw course 1
 			drawCourse(course1Time, canvas);
-			drawXhour(course1Time, canvas);
+//			drawXhour(course1Time, canvas);
 
 			// draw course 2
 			drawCourse(course2Time, canvas);
-			drawXhour(course2Time, canvas);
+//			drawXhour(course2Time, canvas);
 
 			// draw course 3
 			drawCourse(course3Time, canvas);
-			drawXhour(course3Time, canvas);
+//			drawXhour(course3Time, canvas);
 
 			// draw course 4
 			drawCourse(course4Time, canvas);
-			drawXhour(course4Time, canvas);
+//			drawXhour(course4Time, canvas);
 
 			drawCourse(0, canvas);
-			drawXhour(0, canvas);
-
 			drawCourse(5, canvas);
-			drawXhour(5, canvas);
-
 			drawCourse(6, canvas);
-			drawXhour(6, canvas);
-
 			drawCourse(7, canvas);
-			drawXhour(7, canvas);
-
 			drawCourse(8, canvas);
-			drawXhour(7, canvas);
-
 			drawCourse(9, canvas);
-			drawXhour(9, canvas);
-
 			drawCourse(10, canvas);
-			drawXhour(10, canvas);
-
 			drawCourse(11, canvas);
-			drawXhour(11, canvas);
-
 			drawCourse(12, canvas);
-			drawXhour(12, canvas);
-
 			drawCourse(13, canvas);
-			drawXhour(13, canvas);
+						
+			
+			invalidate();
+			if (xHoursOn){
+				displayXhours(canvas);
+				canvas.restore();
+			}
 
 		}
-
+		
 	}
 
 	public void drawCourse(int period, Canvas canvas) {
+				
 		int mint = getResources().getColor(R.color.mint_green);
 		paint.setColor(mint);
 
@@ -311,11 +303,24 @@ public class DrawView extends View {
 		default:
 			break;
 		}
+		
+		invalidate();
+	}
+	
+	public void displayXhours(Canvas canvas){
+		
+		drawXhour(1, canvas);
+		drawXhour(2, canvas);
+		drawXhour(3, canvas);
+		drawXhour(4, canvas);
+		drawXhour(5, canvas);
+		drawXhour(6, canvas);
 
+		invalidate();
 	}
 
 	public void drawXhour(int period, Canvas canvas) {
-
+		
 		int green = getResources().getColor(R.color.spring_green);
 		paint.setColor(green);
 
