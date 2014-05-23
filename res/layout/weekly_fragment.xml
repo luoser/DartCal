@@ -211,27 +211,6 @@
             android:layout_height="wrap_content"
             android:padding="0dp" >
 
-            <!-- VIEW FOR DRAWING OVER -->
-			<!-- FINDING THE COLUMNS -->
-            <edu.dartmouth.cs.DartCal.DrawView
-                android:id="@+id/sunday7to8"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp" />
-
-            <edu.dartmouth.cs.DartCal.DrawView
-                android:id="@+id/monday7to8"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="66dp" />
-
-            <edu.dartmouth.cs.DartCal.DrawView
-                android:id="@+id/tuesday7to8"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="118dp" />
-
-
             <LinearLayout
                 android:id="@+id/calendarSplitterRelativeLayout"
                 android:layout_width="wrap_content"
@@ -767,6 +746,27 @@
                         android:background="#B2BFBE" />
                 </LinearLayout>
             </LinearLayout>
+
+            <!-- VIEW FOR DRAWING OVER -->
+            <!-- FINDING THE COLUMNS -->
+
+            <edu.dartmouth.cs.DartCal.DrawView
+                android:id="@+id/sunday7to8"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp" />
+
+            <edu.dartmouth.cs.DartCal.DrawView
+                android:id="@+id/monday7to8"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="66dp" />
+
+            <edu.dartmouth.cs.DartCal.DrawView
+                android:id="@+id/tuesday7to8"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="118dp" />
         </FrameLayout>
     </ScrollView>
 
