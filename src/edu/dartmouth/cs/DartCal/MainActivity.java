@@ -71,6 +71,7 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		context=this;
 		
 //		 drawView = new DrawView(this);
 //		 drawView.setBackgroundColor(Color.WHITE);
@@ -126,15 +127,17 @@ public class MainActivity extends Activity {
 
 		// Check device for Play Services APK. If check succeeds, proceed with
 		// GCM registration.
-		/*
-		 * if (checkPlayServices()) { gcm =
-		 * GoogleCloudMessaging.getInstance(this); regid =
-		 * getRegistrationId(context);
-		 * 
-		 * if (regid.isEmpty()) { registerInBackground(); }
-		 * 
-		 * }
-		 */
+		
+		 if (checkPlayServices()) { 
+			 gcm =GoogleCloudMessaging.getInstance(this); 
+			 regid =getRegistrationId(context);
+		 
+		 if (regid.isEmpty()) {
+			 registerInBackground(); 
+		 }
+		  
+		  }
+		 
 	}
 	
 	public boolean checkRotation(){

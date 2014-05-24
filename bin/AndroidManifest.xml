@@ -57,17 +57,22 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />        
         <receiver
-            android:name=".GcmBroadcastReceiver"
+            android:name="edu.dartmouth.cs.DartCal.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <category android:name="edu.dartmouth.cs.cs65lab4googlemaps" />
+                <category android:name="edu.dartmouth.cs.DartCal" />
             </intent-filter>
         </receiver>
 
         <service android:name=".GCMIntentService" />
+        
+         <activity
+            android:name="edu.dartmouth.cs.DartCal.PersonalWeeksCalendar"
+            android:label="@string/title_activity_personal_weeks_calendar" >
+        </activity>
     </application>
 
 </manifest>

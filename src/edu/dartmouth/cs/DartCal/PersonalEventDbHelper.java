@@ -20,33 +20,33 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 	public static final String KEY_ROWID = "_id";
 	public static final String KEY_NAME = "name";
 	public static final String KEY_SCHEDULE = "schedule";
-	public static final String KEY_DATE = "date";
 	public static final String KEY_EVENT_NAME = "event_name";
 	public static final String KEY_LOCATION = "location";
-	public static final String KEY_EVENT_START = "start";
-	public static final String KEY_EVENT_END = "end";
 	public static final String KEY_DESCRIPTION = "description";
-	public static final String KEY_REPEATING = "repeating";
-	private static String[] allColumns = {KEY_ROWID, KEY_DATE,KEY_EVENT_NAME,KEY_LOCATION,
-		KEY_EVENT_START,KEY_EVENT_END,KEY_DESCRIPTION,KEY_REPEATING};
+	public static final String KEY_EVENT_DATE= "date";
+	public static final String KEY_EVENT_START_TIME= "start";
+	public static final String KEY_EVENT_END_TIME= "end";
+	public static final String KEY_IS_REPEATING = "is_repeating";
+	private static String[] allColumns = {KEY_ROWID,KEY_EVENT_NAME,KEY_LOCATION,
+		KEY_EVENT_DATE, KEY_EVENT_START_TIME,KEY_EVENT_END_TIME,KEY_DESCRIPTION,KEY_IS_REPEATING};
 
 	private static final String CREATE_TABLE_ENTRIES = "CREATE TABLE IF NOT EXISTS "
 			+ TABLE_NAME_ENTRIES
 			+ " ("
 			+ KEY_ROWID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ KEY_DATE
-			+ " INTEGER NOT NULL, "
 			+ KEY_EVENT_NAME
 			+ " TEXT, "
 			+ KEY_LOCATION
 			+ " TEXT, "
-			+ KEY_EVENT_START
+			+ KEY_EVENT_DATE
 			+ " INTEGER NOT NULL, "
-			+ KEY_EVENT_END
+			+ KEY_EVENT_START_TIME
+			+ " INTEGER NOT NULL, "
+			+ KEY_EVENT_END_TIME
 			+ " INTEGER NOT NULL, "
 			+ KEY_DESCRIPTION
-			+ " TEXT, " + KEY_REPEATING + " INTEGER NOT NULL " + ");";
+			+ " TEXT, " + KEY_IS_REPEATING + " INTEGER NOT NULL " + ");";
 
 
 	public PersonalEventDbHelper(Context context) {
@@ -76,19 +76,21 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		this.close();
 	}
 */
-	public long insertEntry(Event event) throws IOException, SQLException, ClassNotFoundException{
+	public long insertEntry(Event event) {
 		SQLiteDatabase dbObj;
 		
 		ContentValues value = new ContentValues();
 		//value.put(KEY_ROWID, event.getId());
 		//value.put(KEY_NAME, event.getName());
-		value.put(KEY_DATE, event.getDate());
+		value.put(KEY_EVENT_DATE, event.getDate());
 		value.put(KEY_EVENT_NAME, event.getEventName());
 		value.put(KEY_LOCATION, event.getEventLocation());
-		value.put(KEY_EVENT_START, event.getStartTime());
-		value.put(KEY_EVENT_END, event.getEndTime());
+		value.put(KEY_EVENT_START_TIME, event.getStartTime());
+		Log.i("TAG","INSERT ENTRY"+event.getStartTime());
+		Log.i("TAG","INSERT ENTRY VALUE"+value.get(KEY_EVENT_START_TIME));
+		value.put(KEY_EVENT_END_TIME, event.getEndTime());
 		value.put(KEY_DESCRIPTION, event.getEventDescription());
-		value.put(KEY_REPEATING, event.getIsRepeating());
+		value.put(KEY_IS_REPEATING, event.getIsRepeating());
 		
 		
 		dbObj=getWritableDatabase();
@@ -104,7 +106,7 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		dbObj.close();
 	}
 	
-	public Event fetchEntryByIndex(long rowId) throws SQLException, StreamCorruptedException, ClassNotFoundException, IOException {
+	public Event fetchEntryByIndex(long rowId) throws SQLException {
 		SQLiteDatabase dbObj = getReadableDatabase();
 		 Event event = null;
 		Cursor cursor = dbObj.query(true, TABLE_NAME_ENTRIES, allColumns,
@@ -120,20 +122,21 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		return event;
 	}
 	
-	private Event cursorToEntry(Cursor cursor) throws StreamCorruptedException, ClassNotFoundException, IOException {
+	private Event cursorToEntry(Cursor cursor){
 		Event event = new Event();
 		
 		event.setId(cursor.getLong(cursor.getColumnIndex(KEY_ROWID)));
 		event.setEventName(cursor.getString(cursor.getColumnIndex(KEY_EVENT_NAME)));
-		event.setDate(cursor.getInt(cursor.getColumnIndex(KEY_DATE)));
+		event.setDate(cursor.getLong(cursor.getColumnIndex(KEY_EVENT_DATE)));
 		event.setEventLocation(cursor.getString(cursor.getColumnIndex(KEY_LOCATION)));
-		event.setStartTime(cursor.getInt(cursor.getColumnIndex(KEY_EVENT_START)));
-		event.setEndTime(cursor.getInt(cursor.getColumnIndex(KEY_EVENT_END)));
+		event.setStartTime(cursor.getLong(cursor.getColumnIndex(KEY_EVENT_START_TIME)));
+		event.setEndTime(cursor.getLong(cursor.getColumnIndex(KEY_EVENT_END_TIME)));
 		event.setEventDescription(cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
+		event.setIsRepeating(cursor.getInt(cursor.getColumnIndex(KEY_IS_REPEATING)));
 		
 		return event;
 	}
-	public ArrayList<Event> fetchEntries() throws StreamCorruptedException, ClassNotFoundException, IOException {
+	public ArrayList<Event> fetchEntries(){
 		SQLiteDatabase database=getWritableDatabase();
 		
 		ArrayList<Event> entries = new ArrayList<Event>();
@@ -144,6 +147,7 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			Event entry = cursorToEntry(cursor);
+			//Log.i("TAG","INSIDE FETCH"+entry.getStartTime());
 			entries.add(entry);
 			cursor.moveToNext();
 		}
@@ -153,6 +157,4 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		database.close();
 		return entries;
 	}
-	
-
 }

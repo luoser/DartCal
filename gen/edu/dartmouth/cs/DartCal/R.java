@@ -290,14 +290,15 @@ containing a value of this type.
         public static final int imageProfile=0x7f060007;
         public static final int mainLayout=0x7f060005;
         public static final int majorLabel=0x7f06000d;
-        public static final int menuitem_add=0x7f06006e;
+        public static final int menuitem_add=0x7f06006c;
+        public static final int menuitem_sync=0x7f06006f;
         public static final int mondayDate=0x7f06003d;
         public static final int mondayDateTextView=0x7f06003c;
         public static final int mondayHeaderRelativeLayout=0x7f06003b;
         public static final int nameLabel=0x7f060009;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
-        public static final int officeHourCheckBox=0x7f06006d;
+        public static final int officeHourCheckBox=0x7f06006e;
         public static final int photoLabel=0x7f060006;
         public static final int preferences=0x7f060030;
         public static final int satellite=0x7f060002;
@@ -348,7 +349,7 @@ containing a value of this type.
         public static final int wednesdayDate=0x7f060043;
         public static final int wednesdayDateTextView=0x7f060042;
         public static final int wednesdayHeaderRelativeLayout=0x7f060041;
-        public static final int xHourCheckBox=0x7f06006c;
+        public static final int xHourCheckBox=0x7f06006d;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f080000;
@@ -357,14 +358,15 @@ containing a value of this type.
         public static final int activity_edit_profile=0x7f030000;
         public static final int activity_main=0x7f030001;
         public static final int activity_manual_add_event=0x7f030002;
-        public static final int activity_weeks=0x7f030003;
-        public static final int activity_weeks_calendar=0x7f030004;
-        public static final int fragment_edit_profile=0x7f030005;
-        public static final int friends_fragment=0x7f030006;
-        public static final int myevent=0x7f030007;
-        public static final int term_fragment=0x7f030008;
-        public static final int testview=0x7f030009;
-        public static final int weekly_fragment=0x7f03000a;
+        public static final int activity_personal_weeks_calendar=0x7f030003;
+        public static final int activity_weeks=0x7f030004;
+        public static final int activity_weeks_calendar=0x7f030005;
+        public static final int fragment_edit_profile=0x7f030006;
+        public static final int friends_fragment=0x7f030007;
+        public static final int myevent=0x7f030008;
+        public static final int term_fragment=0x7f030009;
+        public static final int testview=0x7f03000a;
+        public static final int weekly_fragment=0x7f03000b;
     }
     public static final class menu {
         public static final int add_event=0x7f0c0000;
@@ -372,10 +374,11 @@ containing a value of this type.
         public static final int friends=0x7f0c0002;
         public static final int main=0x7f0c0003;
         public static final int manual_add_event=0x7f0c0004;
-        public static final int term=0x7f0c0005;
-        public static final int weekly=0x7f0c0006;
-        public static final int weeks=0x7f0c0007;
-        public static final int weeks_calendar=0x7f0c0008;
+        public static final int personal_weeks_calendar=0x7f0c0005;
+        public static final int term=0x7f0c0006;
+        public static final int weekly=0x7f0c0007;
+        public static final int weeks=0x7f0c0008;
+        public static final int weeks_calendar=0x7f0c0009;
     }
     public static final class string {
         public static final int action_settings=0x7f07001c;
@@ -519,6 +522,7 @@ containing a value of this type.
         public static final int title_activity_edit_profile=0x7f07002b;
         public static final int title_activity_friends_fragment=0x7f070023;
         public static final int title_activity_manual_add_event=0x7f07002c;
+        public static final int title_activity_personal_weeks_calendar=0x7f07004d;
         public static final int title_activity_shared_preferences=0x7f070044;
         public static final int title_activity_term_fragment=0x7f070022;
         public static final int title_activity_weekly_fragment=0x7f070021;
