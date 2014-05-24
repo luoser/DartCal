@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
 	private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 	protected static final String TAG = null;
 	
-//	DrawView drawView = new DrawView(this);
+	DrawView drawView;
 	public static boolean isRotated;
 
 	// final OnClickListener mClickListener = new OnClickListener(){
@@ -65,12 +65,6 @@ public class MainActivity extends Activity {
 	// }
 	// };
 
-	// update fragment visibility based on current check box state
-	// this will control the calendar colors...
-	// void updateFragmentView(){
-	// FragmentTransaction ft = getFragmentManager().beginTransaction();
-	//
-	// }
 
 	/** Called when the activity is first created. */
 	@Override
@@ -81,7 +75,8 @@ public class MainActivity extends Activity {
 //		 drawView = new DrawView(this);
 //		 drawView.setBackgroundColor(Color.WHITE);
 //		 setContentView(drawView);
-
+		drawView = (DrawView) findViewById(R.id.drawView); // !!!!!!
+		
 
 		// ActionBar
 		ActionBar actionbar = getActionBar();

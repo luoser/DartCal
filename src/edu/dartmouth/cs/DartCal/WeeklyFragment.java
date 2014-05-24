@@ -74,6 +74,7 @@ public class WeeklyFragment extends Fragment {
 					.show();
 
 			break;
+			
 		case (1):
 			// will display the official weekly diagram...?
 			// Intent intent = new Intent(getActivity(), displayDiagram.class);

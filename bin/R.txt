@@ -97,6 +97,7 @@ int id course4time 0x7f060023
 int id datePicker1 0x7f060035
 int id dayLabelsLinearLayout 0x7f060036
 int id dayMarkerView 0x7f06003a
+int id drawView 0x7f06006a
 int id editClass 0x7f06000c
 int id editCourse1loc 0x7f060014
 int id editCourse1name 0x7f060010
@@ -133,7 +134,6 @@ int id satellite 0x7f060002
 int id saturdayDate 0x7f06004c
 int id saturdayDateTextView 0x7f06004b
 int id saturdayHeaderRelativeLayout 0x7f06004a
-int id sunday7to8 0x7f06006a
 int id sundayDate 0x7f060039
 int id sundayDateTextView 0x7f060038
 int id sundayHeaderRelativeLayout 0x7f060037

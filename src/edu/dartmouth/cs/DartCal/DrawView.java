@@ -70,7 +70,6 @@ public class DrawView extends View {
 
 	public DrawView(Context context) {
 		super(context);
-		
 	}
 
 	// allows for insertion into xml
@@ -106,7 +105,6 @@ public class DrawView extends View {
 			// We were told how big to be
 			result = specSize;
 		}
-
 		return result;
 	}
 
@@ -134,7 +132,7 @@ public class DrawView extends View {
 
 	@Override
 	public void onDraw(Canvas canvas) {
-		
+
 		// fetch course information from the database
 		int course1Time = 2;
 		int course2Time = 3;
@@ -147,23 +145,18 @@ public class DrawView extends View {
 		// need to distinguish how long to draw the time blocks
 		// also distinguish rotation
 		if (!isRotated) {
-	
 
 			// draw course 1
 			drawCourse(course1Time, canvas);
-//			drawXhour(course1Time, canvas);
 
 			// draw course 2
 			drawCourse(course2Time, canvas);
-//			drawXhour(course2Time, canvas);
 
 			// draw course 3
 			drawCourse(course3Time, canvas);
-//			drawXhour(course3Time, canvas);
 
 			// draw course 4
 			drawCourse(course4Time, canvas);
-//			drawXhour(course4Time, canvas);
 
 			drawCourse(0, canvas);
 			drawCourse(5, canvas);
@@ -175,20 +168,18 @@ public class DrawView extends View {
 			drawCourse(11, canvas);
 			drawCourse(12, canvas);
 			drawCourse(13, canvas);
-						
-			
+
 			invalidate();
-			if (xHoursOn){
+
+			if (xHoursOn) {
 				displayXhours(canvas);
 				canvas.restore();
 			}
-
 		}
-		
 	}
 
 	public void drawCourse(int period, Canvas canvas) {
-				
+
 		int mint = getResources().getColor(R.color.mint_green);
 		paint.setColor(mint);
 
@@ -303,12 +294,12 @@ public class DrawView extends View {
 		default:
 			break;
 		}
-		
+
 		invalidate();
 	}
-	
-	public void displayXhours(Canvas canvas){
-		
+
+	public void displayXhours(Canvas canvas) {
+
 		drawXhour(1, canvas);
 		drawXhour(2, canvas);
 		drawXhour(3, canvas);
@@ -320,7 +311,7 @@ public class DrawView extends View {
 	}
 
 	public void drawXhour(int period, Canvas canvas) {
-		
+
 		int green = getResources().getColor(R.color.spring_green);
 		paint.setColor(green);
 
@@ -380,6 +371,10 @@ public class DrawView extends View {
 			canvas.drawRect(MONDAY_LEFT, TIME_5PM_TOP, MONDAY_RIGHT, TIME_550,
 					paint);
 		}
+
+	}
+
+	public void setStartTime(long startTime) {
 
 	}
 

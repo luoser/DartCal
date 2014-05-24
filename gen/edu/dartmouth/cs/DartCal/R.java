@@ -267,6 +267,7 @@ containing a value of this type.
         public static final int datePicker1=0x7f060035;
         public static final int dayLabelsLinearLayout=0x7f060036;
         public static final int dayMarkerView=0x7f06003a;
+        public static final int drawView=0x7f06006a;
         public static final int editClass=0x7f06000c;
         public static final int editCourse1loc=0x7f060014;
         public static final int editCourse1name=0x7f060010;
@@ -303,7 +304,6 @@ containing a value of this type.
         public static final int saturdayDate=0x7f06004c;
         public static final int saturdayDateTextView=0x7f06004b;
         public static final int saturdayHeaderRelativeLayout=0x7f06004a;
-        public static final int sunday7to8=0x7f06006a;
         public static final int sundayDate=0x7f060039;
         public static final int sundayDateTextView=0x7f060038;
         public static final int sundayHeaderRelativeLayout=0x7f060037;
