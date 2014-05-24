@@ -44,10 +44,17 @@ public class WeeklyFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-
 		drawView = (DrawView) getActivity().findViewById(R.id.drawView); // !!!!!!???!
+		drawView.postInvalidate();
+	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
 		
+		// redraw...
 		
+//		drawView.postInvalidate();
 	}
 
 	@Override
@@ -72,7 +79,6 @@ public class WeeklyFragment extends Fragment {
 		// xHours selected
 		case (XHOURS_SELECTED):
 			xHoursOn = true;
-
 			Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
 					.show();
 
@@ -89,6 +95,7 @@ public class WeeklyFragment extends Fragment {
 		case (EDIT_PROFILE_SELECTED):
 			Intent intent = new Intent(getActivity(), EditProfileActivity.class);
 			startActivity(intent);
+			
 			break;
 		}
 

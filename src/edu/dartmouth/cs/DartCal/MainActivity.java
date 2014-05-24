@@ -73,7 +73,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		context=this;
 		
-	//	drawView = (DrawView) findViewById(R.id.drawView); // !!!!!!
+		 drawView = (DrawView) findViewById(R.id.drawView); // !!!!!!
+		 drawView.postInvalidate();
 		
 
 		// ActionBar
@@ -136,6 +137,12 @@ public class MainActivity extends Activity {
 		  }
 		 
 	}
+	
+//	@Override
+//	public void onResume(){
+//		super.onResume();
+//		
+//	}
 	
 	public boolean checkRotation(){
 		Display display = ((WindowManager) this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();

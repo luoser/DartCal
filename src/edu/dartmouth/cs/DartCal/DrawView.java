@@ -55,6 +55,8 @@ public class DrawView extends View {
 	private static int TIME_550 = 810;
 	private static int TIME_4PM_TOP = 675;
 	private static int TIME_3B_BOTTOM = 808;
+	
+	// define every 15 minutes
 
 	// Day boundaries
 	private static int MONDAY_LEFT = 117;
@@ -67,23 +69,48 @@ public class DrawView extends View {
 	private static int THURSDAY_RIGHT = 523;
 	private static int FRIDAY_LEFT = 549;
 	private static int FRIDAY_RIGHT = 631;
+	
+	private Context context;
+    private Paint mPaint = new Paint();
+    private Canvas  mCanvas;
 
 	public DrawView(Context context) {
 		super(context);
+		init(context);
 	}
 
 	// allows for insertion into xml
 	public DrawView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		init(context);
+	}
+	
+	public DrawView(Context context, AttributeSet attrs, int defStyle) 
+	{
+	    super(context, attrs, defStyle);
+	    init(context);
+	}
+	
+	private void init(Context context) {
+	    this.context = context;
+	    setFocusable(true);
+	    setFocusableInTouchMode(true);
+
+	    mPaint = new Paint();
+	    mPaint.setAntiAlias(true);
+	    mPaint.setDither(true);
+	    mPaint.setColor(Color.BLACK);
+	    mPaint.setStyle(Paint.Style.STROKE);
+	    mPaint.setStrokeJoin(Paint.Join.ROUND);
+	    mPaint.setStrokeCap(Paint.Cap.ROUND);
+	    mPaint.setStrokeWidth(6);
+	    mCanvas = new Canvas();
 	}
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		setMeasuredDimension(measureWidth(widthMeasureSpec),
 				measureHeight(heightMeasureSpec));
-
-		// setMeasuredDimension(500, 500);
-
 	}
 
 	/**
@@ -132,6 +159,7 @@ public class DrawView extends View {
 
 	@Override
 	public void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
 
 		// fetch course information from the database
 		int course1Time = Globals.PERIOD_9L;
@@ -283,18 +311,6 @@ public class DrawView extends View {
 		default:
 			break;
 		}
-
-		invalidate();
-	}
-
-	public void displayXhours(Canvas canvas) {
-
-		drawXhour(1, canvas);
-		drawXhour(2, canvas);
-		drawXhour(3, canvas);
-		drawXhour(4, canvas);
-		drawXhour(5, canvas);
-		drawXhour(6, canvas);
 
 		invalidate();
 	}
