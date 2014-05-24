@@ -144,7 +144,7 @@ public class DrawView extends View {
 
 		// need to distinguish how long to draw the time blocks
 		// also distinguish rotation
-		if (!isRotated) {
+		if (isRotated) {
 
 			// draw course 1
 			drawCourse(course1Time, canvas);
