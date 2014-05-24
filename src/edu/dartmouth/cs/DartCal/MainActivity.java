@@ -73,10 +73,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		context=this;
 		
-//		 drawView = new DrawView(this);
-//		 drawView.setBackgroundColor(Color.WHITE);
-//		 setContentView(drawView);
-		drawView = (DrawView) findViewById(R.id.drawView); // !!!!!!
+	//	drawView = (DrawView) findViewById(R.id.drawView); // !!!!!!
 		
 
 		// ActionBar

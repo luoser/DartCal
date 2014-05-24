@@ -134,17 +134,17 @@ public class DrawView extends View {
 	public void onDraw(Canvas canvas) {
 
 		// fetch course information from the database
-		int course1Time = 2;
-		int course2Time = 3;
-		int course3Time = 1;
-		int course4Time = 4;
+		int course1Time = Globals.PERIOD_9L;
+		int course2Time = Globals.PERIOD_2A;
+		int course3Time = Globals.PERIOD_11;
+		int course4Time = Globals.PERIOD_3B;
 
 		// default user color
 		paint.setStrokeWidth(0);
 
 		// need to distinguish how long to draw the time blocks
 		// also distinguish rotation
-		if (isRotated) {
+		if (!isRotated) {
 
 			// draw course 1
 			drawCourse(course1Time, canvas);
@@ -158,21 +158,12 @@ public class DrawView extends View {
 			// draw course 4
 			drawCourse(course4Time, canvas);
 
-			drawCourse(0, canvas);
-			drawCourse(5, canvas);
-			drawCourse(6, canvas);
-			drawCourse(7, canvas);
-			drawCourse(8, canvas);
-			drawCourse(9, canvas);
-			drawCourse(10, canvas);
-			drawCourse(11, canvas);
-			drawCourse(12, canvas);
-			drawCourse(13, canvas);
-
-			invalidate();
-
 			if (xHoursOn) {
-				displayXhours(canvas);
+				drawXhour(course1Time, canvas);
+				drawXhour(course2Time, canvas);
+				drawXhour(course3Time, canvas);
+				drawXhour(course4Time, canvas);
+				
 				canvas.restore();
 			}
 		}
@@ -185,11 +176,10 @@ public class DrawView extends View {
 
 		switch (period) {
 
-		// Early drill
-		case 0:
+		case Globals.EARLY_DRILL:
+			break;
 
-			// 8
-		case 1:
+		case Globals.PERIOD_8:
 			canvas.drawRect(MONDAY_LEFT, TIME_8_TOP, MONDAY_RIGHT,
 					TIME_8_BOTTOM, paint);
 			canvas.drawRect(TUESDAY_LEFT, TIME_8_TOP, TUESDAY_RIGHT,
@@ -198,18 +188,18 @@ public class DrawView extends View {
 					TIME_8_BOTTOM, paint);
 			canvas.drawRect(FRIDAY_LEFT, TIME_8_TOP, FRIDAY_RIGHT,
 					TIME_8_BOTTOM, paint);
+			break;
 
-			// 9L
-		case 2:
+		case Globals.PERIOD_9L:
 			canvas.drawRect(MONDAY_LEFT, TIME_9L_TOP, MONDAY_RIGHT,
 					TIME_9L_BOTTOM, paint);
 			canvas.drawRect(WEDNESDAY_LEFT, TIME_9L_TOP, WEDNESDAY_RIGHT,
 					TIME_9L_BOTTOM, paint);
 			canvas.drawRect(FRIDAY_LEFT, TIME_9L_TOP, FRIDAY_RIGHT,
 					TIME_9L_BOTTOM, paint);
+			break;
 
-			// 9S
-		case 3:
+		case Globals.PERIOD_9S:
 			canvas.drawRect(MONDAY_LEFT, TIME_9AM_TOP, MONDAY_RIGHT,
 					TIME_9L_BOTTOM, paint);
 			canvas.drawRect(TUESDAY_LEFT, TIME_9AM_TOP, TUESDAY_RIGHT,
@@ -218,78 +208,77 @@ public class DrawView extends View {
 					TIME_9L_BOTTOM, paint);
 			canvas.drawRect(FRIDAY_LEFT, TIME_9AM_TOP, FRIDAY_RIGHT,
 					TIME_9L_BOTTOM, paint);
+			break;
 
-			// 10
-		case 4:
+		case Globals.PERIOD_10:
 			canvas.drawRect(MONDAY_LEFT, TIME_10AM_TOP, MONDAY_RIGHT,
 					TIME_10_BOTTOM, paint);
-			// canvas.drawText("10:00 AM", MONDAY_LEFT, TIME_10AM_TOP - 5,
-			// paint);
 			canvas.drawRect(WEDNESDAY_LEFT, TIME_10AM_TOP, WEDNESDAY_RIGHT,
 					TIME_10_BOTTOM, paint);
 			canvas.drawRect(FRIDAY_LEFT, TIME_10AM_TOP, FRIDAY_RIGHT,
 					TIME_10_BOTTOM, paint);
+			break;
 
-			// 10A
-		case 5:
+		case Globals.PERIOD_10A:
 			canvas.drawRect(TUESDAY_LEFT, TIME_10AM_TOP, TUESDAY_RIGHT,
 					TIME_10A_BOTTOM, paint);
 			canvas.drawRect(THURSDAY_LEFT, TIME_10AM_TOP, THURSDAY_RIGHT,
 					TIME_10A_BOTTOM, paint);
+			break;
 
-			// 11
-		case 6:
+		case Globals.PERIOD_11:
 			canvas.drawRect(MONDAY_LEFT, TIME_11_TOP, MONDAY_RIGHT,
 					TIME_11_BOTTOM, paint);
 			canvas.drawRect(WEDNESDAY_LEFT, TIME_11_TOP, WEDNESDAY_RIGHT,
 					TIME_11_BOTTOM, paint);
 			canvas.drawRect(FRIDAY_LEFT, TIME_11_TOP, FRIDAY_RIGHT,
 					TIME_11_BOTTOM, paint);
+			break;
 
-			// 12
-		case 7:
+		case Globals.PERIOD_12:
 			canvas.drawRect(MONDAY_LEFT, TIME_12_TOP, MONDAY_RIGHT,
 					TIME_12_BOTTOM, paint);
 			canvas.drawRect(WEDNESDAY_LEFT, TIME_12_TOP, WEDNESDAY_RIGHT,
 					TIME_12_BOTTOM, paint);
 			canvas.drawRect(FRIDAY_LEFT, TIME_12_TOP, FRIDAY_RIGHT,
 					TIME_12_BOTTOM, paint);
+			break;
 
-			// 2
-		case 8:
+		case Globals.PERIOD_2:
 			canvas.drawRect(MONDAY_LEFT, TIME_2_TOP, MONDAY_RIGHT,
 					TIME_2_BOTTOM, paint);
 			canvas.drawRect(WEDNESDAY_LEFT, TIME_2_TOP, WEDNESDAY_RIGHT,
 					TIME_2_BOTTOM, paint);
 			canvas.drawRect(FRIDAY_LEFT, TIME_2_TOP, FRIDAY_RIGHT,
 					TIME_2_BOTTOM, paint);
+			break;
 
-			// 2A
-		case 9:
+		case Globals.PERIOD_2A:
 			canvas.drawRect(TUESDAY_LEFT, TIME_2PM_TOP, TUESDAY_RIGHT,
 					TIME_2A_BOTTOM, paint);
 			canvas.drawRect(THURSDAY_LEFT, TIME_2PM_TOP, THURSDAY_RIGHT,
 					TIME_2A_BOTTOM, paint);
+			break;
 
-			// 3A
-		case 10:
+		case Globals.PERIOD_3A:
 			canvas.drawRect(MONDAY_LEFT, TIME_3PM_TOP, MONDAY_RIGHT,
 					TIME_3A_BOTTOM, paint);
 			canvas.drawRect(THURSDAY_LEFT, TIME_4PM_TOP, THURSDAY_RIGHT,
 					TIME_3B_BOTTOM, paint);
+			break;
 
-			// 3B
-		case 11:
+		case Globals.PERIOD_3B:
 			canvas.drawRect(TUESDAY_LEFT, TIME_4PM_TOP, TUESDAY_RIGHT,
 					TIME_3B_BOTTOM, paint);
 			canvas.drawRect(THURSDAY_LEFT, TIME_4PM_TOP, THURSDAY_RIGHT,
 					TIME_3B_BOTTOM, paint);
+			break;
 
-			// Afternoon Drill
-		case 12:
+		case Globals.AFTERNOON_DRILL:
+			break;
 
-			// Evening Drill
-		case 13:
+		case Globals.EVENING_DRILL:
+			break;
 
 		default:
 			break;
@@ -318,63 +307,98 @@ public class DrawView extends View {
 		switch (period) {
 
 		// 8
-		case 1:
+		case Globals.PERIOD_8:
 			canvas.drawRect(WEDNESDAY_LEFT, TIME_8_TOP, WEDNESDAY_RIGHT,
 					TIME_8_BOTTOM, paint);
+			break;
+			
 			// 9L
-		case 2:
+		case Globals.PERIOD_9L:
 			canvas.drawRect(THURSDAY_LEFT, TIME_9AM_TOP, THURSDAY_RIGHT,
 					TIME_9L_BOTTOM, paint);
+			break;
 
 			// 9S
-		case 3:
+		case Globals.PERIOD_9S:
 			canvas.drawRect(WEDNESDAY_LEFT, TIME_9AM_TOP, WEDNESDAY_RIGHT,
 					TIME_9L_BOTTOM, paint);
+			break;
 
 			// 10
-		case 4:
+		case Globals.PERIOD_10:
 			canvas.drawRect(THURSDAY_LEFT, TIME_12PM_TOP, THURSDAY_RIGHT,
 					TIME_1250PM_BOTTOM, paint);
+			break;
 
 			// 10A
-		case 5:
+		case Globals.PERIOD_10A:
 			canvas.drawRect(WEDNESDAY_LEFT, TIME_3PM_TOP, WEDNESDAY_RIGHT,
 					TIME_2A_BOTTOM, paint);
+			break;
 
 			// 11
-		case 6:
+		case Globals.PERIOD_11:
 			canvas.drawRect(TUESDAY_LEFT, TIME_12PM_TOP, TUESDAY_RIGHT,
 					TIME_1250PM_BOTTOM, paint);
+			break;
 
 			// 12
-		case 7:
+		case Globals.PERIOD_12:
 			canvas.drawRect(TUESDAY_LEFT, TIME_1PM_TOP, TUESDAY_RIGHT,
 					TIME_150PM_BOTTOM, paint);
+			break;
 
 			// 2
 		case 8:
 			canvas.drawRect(THURSDAY_LEFT, TIME_1PM_TOP, THURSDAY_RIGHT,
 					TIME_150PM_BOTTOM, paint);
+			break;
 
 			// 2A
-		case 9:
+		case Globals.PERIOD_2A:
 			canvas.drawRect(WEDNESDAY_LEFT, TIME_415, WEDNESDAY_RIGHT,
 					TIME_505, paint);
+			break;
 
 			// 3A
-		case 10:
+		case Globals.PERIOD_3A:
 			canvas.drawRect(MONDAY_LEFT, TIME_5PM_TOP, MONDAY_RIGHT, TIME_550,
 					paint);
+			break;
 
 			// 3B
-		case 11:
+		case Globals.PERIOD_3B:
 			canvas.drawRect(MONDAY_LEFT, TIME_5PM_TOP, MONDAY_RIGHT, TIME_550,
 					paint);
+			break;
 		}
 
 	}
 
-	public void setStartTime(long startTime) {
+	// for weeks activity in TERM FRAGMENT
+	// be able to set the start time
+	public int setStartTime(long startTime) {
+
+		int top = 0;
+
+		// take the long time and translate to TOP variable for drawing
+
+		return top;
+	}
+
+	public int setEndTime(long endTime) {
+
+		int bottom;
+		// take the long time and translate to BOTTOM variable for drawing
+
+		return bottom = 0;
+	}
+
+	// takes
+	public void setCustomEvent(long startTime, long endTime) {
+
+		int top = setStartTime(startTime);
+		int bottom = setEndTime(endTime);
 
 	}
 

@@ -21,9 +21,9 @@ import android.widget.Toast;
 
 public class WeeklyFragment extends Fragment {
 
-	private int XHOURS_SELECTED = 0;
-	private int OFFICE_HOURS_SELECTED = 1;
-	private int EDIT_PROFILE_SELECTED = 2;
+	private final static int XHOURS_SELECTED = 0;
+	private final static int OFFICE_HOURS_SELECTED = 1;
+	private final static int EDIT_PROFILE_SELECTED = 2;
 
 	MenuItem xHours;
 	MenuItem officeHours;
@@ -44,8 +44,11 @@ public class WeeklyFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-	}
 
+		drawView = (DrawView) getActivity().findViewById(R.id.drawView); // !!!!!!???!
+		
+		
+	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -67,15 +70,15 @@ public class WeeklyFragment extends Fragment {
 
 		switch (itemId) {
 		// xHours selected
-		case (0):
+		case (XHOURS_SELECTED):
 			xHoursOn = true;
 
 			Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
 					.show();
 
 			break;
-			
-		case (1):
+
+		case (OFFICE_HOURS_SELECTED):
 			// will display the official weekly diagram...?
 			// Intent intent = new Intent(getActivity(), displayDiagram.class);
 			// startActivity(intent);
@@ -83,7 +86,7 @@ public class WeeklyFragment extends Fragment {
 			break;
 
 		// edit profile selected
-		case (2):
+		case (EDIT_PROFILE_SELECTED):
 			Intent intent = new Intent(getActivity(), EditProfileActivity.class);
 			startActivity(intent);
 			break;
