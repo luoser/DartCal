@@ -3,7 +3,6 @@ package edu.dartmouth.cs.DartCal;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -68,6 +67,22 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		dbObj.close();
 		
 		return id;
+	}
+	
+	public ArrayList<Friend> fetchEntries() throws StreamCorruptedException, ClassNotFoundException, IOException{
+		SQLiteDatabase dbObj = getReadableDatabase();
+		ArrayList<Friend> list = new ArrayList<Friend>();
+		Cursor c = dbObj.query(EventDbHelper.TABLE_NAME_ENTRIES,
+				allColumns, null, null, null, null, null);
+		// Initialize the cursor
+		c.moveToFirst();
+		while (!c.isAfterLast()) {
+			Friend temp = cursorToEntry(c);
+			list.add(temp);
+			c.moveToNext();
+		}
+		c.close();
+		return list;
 	}
 	
 	public void removeEntry(long rowIndex){
