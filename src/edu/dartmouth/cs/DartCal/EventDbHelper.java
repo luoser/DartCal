@@ -56,11 +56,12 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		SQLiteDatabase dbObj;
 		dbObj=getWritableDatabase();
 		mFriend = friend;
+		mFriend.scheduleSize = mFriend.schedule.size();
 		
 		ContentValues value = new ContentValues();
 		value.put(KEY_NAME, mFriend.getName());
-		value.put(KEY_SCHEDULE, mFriend.getScheduleByteArray());
 		value.put(KEY_SIZE, mFriend.scheduleSize);
+		value.put(KEY_SCHEDULE, mFriend.getScheduleByteArray());
 		
 		long id = dbObj.insert(EventDbHelper.TABLE_NAME_ENTRIES, null, value);
 		
