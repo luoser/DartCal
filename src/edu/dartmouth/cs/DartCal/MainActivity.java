@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
 
 	private static final String TAB_KEY_INDEX = "tab_key";
 
-	private String SENDER_ID = "72048596630";
+	private String SENDER_ID = "661817626973";
 	CheckBox xHourCheckBox;
 	CheckBox officeHoursCheckBox;
 	private GoogleCloudMessaging gcm;

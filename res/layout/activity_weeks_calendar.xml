@@ -29,15 +29,11 @@
                 android:layout_marginLeft="25dp"
                 android:text="SUN"
                 android:textSize="12sp" />
-            
-            
 
             <View
                 android:id="@+id/dayMarkerView"
                 android:layout_width="fill_parent"
                 android:layout_height="2dp" />
-            
-            
         </RelativeLayout>
 
         <RelativeLayout
@@ -198,7 +194,7 @@
         android:layout_height="1dp"
         android:background="#00000F" />
 
-    <!-- Begin the time blocks -->
+    <!-- BEGIN TIME BLOCKS -->
 
     <ScrollView
         android:id="@+id/calendarScrollView"
@@ -209,7 +205,7 @@
         android:padding="0dp"
         android:scrollbars="none" >
 
-        <RelativeLayout
+        <FrameLayout
             android:id="@+id/calendarRelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -219,363 +215,547 @@
                 android:id="@+id/calendarSplitterRelativeLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawingCacheQuality="low"
                 android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/time7amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="7am"
-                    android:textSize="12sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <TextView
+                        android:id="@+id/time7amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="7am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/time8amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="8am"
-                    android:textSize="12sp" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/time9amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="9am"
-                    android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/time8amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="8am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/time10amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="10am"
-                    android:textSize="12sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <TextView
+                        android:id="@+id/time9amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="9am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/time11amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="11am"
-                    android:textSize="12sp" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/time12pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="12pm"
-                    android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/time10amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="10am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/time1pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="1pm"
-                    android:textSize="12sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <TextView
+                        android:id="@+id/time11amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="11am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/time2pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="2pm"
-                    android:textSize="12sp" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/time3pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="3pm"
-                    android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/time12pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="12pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/time4pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="4pm"
-                    android:textSize="12sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <TextView
+                        android:id="@+id/time1pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="1pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/time5pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="5pm"
-                    android:textSize="12sp" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/time6pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="6pm"
-                    android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/time2pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="2pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/time7pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="7pm"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/time8pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="8pm"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <TextView
+                        android:id="@+id/time3pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="3pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/time9pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="9pm"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/time10pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="10pm"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/time11pmTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="11pm"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <TextView
+                        android:id="@+id/time4pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="4pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/time12amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="12am"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/time1amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="1am"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/time2amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="2am"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <TextView
+                        android:id="@+id/time5pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="5pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/time3amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="3am"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/time4amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="4am"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/time5amTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="5am"
-                    android:textSize="12sp" />
-                
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#B2BFBE" />
+                    <TextView
+                        android:id="@+id/time6pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="6pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/time6amTextView"
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time7pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="7pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time8pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="8pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time9pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="9pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time10pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="10pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time11pmTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="11pm"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time12amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="12am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time1amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="1am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time2amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="2am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time3amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="3am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time4amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="4am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:text="6am"
-                    android:textSize="12sp" />
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time5amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="5am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/time6amTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center"
+                        android:text="6am"
+                        android:textColor="#B2BFBE"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="9dp"
+                        android:background="#B2BFBE" />
+                </LinearLayout>
             </LinearLayout>
-        </RelativeLayout>
+
+            <!-- This is the view for drawing over -->
+            <edu.dartmouth.cs.DartCal.DrawView
+                android:id="@+id/sunday7to8"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="15dp" />
+
+
+        </FrameLayout>
     </ScrollView>
+
 </LinearLayout>
