@@ -12,6 +12,8 @@ import android.database.SQLException;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class WeeksCalendar extends Activity {
@@ -31,6 +33,7 @@ public class WeeksCalendar extends Activity {
 		
 
 	}
+	
 	@Override
 	public void onResume() {
 		super.onResume();
