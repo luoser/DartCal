@@ -36,15 +36,21 @@ public class WeeklyFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.weekly_fragment, container, false);
+		drawView = (DrawView) rootView.findViewById(R.id.drawView);
+		
+		
+		return rootView;
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.weekly_fragment, container, false);
+//		return inflater.inflate(R.layout.weekly_fragment, container, false);
+		
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-		drawView = (DrawView) getActivity().findViewById(R.id.drawView); // !!!!!!???!
+//		drawView = (DrawView) getActivity().findViewById(R.id.drawView); // !!!!!!???!
 //		drawView.postInvalidate();
 	}
 	
@@ -53,8 +59,9 @@ public class WeeklyFragment extends Fragment {
 		super.onResume();
 		
 		// redraw...
+		drawView.postInvalidate();
+
 		
-//		drawView.postInvalidate();
 	}
 
 	@Override

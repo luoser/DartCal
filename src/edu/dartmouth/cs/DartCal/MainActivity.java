@@ -71,6 +71,7 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 		context=this;
 		
 //		 drawView = (DrawView) findViewById(R.id.drawView); // !!!!!!
@@ -212,12 +213,6 @@ public class MainActivity extends Activity {
 					// is using accounts.
 					ServerUtilities.sendRegistrationIdToBackend(context, regid);
 
-					// For this demo: we don't need to send it because the
-					// device
-					// will send upstream messages to a server that echo back
-					// the
-					// message using the 'from' address in the message.
-
 					// Persist the regID - no need to register again.
 					storeRegistrationId(context, regid);
 				} catch (IOException ex) {
@@ -264,19 +259,6 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	// @Override
-	// public boolean onCreateOptionsMenu(Menu menu) {
-	// MenuInflater inflater = getMenuInflater();
-	// inflater.inflate(R.menu.main, menu);
-	// return true;
-	// }
-
-	// @Override
-	// public boolean onCreateOptionsMenu(Menu menu) {
-	// MenuInflater inflater = getMenuInflater();
-	// inflater.inflate(R.menu.main, menu);
-	// return true;
-	// }
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
