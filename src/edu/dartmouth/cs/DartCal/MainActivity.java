@@ -73,8 +73,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		context=this;
 		
-		 drawView = (DrawView) findViewById(R.id.drawView); // !!!!!!
-		 drawView.postInvalidate();
+//		 drawView = (DrawView) findViewById(R.id.drawView); // !!!!!!
+//		 drawView.postInvalidate();
 		
 
 		// ActionBar

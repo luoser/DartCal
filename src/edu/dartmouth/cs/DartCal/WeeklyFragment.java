@@ -45,7 +45,7 @@ public class WeeklyFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 		drawView = (DrawView) getActivity().findViewById(R.id.drawView); // !!!!!!???!
-		drawView.postInvalidate();
+//		drawView.postInvalidate();
 	}
 	
 	@Override
