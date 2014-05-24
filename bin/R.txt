@@ -184,8 +184,13 @@ int id wednesdayDateTextView 0x7f060043
 int id wednesdayHeaderRelativeLayout 0x7f060042
 int id xHourCheckBox 0x7f060070
 int integer google_play_services_version 0x7f080000
+<<<<<<< HEAD
 int layout activity_display_entry 0x7f030000
 int layout activity_edit_profile 0x7f030001
+=======
+int layout activity_edit_profile 0x7f030000
+int layout activity_friend_view 0x7f030001
+>>>>>>> e6039a431a8f581e77374763e24993c552b5b85b
 int layout activity_main 0x7f030002
 int layout activity_manual_add_event 0x7f030003
 int layout activity_personal_weeks_calendar 0x7f030004
@@ -198,8 +203,13 @@ int layout term_fragment 0x7f03000a
 int layout testview 0x7f03000b
 int layout weekly_fragment 0x7f03000c
 int menu add_event 0x7f0c0000
+<<<<<<< HEAD
 int menu display_entry 0x7f0c0001
 int menu edit_profile 0x7f0c0002
+=======
+int menu edit_profile 0x7f0c0001
+int menu friend_view 0x7f0c0002
+>>>>>>> e6039a431a8f581e77374763e24993c552b5b85b
 int menu friends 0x7f0c0003
 int menu main 0x7f0c0004
 int menu manual_add_event 0x7f0c0005

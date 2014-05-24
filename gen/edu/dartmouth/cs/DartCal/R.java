@@ -358,8 +358,13 @@ containing a value of this type.
         public static final int google_play_services_version=0x7f080000;
     }
     public static final class layout {
+<<<<<<< HEAD
         public static final int activity_display_entry=0x7f030000;
         public static final int activity_edit_profile=0x7f030001;
+=======
+        public static final int activity_edit_profile=0x7f030000;
+        public static final int activity_friend_view=0x7f030001;
+>>>>>>> e6039a431a8f581e77374763e24993c552b5b85b
         public static final int activity_main=0x7f030002;
         public static final int activity_manual_add_event=0x7f030003;
         public static final int activity_personal_weeks_calendar=0x7f030004;
@@ -374,8 +379,13 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int add_event=0x7f0c0000;
+<<<<<<< HEAD
         public static final int display_entry=0x7f0c0001;
         public static final int edit_profile=0x7f0c0002;
+=======
+        public static final int edit_profile=0x7f0c0001;
+        public static final int friend_view=0x7f0c0002;
+>>>>>>> e6039a431a8f581e77374763e24993c552b5b85b
         public static final int friends=0x7f0c0003;
         public static final int main=0x7f0c0004;
         public static final int manual_add_event=0x7f0c0005;
