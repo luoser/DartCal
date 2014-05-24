@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,12 +36,22 @@ public class WeeksActivity extends ListActivity {
 		OnItemClickListener mListener = new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
+				Bundle myExtras=getIntent().getExtras();
+				int myActivityType=myExtras.getInt("Activity Type");
+				Log.i("TAG","MYACTIVITY TYPE "+Integer.toString(myActivityType));
 				Intent intent = new Intent();
-				Bundle extras = new Bundle();
-				extras.putInt("Week", position);
-				intent.putExtras(extras);
+				//Bundle extras = new Bundle();
+				//extras.putInt("Week", position);
+				
+				//intent.putExtras(extras);
+				if (myActivityType==0){
+					intent.setClass(WeeksActivity.this, PersonalWeeksCalendar.class);
+					startActivity(intent);
+				}
+				else{
 				intent.setClass(WeeksActivity.this, WeeksCalendar.class);
 				startActivity(intent);
+				}
 			}
 		};
 

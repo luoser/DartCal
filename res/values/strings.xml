@@ -40,7 +40,7 @@
     <string name="title_activity_manual_add_event">ManualAddEvent</string>
     <string name="dialog_title_repeating">How Often?</string>
     <string name="summary_unit_preference">Select how often the event repeats</string>
-    <string name="server_addr">http://10.31.199.176:8888</string>
+    <string name="server_addr">http://10.31.229.144:8888</string>
 
     <!-- Toast messages -->
     <string name="save_message">Saved!</string>
@@ -94,5 +94,7 @@
         <item>Afternoon Drill</item>
         <item>Evening Drill</item>
     </string-array>
+    
+    <string name="title_activity_personal_weeks_calendar">PersonalWeeksCalendar</string>
 
 </resources>
