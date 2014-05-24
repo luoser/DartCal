@@ -356,29 +356,31 @@ containing a value of this type.
     }
     public static final class layout {
         public static final int activity_edit_profile=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_manual_add_event=0x7f030002;
-        public static final int activity_personal_weeks_calendar=0x7f030003;
-        public static final int activity_weeks=0x7f030004;
-        public static final int activity_weeks_calendar=0x7f030005;
-        public static final int fragment_edit_profile=0x7f030006;
-        public static final int friends_fragment=0x7f030007;
-        public static final int myevent=0x7f030008;
-        public static final int term_fragment=0x7f030009;
-        public static final int testview=0x7f03000a;
-        public static final int weekly_fragment=0x7f03000b;
+        public static final int activity_friend_view=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_manual_add_event=0x7f030003;
+        public static final int activity_personal_weeks_calendar=0x7f030004;
+        public static final int activity_weeks=0x7f030005;
+        public static final int activity_weeks_calendar=0x7f030006;
+        public static final int fragment_edit_profile=0x7f030007;
+        public static final int friends_fragment=0x7f030008;
+        public static final int myevent=0x7f030009;
+        public static final int term_fragment=0x7f03000a;
+        public static final int testview=0x7f03000b;
+        public static final int weekly_fragment=0x7f03000c;
     }
     public static final class menu {
         public static final int add_event=0x7f0c0000;
         public static final int edit_profile=0x7f0c0001;
-        public static final int friends=0x7f0c0002;
-        public static final int main=0x7f0c0003;
-        public static final int manual_add_event=0x7f0c0004;
-        public static final int personal_weeks_calendar=0x7f0c0005;
-        public static final int term=0x7f0c0006;
-        public static final int weekly=0x7f0c0007;
-        public static final int weeks=0x7f0c0008;
-        public static final int weeks_calendar=0x7f0c0009;
+        public static final int friend_view=0x7f0c0002;
+        public static final int friends=0x7f0c0003;
+        public static final int main=0x7f0c0004;
+        public static final int manual_add_event=0x7f0c0005;
+        public static final int personal_weeks_calendar=0x7f0c0006;
+        public static final int term=0x7f0c0007;
+        public static final int weekly=0x7f0c0008;
+        public static final int weeks=0x7f0c0009;
+        public static final int weeks_calendar=0x7f0c000a;
     }
     public static final class string {
         public static final int action_settings=0x7f07001c;
