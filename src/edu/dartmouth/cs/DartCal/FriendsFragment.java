@@ -9,6 +9,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -110,6 +111,22 @@ public class FriendsFragment extends Fragment {
         	 for(int i = 0; i < seletedItems.size(); i++){
         		 selectedFriends.add(seletedItems.get(i));
         	 }
+        	 
+        	 try {
+				displaySchedules();
+			} catch (StreamCorruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
          }
      })
@@ -126,5 +143,13 @@ public class FriendsFragment extends Fragment {
         
         return true;
 }
+	
+	public void displaySchedules() throws StreamCorruptedException, SQLException, ClassNotFoundException, IOException{
+		
+		//this is where we will call the draw schedules method on all the selected db entries.
+		Friend temp = database.fetchEntryByIndex((long) selectedFriends.get(0));
+		System.out.println(temp.getName());
+	}
+	
 	}
 
