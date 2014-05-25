@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 	CheckBox officeHoursCheckBox;
 	private GoogleCloudMessaging gcm;
 	private Context context;
-	private String regid;
+	public static String regid;
 	public static String PROPERTY_REG_ID = "reg_id";
 	private static final String PROPERTY_APP_VERSION = "appVersion";
 	private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;

@@ -11,10 +11,11 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-
 public class GCMIntentService extends IntentService {
 	private static String SENDER_ID="544332492675";
 	private String MESSAGE="message";
+	private Event myEvent;
+	private PersonalEventDbHelper db;
 	
 	public GCMIntentService() {
     super(SENDER_ID);
@@ -57,6 +58,32 @@ public class GCMIntentService extends IntentService {
         		Log.i("TAG","RECEIVING AN ADD MESSAGE data "+messageSplit[7]);
         		Log.i("TAG","RECEIVING AN ADD MESSAGE regId "+messageSplit[8]);
         		String myEventString=messageSplit[1].toString();
+        		
+        		String phoneRegId=messageSplit[8];
+        		Log.i("TAG","REGID BRAHHHHHH LIKE WATTTT "+MainActivity.regid);
+        		if (!(phoneRegId.equals(MainActivity.regid))){
+          		Log.i("TAG","INSIDE DIS BITCH LIKE WAHHHHAT BRAHHHHHH");
+	        		String myEventName=messageSplit[1];
+	        		long myEventDate=Long.parseLong(messageSplit[2]);
+	        		String myEventLocation=messageSplit[3];
+	        		long myEventStartTime=Long.parseLong(messageSplit[4]);
+	        		long myEventEndTime=Long.parseLong(messageSplit[5]);
+	        		String myEventDescription=messageSplit[6];
+	        		int myIsRepeating=Integer.parseInt(messageSplit[7]);
+	        		
+	        		myEvent=new Event();
+	        		db=new PersonalEventDbHelper(this);
+	        		
+	        		myEvent.setEventName(myEventName);
+	        		myEvent.setDate(myEventDate);
+	        		myEvent.setEventLocation(myEventLocation);
+	        		myEvent.setStartTime(myEventStartTime);
+	        		myEvent.setEndTime(myEventEndTime);
+	        		myEvent.setEventDescription(myEventDescription);
+	        		myEvent.setIsRepeating(myIsRepeating);
+	        		
+	        		db.insertEntry(myEvent);
+        		}
         		/*
         		try {
         			Event event=new Event();

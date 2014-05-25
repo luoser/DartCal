@@ -134,5 +134,4 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		
 	}
 	
-
 }

@@ -22,7 +22,6 @@ public class ServerUtilities {
 	private static final int BACKOFF_MILLI_SECONDS = 2000;
 	private static final Random random = new Random();
 
-
 	/**
 	 * Sends the registration ID to your server over HTTP, so it can use
 	 * GCM/HTTP or CCS to send messages to your app. Not needed for this demo
