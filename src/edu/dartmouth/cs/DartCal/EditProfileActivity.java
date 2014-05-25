@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -107,14 +108,14 @@ public class EditProfileActivity extends Activity {
 		saveUserData();
 		// Make a Toast informing the user their information is saved.
 		Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT)
-				.show();
+		.show();
 		finish();
 	}
 
 	// Display a Toast and cancel application.
 	public void onCancelClicked(View v) {
 		Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT)
-				.show();
+		.show();
 		// Close the activity.
 		finish();
 	}
@@ -195,7 +196,7 @@ public class EditProfileActivity extends Activity {
 			// photo
 			mImageCaptureUri = Uri.fromFile(new File(Environment
 					.getExternalStorageDirectory(), "tmp_"
-					+ String.valueOf(System.currentTimeMillis()) + ".jpg"));
+							+ String.valueOf(System.currentTimeMillis()) + ".jpg"));
 			intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
 					mImageCaptureUri);
 			intent.putExtra("return-data", true);
@@ -280,7 +281,7 @@ public class EditProfileActivity extends Activity {
 			// read data in a while loop
 			while ((n = fis.read(buffer)) > -1) {
 				bos.write(buffer, 0, n); // Don't allow any extra bytes to creep
-											// in, final write
+				// in, final write
 			}
 			fis.close();
 			// get the byte array from the ByteArrayOutputStream
@@ -355,6 +356,7 @@ public class EditProfileActivity extends Activity {
 		mValue = mPrefs.getString(mKey, " ");
 		((EditText) findViewById(R.id.editCourse3loc)).setText(mValue);
 
+
 		// Course 4
 		mKey = "Course #4 Name";
 		mValue = mPrefs.getString(mKey, " ");
@@ -395,17 +397,24 @@ public class EditProfileActivity extends Activity {
 		SharedPreferences.Editor mEditor = mPrefs.edit();
 		mEditor.clear();
 
+		Friend user = new Friend();
+		ArrayList<Event> list = new ArrayList<Event>();
+
 		// Save name information
 		mKey = getString(R.string.name_field);
 		String mValue = (String) ((EditText) findViewById(R.id.editName))
 				.getText().toString();
 		mEditor.putString(mKey, mValue);
 
+		user.setName(mValue);
+
 		// Save class information
 		mKey = getString(R.string.class_field);
 		mValue = (String) ((EditText) findViewById(R.id.editClass)).getText()
 				.toString();
 		mEditor.putString(mKey, mValue);
+
+		user.setClassYear(mValue);
 
 		// Save major information
 		mKey = getString(R.string.major_field);
@@ -421,11 +430,16 @@ public class EditProfileActivity extends Activity {
 				.getText().toString();
 		mEditor.putString(mKey, mValue);
 
+		Event event1 = new Event();
+		event1.setEventName(mValue);
+
 		// Course time period
 		mKey = "Course #1 Time";
 		Spinner mSpinnerSelection = (Spinner) findViewById(R.id.course1TimeSpinner);
 		int selectedCourse = mSpinnerSelection.getSelectedItemPosition();
 		mEditor.putInt(mKey, selectedCourse);
+
+		event1.setClassPeriod(selectedCourse);
 
 		// Course location
 		mKey = "Course #1 Location";
@@ -434,6 +448,13 @@ public class EditProfileActivity extends Activity {
 		mEditor.putString(mKey, mValue);
 
 		// Course 2
+		event1.setEventLocation(mValue);
+		list.add(event1);
+
+		// Course 2
+
+		// Save course information
+		// Course name
 		mKey = "Course #2 Name";
 		mValue = (String) ((EditText) findViewById(R.id.editCourse2name))
 				.getText().toString();
@@ -444,6 +465,16 @@ public class EditProfileActivity extends Activity {
 		mSpinnerSelection = (Spinner) findViewById(R.id.course2TimeSpinner);
 		selectedCourse = mSpinnerSelection.getSelectedItemPosition();
 		mEditor.putInt(mKey, selectedCourse);
+		Event event2 = new Event();
+		event2.setEventName(mValue);
+
+		// Course time period
+		mKey = "Course #2 Time";
+		Spinner mSpinnerSelection2 = (Spinner) findViewById(R.id.course2TimeSpinner);
+		int selectedCourse2 = mSpinnerSelection2.getSelectedItemPosition();
+		mEditor.putInt(mKey, selectedCourse2);
+
+		event2.setClassPeriod(selectedCourse2);
 
 		// Course location
 		mKey = "Course #2 Location";
@@ -452,6 +483,13 @@ public class EditProfileActivity extends Activity {
 		mEditor.putString(mKey, mValue);
 
 		// Course 3
+		event2.setEventLocation(mValue);
+		list.add(event2);
+
+		// Course 3
+		
+		// Save course information
+		// Course name
 		mKey = "Course #3 Name";
 		mValue = (String) ((EditText) findViewById(R.id.editCourse3name))
 				.getText().toString();
@@ -463,6 +501,17 @@ public class EditProfileActivity extends Activity {
 		selectedCourse = mSpinnerSelection.getSelectedItemPosition();
 		mEditor.putInt(mKey, selectedCourse);
 
+		Event event3 = new Event();
+		event3.setEventName(mValue);
+
+		// Course time period
+		mKey = "Course #3 Time";
+		Spinner mSpinnerSelection3 = (Spinner) findViewById(R.id.course3TimeSpinner);
+		int selectedCourse3 = mSpinnerSelection3.getSelectedItemPosition();
+		mEditor.putInt(mKey, selectedCourse3);
+
+		event3.setClassPeriod(selectedCourse3);
+
 		// Course location
 		mKey = "Course #3 Location";
 		mValue = (String) ((EditText) findViewById(R.id.editCourse3loc))
@@ -470,6 +519,12 @@ public class EditProfileActivity extends Activity {
 		mEditor.putString(mKey, mValue);
 
 		// Course 4
+		event3.setEventLocation(mValue);
+		list.add(event3);
+		// Course 4
+		
+		// Save course information
+		// Course name
 		mKey = "Course #4 Name";
 		mValue = (String) ((EditText) findViewById(R.id.editCourse4name))
 				.getText().toString();
@@ -480,12 +535,43 @@ public class EditProfileActivity extends Activity {
 		mSpinnerSelection = (Spinner) findViewById(R.id.course4TimeSpinner);
 		selectedCourse = mSpinnerSelection.getSelectedItemPosition();
 		mEditor.putInt(mKey, selectedCourse);
+		Event event4 = new Event();
+		event4.setEventName(mValue);
+
+		// Course time period
+		mKey = "Course #4 Time";
+		Spinner mSpinnerSelection4 = (Spinner) findViewById(R.id.course4TimeSpinner);
+		int selectedCourse4 = mSpinnerSelection4.getSelectedItemPosition();
+		mEditor.putInt(mKey, selectedCourse4);
+
+		event4.setClassPeriod(selectedCourse4);
 
 		// Course location
 		mKey = "Course #4 Location";
 		mValue = (String) ((EditText) findViewById(R.id.editCourse4loc))
 				.getText().toString();
 		mEditor.putString(mKey, mValue);
+
+
+		event4.setEventLocation(mValue);
+		list.add(event4);
+		
+		user.setSchedule(list);
+		
+		
+		
+		
+		//Call method to get all entries from the datastore!!!
+		
+		
+		
+		EventDbHelper db = new EventDbHelper(this);
+		try {
+			db.insertEntry(user);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// Commit all the changes into the shared preference
 		mEditor.commit();

@@ -3,7 +3,6 @@ package edu.dartmouth.cs.DartCal;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -20,9 +19,11 @@ public class EventDbHelper extends SQLiteOpenHelper {
 	public static String DATABASE_NAME = "eventDB";
 	public static final String KEY_ROWID = "_id";
 	public static final String KEY_NAME = "name";
+	public static final String KEY_CLASS = "class_year";
 	public static final String	KEY_SIZE = "size";
 	public static final String KEY_SCHEDULE = "schedule";
-	private static String[] allColumns = {KEY_ROWID, KEY_NAME, KEY_SIZE, KEY_SCHEDULE};
+	public PersonalEventDbHelper user;
+	private static String[] allColumns = {KEY_ROWID, KEY_NAME, KEY_CLASS, KEY_SIZE, KEY_SCHEDULE};
 
 	private static final String CREATE_TABLE_ENTRIES = "CREATE TABLE IF NOT EXISTS "
 			+ TABLE_NAME_ENTRIES
@@ -30,6 +31,8 @@ public class EventDbHelper extends SQLiteOpenHelper {
 			+ KEY_ROWID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ KEY_NAME
+			+ " TEXT, "
+			+ KEY_CLASS
 			+ " TEXT, "
 			+ KEY_SIZE
 			+ " INTEGER, "
@@ -39,6 +42,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 	public EventDbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		mFriend = new Friend();
+		user = new PersonalEventDbHelper(context);
 	}
 
 	public void onCreate(SQLiteDatabase database) {
@@ -60,6 +64,7 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		
 		ContentValues value = new ContentValues();
 		value.put(KEY_NAME, mFriend.getName());
+		value.put(KEY_CLASS, mFriend.getClassYear());
 		value.put(KEY_SIZE, mFriend.scheduleSize);
 		value.put(KEY_SCHEDULE, mFriend.getScheduleByteArray());
 		
@@ -68,6 +73,24 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		dbObj.close();
 		
 		return id;
+	}
+	
+	public ArrayList<Friend> fetchEntries() throws StreamCorruptedException, ClassNotFoundException, IOException{
+		SQLiteDatabase dbObj = getReadableDatabase();
+		
+		ArrayList<Friend> list = new ArrayList<Friend>();
+		Cursor c = dbObj.query(EventDbHelper.TABLE_NAME_ENTRIES,
+				allColumns, null, null, null, null, null);
+		// Initialize the cursor
+		c.moveToFirst();
+		while (!c.isAfterLast()) {
+			Friend temp = cursorToEntry(c);
+			list.add(temp);
+			c.moveToNext();
+		}
+		c.close();
+		dbObj.close();
+		return list;
 	}
 	
 	public void removeEntry(long rowIndex){
@@ -99,10 +122,16 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		
 		friend.setId(cursor.getLong(cursor.getColumnIndex(KEY_ROWID)));
 		friend.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+		friend.setClassYear(cursor.getString(cursor.getColumnIndex(KEY_CLASS)));
 		friend.scheduleSize = cursor.getInt(cursor.getColumnIndex(KEY_SIZE));
 		friend.setScheduleFromByteArray(cursor.getBlob(cursor.getColumnIndex(KEY_SCHEDULE)));
 		
 		return friend;
+	}
+	
+	public void userConversion(){
+		ArrayList<Event> list = user.fetchEntries();
+		
 	}
 	
 
