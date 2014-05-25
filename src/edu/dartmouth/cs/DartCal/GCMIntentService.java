@@ -1,6 +1,9 @@
 package edu.dartmouth.cs.DartCal;
 
 //import com.google.android.gcm.GCMBaseIntentService;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,9 +47,30 @@ public class GCMIntentService extends IntentService {
         	// If it's a regular GCM message, do some work.
         	String message = (String) extras.get("messages");
         	String[] messageSplit=message.split(";");
-        	if (messageSplit[0].equals("delete")){
-        		Log.i("TAG","RECEIVING A DELETE MESSAGE");
-        		new EventDbHelper(getApplicationContext()).removeEntry(Long.parseLong(messageSplit[1]));        		
+        	if (messageSplit[0].equals("add")){
+        		Log.i("TAG","RECEIVING AN ADD MESSAGE data "+messageSplit[1]);
+        		Log.i("TAG","RECEIVING AN ADD MESSAGE data "+messageSplit[2]);
+        		Log.i("TAG","RECEIVING AN ADD MESSAGE data "+messageSplit[3]);
+        		Log.i("TAG","RECEIVING AN ADD MESSAGE data "+messageSplit[4]);
+        		Log.i("TAG","RECEIVING AN ADD MESSAGE data "+messageSplit[5]);
+        		Log.i("TAG","RECEIVING AN ADD MESSAGE data "+messageSplit[6]);
+        		Log.i("TAG","RECEIVING AN ADD MESSAGE data "+messageSplit[7]);
+        		Log.i("TAG","RECEIVING AN ADD MESSAGE regId "+messageSplit[8]);
+        		String myEventString=messageSplit[1].toString();
+        		/*
+        		try {
+        			Event event=new Event();
+							JSONArray myArray = new JSONArray(myEventString);
+							event.fromJSONObject((JSONObject) myArray.get(0));
+							Log.i("TAG","MY EVENT NAME"+event.getEventName());
+							
+						}
+						catch (JSONException e) {
+							e.printStackTrace();
+						}
+						*/
+        		
+        		//new PersonalEventDbHelper(getApplicationContext()).removeEntry(Long.parseLong(messageSplit[1]));        		
         	}
         }
       

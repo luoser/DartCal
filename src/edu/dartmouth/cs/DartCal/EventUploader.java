@@ -31,6 +31,7 @@ public class EventUploader {
 		JSONArray jsonArray = new JSONArray();
 		for (int i=0;i<entryList.size();i++){
 			Event entry = entryList.get(i);
+			Log.i("TAG","GETTING INSIDE UPLOAD? REPEATING WORKING"+entry.getIsRepeating());
 			jsonArray.put(entry.toJSONObject());
 		}
 		String myJSONArrayString=jsonArray.toString();

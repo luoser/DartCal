@@ -27,6 +27,7 @@ public class ManualAddEvent extends Activity {
 	private Friend mFriend;
 	private Event mEvent;
 	ArrayList<Event> mySchedule;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,15 +75,22 @@ public class ManualAddEvent extends Activity {
 		endTime.hour = mTimePicker2.getCurrentHour();
 		endTime.minute = mTimePicker2.getCurrentMinute();
 		long myEndTime = endTime.toMillis(false);
-		//Date
+		//Date and Time
 		DatePicker mDatePicker1;
 		mDatePicker1= (DatePicker) findViewById(R.id.datePicker1);
-		Calendar myCal= new GregorianCalendar();
-		//myCal.set
+		Calendar myCalStart= new GregorianCalendar();
+		//StartTime
+		myCalStart.set(mDatePicker1.getYear(), mDatePicker1.getMonth(), mDatePicker1.getDayOfMonth(),
+				mTimePicker1.getCurrentHour(),mTimePicker1.getCurrentMinute());
+		Calendar myCalEnd= new GregorianCalendar();
+		//EndTime
+		myCalEnd.set(mDatePicker1.getYear(), mDatePicker1.getMonth(), mDatePicker1.getDayOfMonth(),
+				mTimePicker2.getCurrentHour(),mTimePicker2.getCurrentMinute());
 		//Repeating
 		int repeating=3;
 		SharedPreferences settings =PreferenceManager.getDefaultSharedPreferences(this);
-		String repeatingPreference=settings.getString("repeating_event","0");
+		String repeatingPreference=settings.getString("repeating_event","3");
+		Log.i("TAG","REPEATINGPREFERENCE "+repeatingPreference);
 		if (repeatingPreference.equals("0")){
 			repeating=0;
 		}
@@ -93,24 +101,29 @@ public class ManualAddEvent extends Activity {
 			repeating=2;
 		}
 		mEvent.setEventName(eventName);
-//		mEvent.setDate(myDate);
+		mEvent.setDate(myCalStart.getTimeInMillis());
 		mEvent.setEventLocation(location);
-		mEvent.setStartTime(myStartTime);
-		mEvent.setEndTime(myEndTime);
+		mEvent.setStartTime(myCalStart.getTimeInMillis());
+		mEvent.setEndTime(myCalEnd.getTimeInMillis());
 		mEvent.setEventDescription(description);
-		mEvent.setRepeating(repeating);
+		mEvent.setIsRepeating(repeating);
 		
 		datasource.insertEntry(mEvent);
-		Log.i("TAG","MY EVENT myStartTime"+myStartTime);
-		Log.i("TAG","MY EVENT myEndTime"+myEndTime);
-//		Log.i("TAG","MY EVENT date"+myDate);
+		Log.i("TAG","STARTTIME"+Long.toString(myCalStart.getTimeInMillis()));
+		Log.i("TAG","STARTTIME IM LOOKING AT "+Long.toString(mEvent.getStartTime()));
+		Log.i("TAG","DATE IM LOOKING AT "+Long.toString(mEvent.getDate()));
+		Log.i("TAG","END TIME IM LOOKING AT "+Long.toString(mEvent.getEndTime()));
+		
+		
 		for (int i=0;i<datasource.fetchEntries().size();i++){
+			Log.i("TAG","INSIDE"+datasource.fetchEntries().get(i).getIsRepeating());
 			Log.i("TAG","INSIDE DATABASE StartTime"+datasource.fetchEntries().get(i).getStartTime());
 			Log.i("TAG","INSIDE DATABASE EndTime"+datasource.fetchEntries().get(i).getEndTime());
 			Log.i("TAG","INSIDE DATABASE Date"+datasource.fetchEntries().get(i).getDate());
-		//Log.i("TAG","MY ENTRY "+datasource.fetchEntryByIndex(0).getDate());
-		Log.i("TAG","MY DATE DEFAULT "+Long.toString(System.currentTimeMillis()));
+			//Log.i("TAG","MY ENTRY "+datasource.fetchEntryByIndex(0).getDate());
+			
 		}
+		
 		//db.insertEntry(mFriend);
 		//Log.i("TAG",Integer.toString(mFriend.getSchedule().size()));
 		

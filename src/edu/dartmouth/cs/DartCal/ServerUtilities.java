@@ -41,6 +41,7 @@ public class ServerUtilities {
 		long backoff = BACKOFF_MILLI_SECONDS + random.nextInt(1000);
 		for (int i = 1; i <=MAX_ATTEMPTS; i++) {
 			try {
+				Log.i("TAG","TYRING TO POST WHAT THE FUCK");
 				post(serverUrl, params);
 			} catch (IOException e) {
 				// Here we are simplifying and retrying on any error; in a real

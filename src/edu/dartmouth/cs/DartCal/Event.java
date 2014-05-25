@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.util.Log;
 
 
 public class Event implements Serializable {
@@ -87,13 +88,6 @@ public void setEndTime(long endTime) {
 	this.endTime = endTime;
 }
 
-public int isRepeating() {
-	return isRepeating;
-}
-
-public void setRepeating(int isRepeating) {
-	this.isRepeating = isRepeating;
-}
 /*
 public void setStartDateTime(long timeInMS){
 	this.startDateTime = new Date(timeInMS);
@@ -120,7 +114,8 @@ public JSONObject toJSONObject(){
 		long myStartTime=getStartTime();
 		long myEndTime=getEndTime();
 		String myDescription=getEventDescription();
-		
+		int myRepeating=getIsRepeating();
+		Log.i("TAG","JSON START TIME"+getStartTime());
 		myObj.put("id", myId);
 		myObj.put("date", myDate);
 		myObj.put("event name", myEventName);
@@ -128,12 +123,30 @@ public JSONObject toJSONObject(){
 		myObj.put("start time", myStartTime);
 		myObj.put("end time", myEndTime);
 		myObj.put("description", myDescription);
+		myObj.put("repeating", myRepeating);
 		
 	}
 	catch (JSONException e){
 		return null;
 	}
 	return myObj;
+}
+public JSONObject fromJSONObject(JSONObject obj){
+	try{
+		setId(obj.getLong("id"));
+		setDate(obj.getLong("date"));
+		setEventName(obj.getString("event name"));
+		setEventLocation(obj.getString("location"));
+		setStartTime(obj.getLong("start time"));
+		setEndTime(obj.getLong("end time"));
+		setEventDescription(obj.getString("description"));
+		setIsRepeating(obj.getInt("repeating"));
+		
+	}
+	catch(JSONException e){
+		return null;
+	}
+	return obj;
 }
 
 }

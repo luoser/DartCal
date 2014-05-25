@@ -129,9 +129,11 @@ public class MainActivity extends Activity {
 		 if (checkPlayServices()) { 
 			 gcm =GoogleCloudMessaging.getInstance(this); 
 			 regid =getRegistrationId(context);
+			 Log.i("TAG","WHY ISNT THIS FUCKING SHIT WORKING");
 		 
 		 if (regid.isEmpty()) {
 			 registerInBackground(); 
+			 Log.i("TAG","WHAT THE FUCK ABOUT HERE");
 		 }
 		  
 		  }

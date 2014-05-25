@@ -25,9 +25,9 @@
         <item>Every Month</item>
     </string-array>
     <string-array name="unit_display_value">
-        <item>2</item>
-        <item>1</item>
         <item>0</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
     <string-array name="entries">
         <item>Event Name</item>
@@ -40,7 +40,8 @@
     <string name="title_activity_manual_add_event">ManualAddEvent</string>
     <string name="dialog_title_repeating">How Often?</string>
     <string name="summary_unit_preference">Select how often the event repeats</string>
-    <string name="server_addr">http://cs65dartcal.appspot.com</string>
+   	<string name="server_addr">http://10.31.202.39:8888</string>
+    <!--  <string name="server_addr">http://cs65dartcal.appspot.com</string> -->
 
     <!-- Toast messages -->
     <string name="save_message">Saved!</string>
