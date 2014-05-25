@@ -17,6 +17,13 @@ public class Globals {
 	public final static int PERIOD_3B = 11;
 	public final static int AFTERNOON_DRILL = 12;
 	public final static int EVENING_DRILL = 13;
+	
+	// spinner values
+	public final static String COURSE1_TIME_KEY = "Course #1 Time";
+	public final static String COURSE2_TIME_KEY = "Course #2 Time";
+	public final static String COURSE3_TIME_KEY = "Course #3 Time";
+	public final static String COURSE4_TIME_KEY = "Course #4 Time";
+
 
 
 

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Friend {
 	private long id;
 	private String name;
+	private String classYear;
 	public ArrayList<Event> schedule;
 	public int scheduleSize;
 	
@@ -20,6 +21,14 @@ public class Friend {
 		this.name = "";
 		this.schedule = new ArrayList<Event>();
 		this.scheduleSize = 0;
+	}
+	
+	public String getClassYear() {
+		return classYear;
+	}
+
+	public void setClassYear(String classYear) {
+		this.classYear = classYear;
 	}
 
 	public long getId() {

@@ -1,14 +1,9 @@
 package edu.dartmouth.cs.DartCal;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,7 +11,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 public class WeeklyFragment extends Fragment {
@@ -32,20 +26,36 @@ public class WeeklyFragment extends Fragment {
 	DrawView drawView;
 	Context mContext = getActivity();
 	public static boolean xHoursOn = false;
+	
+	int course1Time, course2Time, course3Time, course4Time;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.weekly_fragment, container, false);
+		drawView = (DrawView) rootView.findViewById(R.id.drawView);
+		drawView.postInvalidate();
+		
+		
+		return rootView;
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.weekly_fragment, container, false);
+//		return inflater.inflate(R.layout.weekly_fragment, container, false);
+		
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-		drawView = (DrawView) getActivity().findViewById(R.id.drawView); // !!!!!!???!
+//		drawView = (DrawView) getActivity().findViewById(R.id.drawView); // !!!!!!???!
 //		drawView.postInvalidate();
+		
+		SharedPreferences prefs = getActivity().getSharedPreferences("edu.dartmouth.cs.DartCal", Context.MODE_PRIVATE);
+		course1Time = prefs.getInt(Globals.COURSE1_TIME_KEY, -1);
+		course2Time = prefs.getInt(Globals.COURSE2_TIME_KEY, -1);
+		course3Time = prefs.getInt(Globals.COURSE3_TIME_KEY, -1);
+		course4Time = prefs.getInt(Globals.COURSE4_TIME_KEY, -1);
+		
 	}
 	
 	@Override
@@ -53,8 +63,7 @@ public class WeeklyFragment extends Fragment {
 		super.onResume();
 		
 		// redraw...
-		
-//		drawView.postInvalidate();
+		drawView.postInvalidate();
 	}
 
 	@Override
@@ -100,35 +109,6 @@ public class WeeklyFragment extends Fragment {
 		}
 
 		return false;
-	}
-
-	private class MyDrawable extends Drawable {
-
-		@Override
-		public void draw(Canvas canvas) {
-			// TODO Auto-generated method stub
-			Paint paint = new Paint();
-			paint.setColor(Color.RED);
-			canvas.drawLine(0, 0, 50, 50, paint);
-			canvas.drawLine(50, 0, 50, 50, paint);
-		}
-
-		@Override
-		public int getOpacity() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public void setAlpha(int arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void setColorFilter(ColorFilter arg0) {
-			// TODO Auto-generated method stub
-		}
 	}
 
 }
