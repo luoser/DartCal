@@ -108,6 +108,9 @@ public class FriendsFragment extends Fragment {
          public void onClick(DialogInterface dialog, int id) {
              //  Your code when user clicked on OK
              //  You can write the code  to save the selected item here
+        	 
+        	// System.out.println(seletedItems.size());
+        	 
         	 for(int i = 0; i < seletedItems.size(); i++){
         		 selectedFriends.add(seletedItems.get(i));
         	 }
@@ -147,7 +150,8 @@ public class FriendsFragment extends Fragment {
 	public void displaySchedules() throws StreamCorruptedException, SQLException, ClassNotFoundException, IOException{
 		
 		//this is where we will call the draw schedules method on all the selected db entries.
-		Friend temp = database.fetchEntryByIndex((long) selectedFriends.get(0));
+		//System.out.println(selectedFriends.get(0));
+		Friend temp = database.fetchEntryByIndex((long) selectedFriends.get(0) + 1);
 		System.out.println(temp.getName());
 	}
 	
