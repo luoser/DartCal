@@ -317,21 +317,57 @@ public class EditProfileActivity extends Activity {
 		mKey = "Course #1 Name";
 		mValue = mPrefs.getString(mKey, " ");
 		((EditText) findViewById(R.id.editCourse1name)).setText(mValue);
-		
+
 		// Course 1 Time
-		mKey = "Course #1 Time";
+		mKey = Globals.COURSE1_TIME_KEY;
 		Spinner mSpinnerSelection = (Spinner) findViewById(R.id.course1TimeSpinner);
 		mSpinnerSelection.setSelection(mPrefs.getInt(mKey, 0));
-		
+
 		mKey = "Course #1 Location";
 		mValue = mPrefs.getString(mKey, " ");
 		((EditText) findViewById(R.id.editCourse1loc)).setText(mValue);
-		
+
 		// Course 2
-		
+		mKey = "Course #2 Name";
+		mValue = mPrefs.getString(mKey, " ");
+		((EditText) findViewById(R.id.editCourse2name)).setText(mValue);
+
+		// Course 2 Time
+		mKey = Globals.COURSE2_TIME_KEY;
+		mSpinnerSelection = (Spinner) findViewById(R.id.course2TimeSpinner);
+		mSpinnerSelection.setSelection(mPrefs.getInt(mKey, 0));
+
+		mKey = "Course #2 Location";
+		mValue = mPrefs.getString(mKey, " ");
+		((EditText) findViewById(R.id.editCourse2loc)).setText(mValue);
+
 		// Course 3
-		
+		mKey = "Course #3 Name";
+		mValue = mPrefs.getString(mKey, " ");
+		((EditText) findViewById(R.id.editCourse2name)).setText(mValue);
+
+		// Course 3 Time
+		mKey = Globals.COURSE3_TIME_KEY;
+		mSpinnerSelection = (Spinner) findViewById(R.id.course3TimeSpinner);
+		mSpinnerSelection.setSelection(mPrefs.getInt(mKey, 0));
+
+		mKey = "Course #3 Location";
+		mValue = mPrefs.getString(mKey, " ");
+		((EditText) findViewById(R.id.editCourse3loc)).setText(mValue);
+
 		// Course 4
+		mKey = "Course #4 Name";
+		mValue = mPrefs.getString(mKey, " ");
+		((EditText) findViewById(R.id.editCourse4name)).setText(mValue);
+
+		// Course 4 Time
+		mKey = Globals.COURSE4_TIME_KEY;
+		mSpinnerSelection = (Spinner) findViewById(R.id.course4TimeSpinner);
+		mSpinnerSelection.setSelection(mPrefs.getInt(mKey, 0));
+
+		mKey = "Course #4 Location";
+		mValue = mPrefs.getString(mKey, " ");
+		((EditText) findViewById(R.id.editCourse4loc)).setText(mValue);
 	}
 
 	private void saveUserData() {
@@ -378,6 +414,7 @@ public class EditProfileActivity extends Activity {
 		mEditor.putString(mKey, mValue);
 
 		// Save course information
+		// Course 1
 		// Course name
 		mKey = "Course #1 Name";
 		mValue = (String) ((EditText) findViewById(R.id.editCourse1name))
@@ -395,12 +432,60 @@ public class EditProfileActivity extends Activity {
 		mValue = (String) ((EditText) findViewById(R.id.editCourse1loc))
 				.getText().toString();
 		mEditor.putString(mKey, mValue);
-		
+
 		// Course 2
-		
+		mKey = "Course #2 Name";
+		mValue = (String) ((EditText) findViewById(R.id.editCourse2name))
+				.getText().toString();
+		mEditor.putString(mKey, mValue);
+
+		// Course time period
+		mKey = "Course #2 Time";
+		mSpinnerSelection = (Spinner) findViewById(R.id.course2TimeSpinner);
+		selectedCourse = mSpinnerSelection.getSelectedItemPosition();
+		mEditor.putInt(mKey, selectedCourse);
+
+		// Course location
+		mKey = "Course #2 Location";
+		mValue = (String) ((EditText) findViewById(R.id.editCourse2loc))
+				.getText().toString();
+		mEditor.putString(mKey, mValue);
+
 		// Course 3
-		
+		mKey = "Course #3 Name";
+		mValue = (String) ((EditText) findViewById(R.id.editCourse3name))
+				.getText().toString();
+		mEditor.putString(mKey, mValue);
+
+		// Course time period
+		mKey = "Course #3 Time";
+		mSpinnerSelection = (Spinner) findViewById(R.id.course3TimeSpinner);
+		selectedCourse = mSpinnerSelection.getSelectedItemPosition();
+		mEditor.putInt(mKey, selectedCourse);
+
+		// Course location
+		mKey = "Course #3 Location";
+		mValue = (String) ((EditText) findViewById(R.id.editCourse3loc))
+				.getText().toString();
+		mEditor.putString(mKey, mValue);
+
 		// Course 4
+		mKey = "Course #4 Name";
+		mValue = (String) ((EditText) findViewById(R.id.editCourse4name))
+				.getText().toString();
+		mEditor.putString(mKey, mValue);
+
+		// Course time period
+		mKey = "Course #4 Time";
+		mSpinnerSelection = (Spinner) findViewById(R.id.course4TimeSpinner);
+		selectedCourse = mSpinnerSelection.getSelectedItemPosition();
+		mEditor.putInt(mKey, selectedCourse);
+
+		// Course location
+		mKey = "Course #4 Location";
+		mValue = (String) ((EditText) findViewById(R.id.editCourse4loc))
+				.getText().toString();
+		mEditor.putString(mKey, mValue);
 
 		// Commit all the changes into the shared preference
 		mEditor.commit();

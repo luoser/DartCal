@@ -72,7 +72,7 @@ public class DrawView extends View {
 	
 	private Context context;
     private Paint mPaint = new Paint();
-    private Canvas  mCanvas;
+    private Canvas mCanvas;
 
 	public DrawView(Context context) {
 		super(context);
@@ -156,16 +156,17 @@ public class DrawView extends View {
 		}
 		return result;
 	}
+	
+	
 
-	@Override
-	public void onDraw(Canvas canvas) {
+	public void onDraw(Canvas canvas, int course1Time, int course2Time, int  course3Time, int course4Time) {
 		super.onDraw(canvas);
 
 		// fetch course information from the database
-		int course1Time = Globals.PERIOD_9L;
-		int course2Time = Globals.PERIOD_2A;
-		int course3Time = Globals.PERIOD_11;
-		int course4Time = Globals.PERIOD_3B;
+//		int course1Time = Globals.PERIOD_9L;
+//		int course2Time = Globals.PERIOD_2A;
+//		int course3Time = Globals.PERIOD_11;
+//		int course4Time = Globals.PERIOD_3B;
 
 		// default user color
 		paint.setStrokeWidth(0);
