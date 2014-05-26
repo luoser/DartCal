@@ -151,8 +151,13 @@ public class FriendsFragment extends Fragment {
 		
 		//this is where we will call the draw schedules method on all the selected db entries.
 		//System.out.println(selectedFriends.get(0));
-		Friend temp = database.fetchEntryByIndex((long) selectedFriends.get(0) + 1);
+		for (int i = 0; i < selectedFriends.size(); i++){
+		Friend temp = database.fetchEntryByIndex((long) selectedFriends.get(i) + 1);
 		System.out.println(temp.getName());
+		
+		}
+		
+		selectedFriends.clear();
 	}
 	
 	}
