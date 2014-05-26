@@ -40,8 +40,8 @@
     <string name="title_activity_manual_add_event">ManualAddEvent</string>
     <string name="dialog_title_repeating">How Often?</string>
     <string name="summary_unit_preference">Select how often the event repeats</string>
-   	<!-- <string name="server_addr">http://10.31.202.39:8888</string> -->
-    <string name="server_addr">http://cs65dartcal.appspot.com</string>
+   	<!-- <string name="server_addr">http://10.31.200.127:8888</string> -->
+    <string name="server_addr">http://1-dot-finalappdartcal.appspot.com</string>
 
     <!-- Toast messages -->
     <string name="save_message">Saved!</string>
