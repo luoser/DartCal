@@ -1,5 +1,9 @@
 package edu.dartmouth.cs.DartCal;
 
+import java.io.IOException;
+import java.io.StreamCorruptedException;
+import java.util.ArrayList;
+
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -19,49 +23,71 @@ public class WeeklyFragment extends Fragment {
 	private final static int OFFICE_HOURS_SELECTED = 1;
 	private final static int EDIT_PROFILE_SELECTED = 2;
 
-	MenuItem xHours;
-	MenuItem officeHours;
-	MenuItem editProfile;
+	private MenuItem xHoursMenuItem;
+	private MenuItem diagramMenuItem;
+	private MenuItem editProfileMenuItem;
 
-	DrawView drawView;
-	Context mContext = getActivity();
-	public static boolean xHoursOn = false;
-	
+	private DrawView drawView;
+	public static Context mContext;
+
+	private boolean xHoursOn;
+
 	int course1Time, course2Time, course3Time, course4Time;
+
+	EventDbHelper dbHelper;
+	ArrayList<Friend> events;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.weekly_fragment, container, false);
+
+		// Inflate the layout for this fragment
+		View rootView = inflater.inflate(R.layout.weekly_fragment, container,
+				false);
 		drawView = (DrawView) rootView.findViewById(R.id.drawView);
 		drawView.postInvalidate();
-		
-		
+
 		return rootView;
-		// Inflate the layout for this fragment
-//		return inflater.inflate(R.layout.weekly_fragment, container, false);
-		
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-//		drawView = (DrawView) getActivity().findViewById(R.id.drawView); // !!!!!!???!
-//		drawView.postInvalidate();
-		
-		SharedPreferences prefs = getActivity().getSharedPreferences("edu.dartmouth.cs.DartCal", Context.MODE_PRIVATE);
-		course1Time = prefs.getInt(Globals.COURSE1_TIME_KEY, -1);
-		course2Time = prefs.getInt(Globals.COURSE2_TIME_KEY, -1);
-		course3Time = prefs.getInt(Globals.COURSE3_TIME_KEY, -1);
-		course4Time = prefs.getInt(Globals.COURSE4_TIME_KEY, -1);
-		
+		mContext = getActivity();
+
+		SharedPreferences prefs = mContext.getSharedPreferences(
+				"edu.dartmouth.cs.DartCal", Context.MODE_PRIVATE);
+		System.out.println(prefs.getAll());
+
+		dbHelper = new EventDbHelper(mContext);
+
+		try {
+			events = dbHelper.fetchEntries();
+
+			if (events != null) {
+
+				// retreive course times from the database
+				Globals.callOnDraw = true;
+			}
+
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
-	
+
 	@Override
-	public void onResume(){
+	public void onResume() {
 		super.onResume();
-		
+
 		// redraw...
 		drawView.postInvalidate();
 	}
@@ -70,9 +96,9 @@ public class WeeklyFragment extends Fragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
 		// add the menu items and set the ids for click listeners
-		xHours = menu.add(0, 0, 0, "X-Hours");
-		officeHours = menu.add(0, 1, 1, "View Schedule Diagram");
-		editProfile = menu.add(0, 2, 2, "Edit Profile");
+		xHoursMenuItem = menu.add(0, 0, 0, "X-Hours");
+		diagramMenuItem = menu.add(0, 1, 1, "View Schedule Diagram");
+		editProfileMenuItem = menu.add(0, 2, 2, "Edit Profile");
 
 		super.onCreateOptionsMenu(menu, inflater);
 	}
@@ -87,9 +113,22 @@ public class WeeklyFragment extends Fragment {
 		switch (itemId) {
 		// xHours selected
 		case (XHOURS_SELECTED):
-			xHoursOn = true;
-			Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
-					.show();
+
+			if (!xHoursOn) {
+				Globals.xHoursOn = true;
+				xHoursOn = true;
+				Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
+						.show();
+				drawView.postInvalidate();
+			}
+
+//			if (xHoursOn) {
+//				Globals.xHoursOn = false;
+//				xHoursOn = false;
+//				Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
+//						.show();
+//				// drawView.postInvalidate();
+//			}
 
 			break;
 
@@ -104,7 +143,7 @@ public class WeeklyFragment extends Fragment {
 		case (EDIT_PROFILE_SELECTED):
 			Intent intent = new Intent(getActivity(), EditProfileActivity.class);
 			startActivity(intent);
-			
+
 			break;
 		}
 
