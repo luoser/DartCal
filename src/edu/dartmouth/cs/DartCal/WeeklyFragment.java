@@ -30,7 +30,7 @@ public class WeeklyFragment extends Fragment {
 	private DrawView drawView;
 	public static Context mContext;
 
-	private boolean xHoursOn = true;
+	private boolean xHoursOn;
 
 	int course1Time, course2Time, course3Time, course4Time;
 
@@ -66,10 +66,9 @@ public class WeeklyFragment extends Fragment {
 			events = dbHelper.fetchEntries();
 
 			if (events != null) {
-
 				// retreive course times from the database
 				Globals.callOnDraw = true;
-				Globals.xHoursOn = true;
+//				Globals.xHoursOn = true;
 			}
 
 		} catch (StreamCorruptedException e) {
@@ -104,15 +103,15 @@ public class WeeklyFragment extends Fragment {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		System.out.println(item.getItemId());
-
 		int itemId = item.getItemId();
 
 		switch (itemId) {
+		
 		// xHours selected
 		case (XHOURS_SELECTED):
 
 			if (!xHoursOn) {
+				xHoursOn = true;
 				Globals.xHoursOn = true;
 				Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
 						.show();

@@ -10,6 +10,7 @@ package edu.dartmouth.cs.DartCal;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -32,35 +33,15 @@ public class DrawView extends View {
 
 	public DrawView(Context context) {
 		super(context);
-		init(context);
 	}
 
 	// allows for insertion into xml
 	public DrawView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init(context);
 	}
 
 	public DrawView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		init(context);
-	}
-
-	private void init(Context context) {
-		this.context = context;
-		setFocusable(true);
-		setFocusableInTouchMode(true);
-
-		mPaint = new Paint();
-		mPaint.setAntiAlias(true);
-		mPaint.setDither(true);
-		mPaint.setColor(Color.BLACK);
-		mPaint.setStyle(Paint.Style.STROKE);
-		mPaint.setStrokeJoin(Paint.Join.ROUND);
-		mPaint.setStrokeCap(Paint.Cap.ROUND);
-		mPaint.setStrokeWidth(6);
-		mCanvas = new Canvas();
-
 	}
 
 	@Override
@@ -115,12 +96,12 @@ public class DrawView extends View {
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		// debugging hour blocks
-		paint.setStrokeWidth(0);
-		int mint = getResources().getColor(R.color.dark_green);
-		paint.setColor(mint);
-
-		canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_8PM,
-				Globals.SATURDAY_RIGHT, Globals.TIME_9PM, paint);
+		// paint.setStrokeWidth(0);
+		// int mint = getResources().getColor(R.color.dark_green);
+		// paint.setColor(mint);
+		//
+		// canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_8PM,
+		// Globals.SATURDAY_RIGHT, Globals.TIME_9PM, paint);
 
 		try {
 
@@ -132,54 +113,80 @@ public class DrawView extends View {
 
 				ArrayList<Event> courseBlocks = userData.getSchedule();
 
-				// fetch course information from the database
-				int course1Time = courseBlocks.get(0).getClassPeriod();
-				int course2Time = courseBlocks.get(1).getClassPeriod();
-				int course3Time = courseBlocks.get(2).getClassPeriod();
-				int course4Time = courseBlocks.get(3).getClassPeriod();
+				if (courseBlocks.size() > 0) {
 
-				// set color (defined in methods)
-				paint.setStrokeWidth(0);
+					// fetch course information from the database
+					int course1Time = courseBlocks.get(0).getClassPeriod();
+					int course2Time = courseBlocks.get(1).getClassPeriod();
+					int course3Time = courseBlocks.get(2).getClassPeriod();
+					int course4Time = courseBlocks.get(3).getClassPeriod();
 
-				// need to distinguish how long to draw the time blocks
-				// also distinguish rotation
+					// set color (defined in methods)
+					paint.setStrokeWidth(0);
 
-				if (Globals.callOnDraw) {
+					// need to distinguish how long to draw the time blocks
+					// also distinguish rotation
 
-					// draw course 1
-					drawCourse(course1Time, canvas);
+					if (Globals.callOnDraw) {
 
-					// draw course 2
-					drawCourse(course2Time, canvas);
+						int mint = getResources().getColor(R.color.mint_green);
+						paint.setColor(mint);
 
-					// draw course 3
-					drawCourse(course3Time, canvas);
+						drawCourse(course1Time, canvas);
+						drawCourse(course2Time, canvas);
+						drawCourse(course3Time, canvas);
+						drawCourse(course4Time, canvas);
+						canvas.save();
+					}
 
-					// draw course 4
-					drawCourse(course4Time, canvas);
-				}
+					// turn the xhours on; for use in the WEEKLY fragment
+					if (Globals.xHoursOn) {
+						int green = getResources().getColor(R.color.dark_green);
+						paint.setColor(green);
 
-				// turn the xhours on; for use in the WEEKLY fragment
-				if (Globals.xHoursOn) {
+						canvas.save();
+						drawXhour(course1Time, canvas);
+						drawXhour(course2Time, canvas);
+						drawXhour(course3Time, canvas);
+						drawXhour(course4Time, canvas);
 
-					canvas.save();
-					drawXhour(course1Time, canvas);
-					drawXhour(course2Time, canvas);
-					drawXhour(course3Time, canvas);
-					drawXhour(course4Time, canvas);
-
-					canvas.restore();
-					invalidate();
+						canvas.restore();
+						invalidate();
+					}
 				}
 
 				// Draw friends data; for use in the FRIENDS fragment
 				if (Globals.drawFriends) {
 
+					int color = generateRandomColor();
+					paint.setColor(color);
+
 					ArrayList<Friend> friendData = dbHelper.fetchEntries();
 
-					for (int i = 0; i < friendData.size(); i++) {
-						friendData.get(i).getSchedule();
+					if (friendData != null) {
 
+						for (int i = 0; i < friendData.size(); i++) {
+
+							ArrayList<Event> friendCourses = friendData.get(i)
+									.getSchedule();
+
+							int course1 = friendCourses.get(0).getClassPeriod();
+							int course2 = friendCourses.get(1).getClassPeriod();
+							int course3 = friendCourses.get(2).getClassPeriod();
+							int course4 = friendCourses.get(3).getClassPeriod();
+
+							drawCourse(course1, canvas);
+							drawCourse(course2, canvas);
+							drawCourse(course3, canvas);
+							drawCourse(course4, canvas);
+
+							if (Globals.friendXhoursOn) {
+								drawXhour(course1, canvas);
+								drawXhour(course2, canvas);
+								drawXhour(course3, canvas);
+								drawXhour(course4, canvas);
+							}
+						}
 					}
 				}
 
@@ -221,12 +228,10 @@ public class DrawView extends View {
 	 */
 	public void drawCourse(int period, Canvas canvas) {
 
-		int mint = getResources().getColor(R.color.dark_green);
-		paint.setColor(mint);
-
 		switch (period) {
 
 		case Globals.EARLY_DRILL:
+
 			break;
 
 		case Globals.PERIOD_8:
@@ -345,9 +350,6 @@ public class DrawView extends View {
 	 */
 	public void drawXhour(int period, Canvas canvas) {
 
-		int green = getResources().getColor(R.color.dark_green);
-		paint.setColor(green);
-
 		switch (period) {
 
 		// 8
@@ -416,6 +418,8 @@ public class DrawView extends View {
 					Globals.MONDAY_RIGHT, Globals.TIME_550PM, paint);
 			break;
 		}
+		
+		invalidate();
 
 	}
 
@@ -427,9 +431,9 @@ public class DrawView extends View {
 	 * @return
 	 */
 	public int setStartTime(long startTime) {
-		
+
 		// parse the start time??
-		
+
 		int top = findTime(startTime);
 
 		// take the long time and translate to TOP variable for drawing
@@ -506,7 +510,6 @@ public class DrawView extends View {
 			return Globals.TIME_7PM;
 
 		return 0;
-
 	}
 
 	/**
@@ -514,11 +517,16 @@ public class DrawView extends View {
 	 * 
 	 * @return
 	 */
-	public int randomColor() {
+	public int generateRandomColor() {
 
-		int color = 0;
+		Random rand = new Random();
+		int r = rand.nextInt(255);
+		int g = rand.nextInt(255);
+		int b = rand.nextInt(255);
 
-		return color;
+		int randomColor = Color.rgb(r, g, b);
+
+		return randomColor;
 	}
 
 }

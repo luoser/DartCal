@@ -30,6 +30,7 @@ public class Globals {
 	public static boolean drawEventsOn = false;
 	public static boolean drawFriends = false;
 	public static boolean isRotated;
+	public static boolean friendXhoursOn = false;
 
 	// unrotated time blocks
 	public static int BLOCK_CEILING = 10;
