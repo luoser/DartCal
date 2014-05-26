@@ -36,14 +36,14 @@ public class WeeklyFragment extends Fragment {
 
 	EventDbHelper dbHelper;
 	ArrayList<Friend> events;
+	View rootView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
 		// Inflate the layout for this fragment
-		View rootView = inflater.inflate(R.layout.weekly_fragment, container,
-				false);
+		rootView = inflater.inflate(R.layout.weekly_fragment, container, false);
 		drawView = (DrawView) rootView.findViewById(R.id.drawView);
 		drawView.postInvalidate();
 
@@ -122,13 +122,13 @@ public class WeeklyFragment extends Fragment {
 				drawView.postInvalidate();
 			}
 
-//			if (xHoursOn) {
-//				Globals.xHoursOn = false;
-//				xHoursOn = false;
-//				Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
-//						.show();
-//				// drawView.postInvalidate();
-//			}
+			// if (xHoursOn) {
+			// Globals.xHoursOn = false;
+			// xHoursOn = false;
+			// Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
+			// .show();
+			// // drawView.postInvalidate();
+			// }
 
 			break;
 
