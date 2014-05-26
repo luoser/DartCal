@@ -30,7 +30,7 @@ public class WeeklyFragment extends Fragment {
 	private DrawView drawView;
 	public static Context mContext;
 
-	private boolean xHoursOn;
+	private boolean xHoursOn = true;
 
 	int course1Time, course2Time, course3Time, course4Time;
 
@@ -69,16 +69,14 @@ public class WeeklyFragment extends Fragment {
 
 				// retreive course times from the database
 				Globals.callOnDraw = true;
+				Globals.xHoursOn = true;
 			}
 
 		} catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -116,7 +114,6 @@ public class WeeklyFragment extends Fragment {
 
 			if (!xHoursOn) {
 				Globals.xHoursOn = true;
-				xHoursOn = true;
 				Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
 						.show();
 				drawView.postInvalidate();

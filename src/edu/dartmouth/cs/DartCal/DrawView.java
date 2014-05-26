@@ -73,7 +73,6 @@ public class DrawView extends View {
 	 * Determines the width of this view
 	 * 
 	 * @param measureSpec
-	 *            A measureSpec packed into an int
 	 * @return The width of the view, honoring constraints from measureSpec
 	 */
 	private int measureWidth(int measureSpec) {
@@ -95,7 +94,6 @@ public class DrawView extends View {
 	 * Determines the height of this view
 	 * 
 	 * @param measureSpec
-	 *            A measureSpec packed into an int
 	 * @return The height of the view, honoring constraints from measureSpec
 	 */
 	private int measureHeight(int measureSpec) {
@@ -116,6 +114,13 @@ public class DrawView extends View {
 	@Override
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
+		// debugging hour blocks
+		paint.setStrokeWidth(0);
+		int mint = getResources().getColor(R.color.dark_green);
+		paint.setColor(mint);
+
+		canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_8PM,
+				Globals.SATURDAY_RIGHT, Globals.TIME_9PM, paint);
 
 		try {
 
@@ -124,7 +129,7 @@ public class DrawView extends View {
 
 			// check for first time use
 			if (userData != null) {
-				
+
 				ArrayList<Event> courseBlocks = userData.getSchedule();
 
 				// fetch course information from the database
@@ -139,7 +144,6 @@ public class DrawView extends View {
 				// need to distinguish how long to draw the time blocks
 				// also distinguish rotation
 
-				//
 				if (Globals.callOnDraw) {
 
 					// draw course 1
@@ -191,7 +195,7 @@ public class DrawView extends View {
 					// drawCustomEvent(startTime, endTime, date);
 
 				}
-				
+
 				invalidate();
 			}
 
@@ -209,9 +213,15 @@ public class DrawView extends View {
 		return true;
 	}
 
+	/**
+	 * Draws specified course block.
+	 * 
+	 * @param period
+	 * @param canvas
+	 */
 	public void drawCourse(int period, Canvas canvas) {
 
-		int mint = getResources().getColor(R.color.mint_green);
+		int mint = getResources().getColor(R.color.dark_green);
 		paint.setColor(mint);
 
 		switch (period) {
@@ -327,6 +337,12 @@ public class DrawView extends View {
 		invalidate();
 	}
 
+	/**
+	 * Draws the x-hour associated with the specified course period.
+	 * 
+	 * @param period
+	 * @param canvas
+	 */
 	public void drawXhour(int period, Canvas canvas) {
 
 		int green = getResources().getColor(R.color.dark_green);
@@ -403,42 +419,101 @@ public class DrawView extends View {
 
 	}
 
-	// for weeks activity in TERM FRAGMENT
-	// be able to set the start time
+	/**
+	 * For weeks activity in TERM fragment. Take the long time and translate to
+	 * TOP variable for drawing.
+	 * 
+	 * @param startTime
+	 * @return
+	 */
 	public int setStartTime(long startTime) {
-
-		int top = 0;
+		
+		// parse the start time??
+		
+		int top = findTime(startTime);
 
 		// take the long time and translate to TOP variable for drawing
-
 		return top;
 	}
 
+	/**
+	 * Takes the long time and translates to BOTTOM variable for drawing.
+	 * 
+	 * @param endTime
+	 * @return
+	 */
 	public int setEndTime(long endTime) {
 
 		int bottom;
-		// take the long time and translate to BOTTOM variable for drawing
 
 		return bottom = 0;
 	}
 
-	// takes
-	// public void drawCustomEvent(long startTime, long endTime, long date,
-	// Canvas canvas) {
-	//
-	//
-	// int top = setStartTime(startTime);
-	// int bottom = setEndTime(endTime);
-	//
-	// int left = date;
-	// int right = date;
-	//
-	//
-	// canvas.drawRect(left, right, top, bottom, paint);
-	//
-	// }
+	/**
+	 * Takes in an epoch time that contains start and end time, which includes
+	 * the date.
+	 * 
+	 * @param startTime
+	 * @param endTime
+	 * @param canvas
+	 */
+	public void drawCustomEvent(long startTime, long endTime, Canvas canvas) {
 
-	// makes a random color, for assignment to a friend
+		int top = setStartTime(startTime);
+		int bottom = setEndTime(endTime);
+
+		// canvas.drawRect(left, right, top, bottom, paint);
+
+	}
+
+	/**
+	 * Helper function to translate long time into pixel location to draw block.
+	 * 
+	 * @param time
+	 * @return where to draw said time
+	 */
+	public int findTime(long time) {
+
+		if (time == 87600)
+			return Globals.TIME_7AM;
+		// if (time == 88500)
+		// return "715AM";
+		// if (time == 89400)
+		// return "730AM";
+		if (time == 90300)
+			return Globals.TIME_8AM;
+		if (time == 94800)
+			return Globals.TIME_9AM;
+		if (time == 98400)
+			return Globals.TIME_10AM;
+		if (time == 102000)
+			return Globals.TIME_11AM;
+		if (time == 105600)
+			return Globals.TIME_12PM;
+		if (time == 109200)
+			return Globals.TIME_1PM;
+		if (time == 112800)
+			return Globals.TIME_2PM;
+		if (time == 116400)
+			return Globals.TIME_3PM;
+		if (time == 120000)
+			return Globals.TIME_4PM;
+		if (time == 123600)
+			return Globals.TIME_5PM;
+		if (time == 127200)
+			return Globals.TIME_6PM;
+		if (time == 130800)
+			return Globals.TIME_7PM;
+
+		return 0;
+
+	}
+
+	/**
+	 * Helper function to return a random color for assignment to friend.
+	 * 
+	 * @return
+	 */
 	public int randomColor() {
 
 		int color = 0;
