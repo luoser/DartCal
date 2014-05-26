@@ -12,7 +12,7 @@ import android.util.Log;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class GCMIntentService extends IntentService {
-	private static String SENDER_ID="544332492675";
+	private static String SENDER_ID= "286158326826";
 	private String MESSAGE="message";
 	private Event myEvent;
 	private PersonalEventDbHelper db;
