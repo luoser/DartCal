@@ -7,18 +7,25 @@
 
     <Button
         android:id="@+id/btnPersonalCalendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/personal_calendar" >
-    </Button>
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="@string/personal_calendar"
+        android:textSize="25sp"
+        android:background="@drawable/black_gradient" />
+    
+     <View
+            android:layout_width="1dp"
+            android:layout_height="50dp" >
+        </View>
 
     <Button
         android:id="@+id/btnDartmouthCalendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:text="@string/dartmouth_calendar" >
+        android:text="@string/dartmouth_calendar"
+        android:textSize="25sp"
+         android:background="@drawable/black_gradient" >
     </Button>
 
 </LinearLayout>

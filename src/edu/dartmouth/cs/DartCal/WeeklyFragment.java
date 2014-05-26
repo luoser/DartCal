@@ -44,7 +44,7 @@ public class WeeklyFragment extends Fragment {
 
 		// Inflate the layout for this fragment
 		rootView = inflater.inflate(R.layout.weekly_fragment, container, false);
-		drawView = (DrawView) rootView.findViewById(R.id.drawView);
+		drawView = (DrawView) rootView.findViewById(R.id.drawViewWeekly);
 		drawView.postInvalidate();
 
 		return rootView;
