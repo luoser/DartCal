@@ -3,6 +3,8 @@ package edu.dartmouth.cs.DartCal;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 import android.app.AlertDialog;
 import android.app.DialogFragment;
@@ -21,39 +23,26 @@ import android.widget.Toast;
 
 public class FriendsFragment extends Fragment {
 	MenuItem friends;
-	EventDbHelper database;
-	ArrayList<Integer> selectedFriends;
-	
+	PersonalEventDbHelper database;
+	ArrayList<String> selectedFriends;
+	HashMap<String, String> nameMap;
+	ArrayList<String> names;
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.friends_fragment, container, false);
+		return inflater.inflate(R.layout.weekly_fragment, container, false);
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-		database = new EventDbHelper(getActivity());
-		selectedFriends = new ArrayList<Integer>();
-		Friend user = new Friend();
-		user.setName("Paul Champeau");
-		try {
-			database.insertEntry(user);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Friend user1 = new Friend();
-		user1.setName("Lisa Luo");
-		try {
-			database.insertEntry(user1);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		database = new PersonalEventDbHelper(getActivity());
+		nameMap = new HashMap<String, String>();
 	}
-	
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		friends = menu.add("View Friends");
@@ -62,100 +51,91 @@ public class FriendsFragment extends Fragment {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		ArrayList<Friend> values = null;
-		try {
-			values = database.fetchEntries();
-		} catch (StreamCorruptedException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+		ArrayList<Event> values = database.fetchEntries();
+		//this is the thing for updating the local database
+		WeeksCalendar.AsyncTask;
 		//CharSequence[] items;
-		ArrayList<String> names = new ArrayList<String>();
+		names = new ArrayList<String>();
+
 		for (int i = 0; i < values.size(); i++){
-			names.add(values.get(i).getName());
+			if (!nameMap.containsKey(values.get(i).getRegId())){
+				nameMap.put(values.get(i).getOwnerName(), values.get(i).getRegId());
+			}
+		}
+		Set<String> keySet = nameMap.keySet();
+
+		for(String key : keySet){
+			names.add(key);
 		}
 		CharSequence[] items = names.toArray(new CharSequence[names.size()]);
-        //CharSequence[] items = {" Easy "," Medium "," Hard "," Very Hard "};
-        // arraylist to keep the selected items
-		
-        final ArrayList<Integer> seletedItems=new ArrayList<Integer>();
+		//CharSequence[] items = {" Easy "," Medium "," Hard "," Very Hard "};
+		// arraylist to keep the selected items
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Select Friends");
-        builder.setMultiChoiceItems(items, null,
-                new DialogInterface.OnMultiChoiceClickListener() {
-         @Override
-         public void onClick(DialogInterface dialog, int indexSelected,
-                 boolean isChecked) {
-             if (isChecked) {
-                 // If the user checked the item, add it to the selected items
-                 seletedItems.add(indexSelected);
-             } else if (seletedItems.contains(indexSelected)) {
-                 // Else, if the item is already in the array, remove it
-                 seletedItems.remove(Integer.valueOf(indexSelected));
-             }
-         }
-     })
-      // Set the action buttons
-     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-         @Override
-         public void onClick(DialogInterface dialog, int id) {
-             //  Your code when user clicked on OK
-             //  You can write the code  to save the selected item here
-        	 
-        	// System.out.println(seletedItems.size());
-        	 
-        	 for(int i = 0; i < seletedItems.size(); i++){
-        		 selectedFriends.add(seletedItems.get(i));
-        	 }
-        	 
-        	 try {
-				displaySchedules();
-			} catch (StreamCorruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		final ArrayList<Integer> seletedItems=new ArrayList<Integer>();
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setTitle("Select Friends");
+		builder.setMultiChoiceItems(items, null,
+				new DialogInterface.OnMultiChoiceClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int indexSelected,
+					boolean isChecked) {
+				if (isChecked) {
+					// If the user checked the item, add it to the selected items
+					seletedItems.add(indexSelected);
+				} else if (seletedItems.contains(indexSelected)) {
+					// Else, if the item is already in the array, remove it
+					seletedItems.remove(Integer.valueOf(indexSelected));
+				}
 			}
+		})
+		// Set the action buttons
+		.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int id) {
+				//  Your code when user clicked on OK
+				//  You can write the code  to save the selected item here
 
-         }
-     })
-     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-         @Override
-         public void onClick(DialogInterface dialog, int id) {
-            //  Your code when user clicked on Cancel
+				// System.out.println(seletedItems.size());
 
-         }
-     });
-        AlertDialog dialog;
-        dialog = builder.create(); //create like this outside onClick
-        dialog.show();
-        
-        return true;
-}
-	
+				for(int i = 0; i < seletedItems.size(); i++){
+					selectedFriends.add(nameMap.get(names.get(seletedItems.get(i))));
+				}
+
+			}
+		})
+		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int id) {
+				//  Your code when user clicked on Cancel
+
+			}
+		});
+		AlertDialog dialog;
+		dialog = builder.create(); //create like this outside onClick
+		dialog.show();
+
+		return true;
+	}
+
 	public void displaySchedules() throws StreamCorruptedException, SQLException, ClassNotFoundException, IOException{
+
+		ArrayList<Event> events = database.fetchEntries();
 		
-		//this is where we will call the draw schedules method on all the selected db entries.
-		//System.out.println(selectedFriends.get(0));
-		for (int i = 0; i < selectedFriends.size(); i++){
-		Friend temp = database.fetchEntryByIndex((long) selectedFriends.get(i) + 1);
-		System.out.println(temp.getName());
+		ArrayList<Event> selectedEvents = new ArrayList<Event>();
 		
+		for(int j = 0; j < selectedFriends.size(); j++){
+			for(int i = 0; i < events.size(); i++){
+				if(events.get(i).getRegId() == selectedFriends.get(j)){
+					selectedEvents.add(events.get(i));
+				}
+			}
+			
 		}
-		
+
 		selectedFriends.clear();
 	}
-	
-	}
+
+}
 
