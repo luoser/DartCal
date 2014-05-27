@@ -61,7 +61,7 @@ public class WeeklyFragment extends Fragment {
 
 		// TEST PARSING TIME
 		long epoch = System.currentTimeMillis();
-		String timetest = DrawView.parseTime(epoch);
+		String timetest = CalendarUtils.parseTime(epoch);
 		System.out.println("timetest " + timetest);
 
 
