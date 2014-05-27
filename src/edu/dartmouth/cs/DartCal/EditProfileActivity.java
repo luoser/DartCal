@@ -102,13 +102,6 @@ public class EditProfileActivity extends Activity {
 		}
 	}
 
-	// @Override
-	// public boolean onCreateOptionsMenu(Menu menu) {
-	// // Inflate the menu; this adds items to the action bar if it is present.
-	// getMenuInflater().inflate(R.menu.main, menu);
-	// return true;
-	// }
-
 	// BUTTON CLICKS
 	// Save user data, including picture, and close the application.
 	public void onSaveClicked(View v) {
