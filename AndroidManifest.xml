@@ -25,7 +25,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="edu.dartmouth.cs.DartCal.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +36,7 @@
         <activity
             android:name="edu.dartmouth.cs.DartCal.EditProfileActivity"
             android:label="Edit Your Profile" >
+            
         </activity>
         <activity
             android:name="edu.dartmouth.cs.DartCal.WeeksActivity"
