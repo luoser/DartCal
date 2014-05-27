@@ -11,7 +11,7 @@ Developed by three Dartmouth students who are fed up of eating lunch alone and c
 By Lisa Luo '15, Will McConnell '15, and Paul Champeau '15.
 
 
-FUNCTIONALITY
+Functionality
 ========
 Weekly Fragment:
 	Displays user's personal weekly course schedule.
