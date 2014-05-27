@@ -133,6 +133,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
+        android:onClick="consultORC"
         android:text="Consult the ORC" />
 
 </LinearLayout>
