@@ -66,13 +66,10 @@ public class FriendsFragment extends Fragment {
 		try {
 			values = database.fetchEntries();
 		} catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//CharSequence[] items;
