@@ -3,14 +3,19 @@
  * File: DrawView.java
  * Author: Lisa Luo
  * Modified: 5/21/14
+ * Description: Controls the drawing of schedules in the
+ * 	Weekly and Friends fragments.
  */
 
 package edu.dartmouth.cs.DartCal;
 
 import java.io.IOException;
 import java.io.StreamCorruptedException;
+import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Random;
@@ -33,8 +38,8 @@ public class DrawView extends View {
 	private Canvas mCanvas;
 
 	private EventDbHelper dbHelper = new EventDbHelper(context);
-//	private PersonalEventDbHelper 
-	
+	// private PersonalEventDbHelper
+
 	int rColor = generateRandomColor();
 
 	public DrawView(Context context) {
@@ -52,8 +57,9 @@ public class DrawView extends View {
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		setMeasuredDimension(measureWidth(widthMeasureSpec),
-				measureHeight(heightMeasureSpec));
+//		setMeasuredDimension(measureWidth(widthMeasureSpec),
+//				measureHeight(heightMeasureSpec));
+		setMeasuredDimension(measureWidth(widthMeasureSpec), Globals.SCROLL_VIEW_HEIGHT);
 	}
 
 	/**
@@ -95,20 +101,23 @@ public class DrawView extends View {
 			// Here we say how high to be
 			result = specSize;
 		}
+		
+		System.out.println("SCREEN HEIGHT: " + result);
 		return result;
 	}
 
 	@Override
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		// debugging hour blocks
-		// paint.setStrokeWidth(0);
-		// int mint = getResources().getColor(R.color.dark_green);
-		// paint.setColor(mint);
-		//
-		// canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_8PM,
-		// Globals.SATURDAY_RIGHT, Globals.TIME_9PM, paint);
 		
+		// debugging hour blocks
+		 paint.setStrokeWidth(0);
+		 int dark = getResources().getColor(R.color.dark_green);
+		 paint.setColor(dark);
+		
+		 canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_915AM,
+		 Globals.SATURDAY_RIGHT, Globals.TIME_530PM, paint);
+
 		try {
 
 			// retrieve user profile information
@@ -117,9 +126,7 @@ public class DrawView extends View {
 			// check for first time use
 			if (userData != null) {
 
-			
 				ArrayList<Event> courseBlocks = userData.getSchedule();
-
 
 				if (courseBlocks.size() > 0) {
 
@@ -162,7 +169,7 @@ public class DrawView extends View {
 						invalidate();
 					}
 				}
-				
+
 				// Draw friends data; for use in the FRIENDS fragment
 				if (Globals.drawFriends) {
 
@@ -197,8 +204,9 @@ public class DrawView extends View {
 						}
 					}
 				}
-				
-				// DATABASE CHANGE: change for every 15 minute increment.......!!!!!!....spinner....
+
+				// DATABASE CHANGE: change for every 15 minute
+				// increment.......!!!!!!....spinner....
 				// Draw events; for use in the TERM fragment
 				if (Globals.drawEventsOn) {
 
@@ -222,7 +230,7 @@ public class DrawView extends View {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		// debugging random color generator
 		paint.setStrokeWidth(0);
 		paint.setColor(rColor);
@@ -432,7 +440,7 @@ public class DrawView extends View {
 					Globals.MONDAY_RIGHT, Globals.TIME_550PM, paint);
 			break;
 		}
-		
+
 		invalidate();
 
 	}
@@ -444,11 +452,11 @@ public class DrawView extends View {
 	 * @param startTime
 	 * @return
 	 */
-	public int setStartTime(long startTime) {
+	public float setStartTime(String startTime) {
 
 		// parse the start time??
 
-		int top = findTime(startTime);
+		float top = findTime(startTime);
 
 		// take the long time and translate to TOP variable for drawing
 		return top;
@@ -460,7 +468,7 @@ public class DrawView extends View {
 	 * @param endTime
 	 * @return
 	 */
-	public int setEndTime(long endTime) {
+	public float setEndTime(long endTime) {
 
 		int bottom;
 
@@ -476,12 +484,12 @@ public class DrawView extends View {
 	 * @param canvas
 	 */
 	public void drawCustomEvent(long startTime, long endTime, Canvas canvas) {
-		
+
 		String start = parseTime(startTime);
 		String end = parseTime(endTime);
-		
-		int top = setStartTime(startTime);
-		int bottom = setEndTime(endTime);
+		//
+		// int top = setStartTime(startTime);
+		// int bottom = setEndTime(endTime);
 
 		// canvas.drawRect(left, right, top, bottom, paint);
 
@@ -493,40 +501,63 @@ public class DrawView extends View {
 	 * @param time
 	 * @return where to draw said time
 	 */
-	public int findTime(long time) {
+	public float findTime(String time) {
 
-		if (time == 87600)
+		if (time == "7:00:00")
 			return Globals.TIME_7AM;
-		// if (time == 88500)
-		// return "715AM";
+//		if (time == "7:15:00")
+//			return "715AM";
 		// if (time == 89400)
 		// return "730AM";
-		if (time == 90300)
+		if (time == "8:00:00")
 			return Globals.TIME_8AM;
-		if (time == 94800)
+		if (time == "9:00:00")
 			return Globals.TIME_9AM;
-		if (time == 98400)
+		if (time == "10:00:00")
 			return Globals.TIME_10AM;
-		if (time == 102000)
+		if (time == "11:00:00")
 			return Globals.TIME_11AM;
-		if (time == 105600)
+		if (time == "12:00:00")
 			return Globals.TIME_12PM;
-		if (time == 109200)
+		if (time == "13:00:00")
 			return Globals.TIME_1PM;
-		if (time == 112800)
+		if (time == "14:00:00")
 			return Globals.TIME_2PM;
-		if (time == 116400)
+		if (time == "15:00:00")
 			return Globals.TIME_3PM;
-		if (time == 120000)
+		if (time == "16:00:00")
 			return Globals.TIME_4PM;
-		if (time == 123600)
+		if (time == "17:00:00")
 			return Globals.TIME_5PM;
-		if (time == 127200)
+		if (time == "18:00:00")
 			return Globals.TIME_6PM;
-		if (time == 130800)
+		if (time == "19:00:00")
 			return Globals.TIME_7PM;
+		if (time == "20:00:00")
+			return Globals.TIME_8PM;
+		if (time == "21:00:00")
+			return Globals.TIME_9PM;
+		if (time == "22:00:00")
+			return Globals.TIME_10PM;
+		if (time == "23:00:00")
+			return Globals.TIME_11PM;
+		if (time == "24:00:00")
+			return Globals.TIME_12AM;
+		if (time == "1:00:00")
+			return Globals.TIME_1AM;
+		if (time == "2:00:00")
+			return Globals.TIME_2AM;
+		if (time == "3:00:00")
+			return Globals.TIME_3AM;
+		if (time == "4:00:00")
+			return Globals.TIME_4AM;
+		if (time == "5:00:00")
+			return Globals.TIME_5AM;
+		if (time == "6:00:00")
+			return Globals.TIME_6AM;
 
-		return 0;
+		// error code
+		return -1;
 	}
 
 	/**
@@ -545,20 +576,52 @@ public class DrawView extends View {
 
 		return randomColor;
 	}
-	
+
 	/**
-	 * From 1970 epoch time in seconds to a time
+	 * From 1970 epoch time in seconds to a formatted time string
+	 * 
 	 * @param timeInMs
 	 * @param context
-	 * @return
+	 * @return time in a formatted string
 	 */
 	public static String parseTime(long timeInMs) {
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.setTimeInMillis(timeInMs);
 		SimpleDateFormat dateFormat;
-		dateFormat = new SimpleDateFormat(Globals.DATE_FORMAT,
-				Locale.getDefault());
+		dateFormat = new SimpleDateFormat(Globals.TIME_FORMAT, Locale.US);
+		System.out.println("parsetime function" + calendar.getTime());
+
+		int unroundedMinutes = calendar.get(Calendar.MINUTE);
+		int mod = unroundedMinutes % 15;
+		calendar.add(Calendar.MINUTE, mod < 8 ? -mod : (15 - mod));
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+
 		return dateFormat.format(calendar.getTime());
+	}
+
+	/**
+	 * From a formatted time string to a long (just time!)
+	 * 
+	 * @param timeString
+	 * @return time in long
+	 * @throws ParseException
+	 */
+	public static long timeBackToLong(String timeString) throws ParseException {
+
+		SimpleDateFormat dateFormat;
+		dateFormat = new SimpleDateFormat(Globals.TIME_FORMAT, Locale.US);
+
+		System.out.println("df " + dateFormat.parse(timeString));
+		System.out.println("df " + dateFormat.parse(timeString).getTime());
+
+		// Time t = Time.valueOf(timeString);
+		// System.out.println("t " + t);
+		// long l = t.getTime();
+		// System.out.println("l " + l);
+		// return l;
+		return dateFormat.parse(timeString).getTime();
+
 	}
 
 }
