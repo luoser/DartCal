@@ -77,7 +77,7 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		/*
 		database.execSQL("DROP TABLE IF EXISTS ");
 		onCreate(database);
-		*/
+		 */
 	}
 	/*
 	public void open() throws SQLException {
@@ -87,10 +87,10 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 	public void close() {
 		this.close();
 	}
-*/
+	 */
 	public long insertEntry(Event event) {
 		SQLiteDatabase dbObj;
-		
+
 		ContentValues value = new ContentValues();
 		//value.put(KEY_ROWID, event.getId());
 		//value.put(KEY_NAME, event.getName());
@@ -107,24 +107,35 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		value.put(KEY_EVENT_END_TIME, event.getEndTime());
 		value.put(KEY_DESCRIPTION, event.getEventDescription());
 		value.put(KEY_IS_REPEATING, event.getIsRepeating());
-		
-		
+
+
 		dbObj=getWritableDatabase();
 		long id = dbObj.insert(TABLE_NAME_ENTRIES, null, value);
-		
+
 		dbObj.close();
 		return id;
 	}
-	
+
 	public void removeEntry(long rowIndex){
 		SQLiteDatabase dbObj=getWritableDatabase();
 		dbObj.delete(TABLE_NAME_ENTRIES, KEY_ROWID + "=" + rowIndex, null);
 		dbObj.close();
 	}
-	
+
+	public int removeEntries(){
+
+		SQLiteDatabase dbObj = getReadableDatabase();
+
+		int rows = dbObj.delete(TABLE_NAME_ENTRIES, "1", null);
+
+		dbObj.close();
+		return rows;
+
+	}
+
 	public Event fetchEntryByIndex(long rowId) throws SQLException {
 		SQLiteDatabase dbObj = getReadableDatabase();
-		 Event event = null;
+		Event event = null;
 		Cursor cursor = dbObj.query(true, TABLE_NAME_ENTRIES, allColumns,
 				KEY_ROWID + "=" + rowId, null, null, null, null, null);
 
@@ -137,10 +148,10 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 
 		return event;
 	}
-	
+
 	private Event cursorToEntry(Cursor cursor){
 		Event event = new Event();
-		
+
 		event.setId(cursor.getLong(cursor.getColumnIndex(KEY_ROWID)));
 		event.setEventName(cursor.getString(cursor.getColumnIndex(KEY_EVENT_NAME)));
 		event.setDate(cursor.getLong(cursor.getColumnIndex(KEY_EVENT_DATE)));
@@ -153,12 +164,12 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		event.setOwnerName(cursor.getString(cursor.getColumnIndex(KEY_OWNER_NAME)));
 		event.setClassPeriod(cursor.getInt(cursor.getColumnIndex(KEY_CLASS_PERIOD)));
 		event.setColor(cursor.getInt(cursor.getColumnIndex(KEY_COLOR)));
-		
+
 		return event;
 	}
 	public ArrayList<Event> fetchEntries(){
 		SQLiteDatabase database=getWritableDatabase();
-		
+
 		ArrayList<Event> entries = new ArrayList<Event>();
 
 		Cursor cursor = database.query(TABLE_NAME_ENTRIES,
@@ -173,7 +184,7 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		}
 		// Make sure to close the cursor
 		cursor.close();
-		
+
 		database.close();
 		return entries;
 	}

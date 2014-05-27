@@ -44,8 +44,8 @@ public class FriendsFragment extends Fragment {
 		nameMap = new HashMap<String, String>();
 		db = new EventDbHelper(getActivity());
 		selectedFriends = new ArrayList<String>();
-		//cal = new WeeksCalendar();
-		//cal.AsyncTask();
+//		cal = new WeeksCalendar();
+//		cal.AsyncTask();
 	}
 
 	@Override
@@ -65,6 +65,7 @@ public class FriendsFragment extends Fragment {
 		for (int i = 0; i < values.size(); i++){
 			if (!nameMap.containsKey(values.get(i).getRegId())){
 				nameMap.put(values.get(i).getOwnerName(), values.get(i).getRegId());
+				System.out.println(values.get(i).getOwnerName());
 			}
 		}
 		Set<String> keySet = nameMap.keySet();
