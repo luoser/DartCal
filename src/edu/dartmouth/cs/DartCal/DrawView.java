@@ -9,7 +9,10 @@ package edu.dartmouth.cs.DartCal;
 
 import java.io.IOException;
 import java.io.StreamCorruptedException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.Random;
 
 import android.content.Context;
@@ -30,6 +33,9 @@ public class DrawView extends View {
 	private Canvas mCanvas;
 
 	private EventDbHelper dbHelper = new EventDbHelper(context);
+	
+	int rColor = generateRandomColor();
+
 
 	public DrawView(Context context) {
 		super(context);
@@ -102,6 +108,7 @@ public class DrawView extends View {
 		//
 		// canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_8PM,
 		// Globals.SATURDAY_RIGHT, Globals.TIME_9PM, paint);
+		
 
 		try {
 
@@ -154,7 +161,7 @@ public class DrawView extends View {
 						invalidate();
 					}
 				}
-
+				
 				// Draw friends data; for use in the FRIENDS fragment
 				if (Globals.drawFriends) {
 
@@ -189,7 +196,8 @@ public class DrawView extends View {
 						}
 					}
 				}
-
+				
+				// DATABASE CHANGE: change for every 15 minute increment.......!!!!!!....spinner....
 				// Draw events; for use in the TERM fragment
 				if (Globals.drawEventsOn) {
 
@@ -213,6 +221,11 @@ public class DrawView extends View {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		// debugging random color generator
+		paint.setStrokeWidth(0);
+		paint.setColor(rColor);
+		drawCourse(Globals.PERIOD_10, canvas);
 	}
 
 	public boolean onTouch(View v, MotionEvent event) {
@@ -462,7 +475,10 @@ public class DrawView extends View {
 	 * @param canvas
 	 */
 	public void drawCustomEvent(long startTime, long endTime, Canvas canvas) {
-
+		
+		String start = parseTime(startTime);
+		String end = parseTime(endTime);
+		
 		int top = setStartTime(startTime);
 		int bottom = setEndTime(endTime);
 
@@ -524,9 +540,24 @@ public class DrawView extends View {
 		int g = rand.nextInt(255);
 		int b = rand.nextInt(255);
 
-		int randomColor = Color.rgb(r, g, b);
+		int randomColor = Color.argb(100, r, g, b);
 
 		return randomColor;
+	}
+	
+	/**
+	 * From 1970 epoch time in seconds to a time
+	 * @param timeInMs
+	 * @param context
+	 * @return
+	 */
+	public static String parseTime(long timeInMs) {
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTimeInMillis(timeInMs);
+		SimpleDateFormat dateFormat;
+		dateFormat = new SimpleDateFormat(Globals.DATE_FORMAT,
+				Locale.getDefault());
+		return dateFormat.format(calendar.getTime());
 	}
 
 }

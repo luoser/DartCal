@@ -3,6 +3,8 @@ package edu.dartmouth.cs.DartCal;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -55,6 +57,12 @@ public class WeeklyFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 		mContext = getActivity();
+		
+		// TEST PARSING TIME
+		long time = 1401163754 * 1000;
+		GregorianCalendar calendar = new GregorianCalendar();
+		String timetest = DrawView.parseTime(time);
+		System.out.println("timetest " + timetest);
 
 		SharedPreferences prefs = mContext.getSharedPreferences(
 				"edu.dartmouth.cs.DartCal", Context.MODE_PRIVATE);
