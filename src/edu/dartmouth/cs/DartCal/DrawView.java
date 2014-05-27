@@ -730,7 +730,7 @@ public class DrawView extends View {
 			return Globals.TIME_FLOOR;
 
 		// Fix these these are probably jank
-		// WRAPAROUND HERE
+		// WRAPAROUND HERE?????
 		if (time == "6:30:00")
 			return Globals.TIME_FLOOR;
 		if (time == "6:45:00")

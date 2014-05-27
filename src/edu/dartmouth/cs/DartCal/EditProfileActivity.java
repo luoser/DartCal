@@ -59,6 +59,7 @@ public class EditProfileActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_profile);
 		mImageView = (ImageView) findViewById(R.id.imageProfile);
+		supressKeyboard();
 
 		// If not loading up for the first time, get the image from the saved
 		// Instance State.

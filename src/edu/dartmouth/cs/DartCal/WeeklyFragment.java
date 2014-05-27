@@ -66,8 +66,6 @@ public class WeeklyFragment extends Fragment {
 		System.out.println("timetest " + timetest);
 		System.out.println("datetest " + dayOfweek);
 		
-
-
 		SharedPreferences prefs = mContext.getSharedPreferences(
 				"edu.dartmouth.cs.DartCal", Context.MODE_PRIVATE);
 		System.out.println(prefs.getAll());
