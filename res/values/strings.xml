@@ -40,7 +40,7 @@
     <string name="title_activity_manual_add_event">ManualAddEvent</string>
     <string name="dialog_title_repeating">How Often?</string>
     <string name="summary_unit_preference">Select how often the event repeats</string>
-   	<!-- <string name="server_addr">http://10.31.200.127:8888</string> -->
+    <!-- <string name="server_addr">http://10.31.200.127:8888</string> -->
     <string name="server_addr">http://1-dot-finalappdartcal.appspot.com</string>
 
     <!-- Toast messages -->
@@ -92,10 +92,10 @@
         <item>2A</item>
         <item>3A</item>
         <item>3B</item>
-        <item>Afternoon Drill</item>
-        <item>Evening Drill</item>
+        <item>ARR</item>
     </string-array>
-    
+
     <string name="title_activity_personal_weeks_calendar">PersonalWeeksCalendar</string>
+    <string name="title_activity_display_diagram">DisplayDiagramActivity</string>
 
 </resources>

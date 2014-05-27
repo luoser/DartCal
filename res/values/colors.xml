@@ -3,5 +3,7 @@
     <color name="spring_green">#D6FFCC</color>
     <color name="dark_green">#30402D</color>
     <color name="fuschia">#FF00C6</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
     
 </resources>

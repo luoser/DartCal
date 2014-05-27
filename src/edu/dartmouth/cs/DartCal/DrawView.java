@@ -37,7 +37,6 @@ public class DrawView extends View {
 	
 	int rColor = generateRandomColor();
 
-
 	public DrawView(Context context) {
 		super(context);
 	}
@@ -110,7 +109,6 @@ public class DrawView extends View {
 		// canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_8PM,
 		// Globals.SATURDAY_RIGHT, Globals.TIME_9PM, paint);
 		
-
 		try {
 
 			// retrieve user profile information

@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="19" />
+
     <permission
         android:name="edu.dartmouth.cs.DartCal.C2D_MESSAGE"
         android:protectionLevel="signature" />
@@ -31,11 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="edu.dartmouth.cs.DartCal.EditProfileActivity"
-            android:label="Edit Your Profile">
-            
+            android:label="Edit Your Profile" >
         </activity>
         <activity
             android:name="edu.dartmouth.cs.DartCal.WeeksActivity"
@@ -53,9 +52,11 @@
             android:name="edu.dartmouth.cs.DartCal.ManualAddEvent"
             android:label="@string/title_activity_manual_add_event" >
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />        
+            android:value="@integer/google_play_services_version" />
+
         <receiver
             android:name="edu.dartmouth.cs.DartCal.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
@@ -67,11 +68,19 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".GCMIntentService" />
-        
-         <activity
+        <service android:name="edu.dartmouth.cs.DartCal.GCMIntentService" />
+
+        <activity
             android:name="edu.dartmouth.cs.DartCal.PersonalWeeksCalendar"
             android:label="@string/title_activity_personal_weeks_calendar" >
+        </activity>
+        <activity
+            android:name="edu.dartmouth.cs.DartCal.DisplayDiagramActivity"
+            android:label="Dartmouth Schedule"
+            android:parentActivityName="edu.dartmouth.cs.DartCal.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.dartmouth.cs.DartCal" />
         </activity>
     </application>
 

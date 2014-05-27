@@ -11,7 +11,8 @@
         android:layout_height="50dp"
         android:text="@string/personal_calendar"
         android:textSize="25sp"
-        android:background="@drawable/black_gradient" />
+        android:textColor="@color/white"
+        android:background="@drawable/hsv_lightness" />
     
      <View
             android:layout_width="1dp"
@@ -25,7 +26,8 @@
         android:layout_gravity="center"
         android:text="@string/dartmouth_calendar"
         android:textSize="25sp"
-         android:background="@drawable/black_gradient" >
+        android:textColor="@color/white"
+         android:background="@drawable/hsv_lightness" >
     </Button>
 
 </LinearLayout>

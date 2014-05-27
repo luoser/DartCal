@@ -748,7 +748,7 @@
             </LinearLayout>
 
             <!-- This is the view for drawing over -->
-            <edu.dartmouth.cs.DartCal.DrawView
+            <edu.dartmouth.cs.DartCal.DrawViewTerm
                 android:id="@+id/sunday7to8"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"

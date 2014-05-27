@@ -22,7 +22,7 @@ import android.widget.Toast;
 public class WeeklyFragment extends Fragment {
 
 	private final static int XHOURS_SELECTED = 0;
-	private final static int OFFICE_HOURS_SELECTED = 1;
+	private final static int DISPLAY_DIAGRAM_SELECTED = 1;
 	private final static int EDIT_PROFILE_SELECTED = 2;
 
 	private MenuItem xHoursMenuItem;
@@ -57,7 +57,7 @@ public class WeeklyFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 		mContext = getActivity();
-		
+
 		// TEST PARSING TIME
 		long time = 1401163754 * 1000;
 		GregorianCalendar calendar = new GregorianCalendar();
@@ -76,7 +76,7 @@ public class WeeklyFragment extends Fragment {
 			if (events != null) {
 				// retreive course times from the database
 				Globals.callOnDraw = true;
-//				Globals.xHoursOn = true;
+				// Globals.xHoursOn = true;
 			}
 
 		} catch (StreamCorruptedException e) {
@@ -112,9 +112,10 @@ public class WeeklyFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		int itemId = item.getItemId();
+		Intent intent;
 
 		switch (itemId) {
-		
+
 		// xHours selected
 		case (XHOURS_SELECTED):
 
@@ -136,16 +137,16 @@ public class WeeklyFragment extends Fragment {
 
 			break;
 
-		case (OFFICE_HOURS_SELECTED):
+		case (DISPLAY_DIAGRAM_SELECTED):
 			// will display the official weekly diagram...?
-			// Intent intent = new Intent(getActivity(), displayDiagram.class);
-			// startActivity(intent);
+			intent = new Intent(getActivity(), DisplayDiagramActivity.class);
+			startActivity(intent);
 
 			break;
 
 		// edit profile selected
 		case (EDIT_PROFILE_SELECTED):
-			Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+			intent = new Intent(getActivity(), EditProfileActivity.class);
 			startActivity(intent);
 
 			break;
