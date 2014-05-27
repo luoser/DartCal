@@ -33,6 +33,7 @@ public class DrawView extends View {
 	private Canvas mCanvas;
 
 	private EventDbHelper dbHelper = new EventDbHelper(context);
+//	private PersonalEventDbHelper 
 	
 	int rColor = generateRandomColor();
 

@@ -1,3 +1,10 @@
+/**
+ * DartCal
+ * File: EditProfileActivity.java
+ * Author: Lisa LUo
+ * Created: 5/27/14
+ */
+
 package edu.dartmouth.cs.DartCal;
 
 import java.io.ByteArrayInputStream;

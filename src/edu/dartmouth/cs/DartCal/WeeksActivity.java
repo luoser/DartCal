@@ -16,6 +16,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class WeeksActivity extends ListActivity {
 	
+	ArrayAdapter<String> mAdapter;
+	
 	static final String[] DATES = new String[] {"Week 1: September 15- September 21","Week 2: September 22- September 28",
 		"Week 3: September 19- October 5","Week 4: October 6- October 12", "Week 5: October 13- October 19", 
 		"Week 6: October 20- October 26", "Week 7: October 27- November 2", "Week 8: November 3- November 9", 
@@ -26,7 +28,7 @@ public class WeeksActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		
 		// Define a new adapter
-		ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this,
+		mAdapter = new ArrayAdapter<String>(this,
 				R.layout.activity_weeks, DATES);
 
 		// Assign the adapter to ListView
@@ -43,6 +45,9 @@ public class WeeksActivity extends ListActivity {
 				//Bundle extras = new Bundle();
 				//extras.putInt("Week", position);
 				
+//				int pos = mAdapter.getPosition();
+				
+				
 				//intent.putExtras(extras);
 				if (myActivityType==0){
 					intent.setClass(WeeksActivity.this, PersonalWeeksCalendar.class);
@@ -58,7 +63,7 @@ public class WeeksActivity extends ListActivity {
 		// Get the ListView and wired the listener
 		ListView listView = getListView();
 		listView.setOnItemClickListener(mListener);
-
+		
 		
 	}
 
