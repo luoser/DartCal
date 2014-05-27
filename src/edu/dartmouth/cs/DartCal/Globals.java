@@ -29,6 +29,9 @@ public class Globals {
 	public final static int PERIOD_2A = 9;
 	public final static int PERIOD_3A = 10;
 	public final static int PERIOD_3B = 11;
+	public final static int ARR = 12;	// independent study
+	
+	// for implementation later...
 	public final static int AFTERNOON_DRILL = 12;
 	public final static int EVENING_DRILL = 13;
 

@@ -21,54 +21,6 @@ import android.graphics.Color;
 // to help with parsing time from time periods
 // and drawing blocks onto the calendar
 public class CalendarUtils {
-
-	// this will draw the specific block for the period onto the calendar
-	// spinner values are: Early Drill, 9L, 10, 10A, 11, 12, 2, 2A, 3A, 3B,
-	// Afternoon Drill
-	public void drawPeriod(int period) {
-
-		switch (period) {
-		case (0):
-			// set start time
-			
-			// set end time
-			
-			// set days
-			
-		case (1):
-			// set start time
-			
-			// set end time
-			
-			// set days
-			
-			// set xhours
-
-		}
-
-	}
-
-	public void drawXhours(int period) {
-
-	}
-
-	// this function will draw the blocks onto the schedule.
-	public void drawCourses(int course1, int course2, int course3, int course4) {
-
-		// because the default / invalid will be -1
-		if (course1 > 0)
-			drawPeriod(course1);
-
-		if (course2 > 0)
-			drawPeriod(course2);
-
-		if (course3 > 0)
-			drawPeriod(course3);
-
-		if (course4 > 0)
-			drawPeriod(course4);
-
-	}
 	
 	/**
 	 * Helper function to return a random color for assignment to friend.
@@ -108,6 +60,17 @@ public class CalendarUtils {
 		calendar.set(Calendar.MILLISECOND, 0);
 
 		return dateFormat.format(calendar.getTime());
+	}
+	
+	/**
+	 * Helper function to grab the day from the epoch time
+	 * @param timeInMs
+	 * @return int the day of the week, starting at Sunday = 1, Saturday = 7
+	 */
+	public static int parseDayOfWeek(long timeInMs){
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTimeInMillis(timeInMs);
+		return calendar.get(Calendar.DAY_OF_WEEK);
 	}
 
 	/**

@@ -62,7 +62,10 @@ public class WeeklyFragment extends Fragment {
 		// TEST PARSING TIME
 		long epoch = System.currentTimeMillis();
 		String timetest = CalendarUtils.parseTime(epoch);
+		int dayOfweek = CalendarUtils.parseDayOfWeek(epoch);
 		System.out.println("timetest " + timetest);
+		System.out.println("datetest " + dayOfweek);
+		
 
 
 		SharedPreferences prefs = mContext.getSharedPreferences(

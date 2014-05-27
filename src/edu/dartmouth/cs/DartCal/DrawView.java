@@ -11,18 +11,11 @@ package edu.dartmouth.cs.DartCal;
 
 import java.io.IOException;
 import java.io.StreamCorruptedException;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -31,11 +24,7 @@ import android.view.View;
 // class to help draw things
 public class DrawView extends View {
 	private Paint paint = new Paint();
-
-	private boolean isRotated = MainActivity.isRotated;
 	private Context context = WeeklyFragment.mContext;
-	private Paint mPaint = new Paint();
-	private Canvas mCanvas;
 
 	private EventDbHelper dbHelper = new EventDbHelper(context);
 	// private PersonalEventDbHelper
@@ -71,14 +60,11 @@ public class DrawView extends View {
 	 */
 	private int measureWidth(int measureSpec) {
 		int result = 0;
-		// This is because of background image in relativeLayout, which is
-		// 1000*1000px
 		measureSpec = 1001;
 		int specMode = MeasureSpec.getMode(measureSpec);
 		int specSize = MeasureSpec.getSize(measureSpec);
 
 		if (specMode == MeasureSpec.UNSPECIFIED) {
-			// We were told how big to be
 			result = specSize;
 		}
 		return result;
@@ -92,8 +78,6 @@ public class DrawView extends View {
 	 */
 	private int measureHeight(int measureSpec) {
 		int result = 0;
-		// This is because of background image in relativeLayout, which is
-		// 1000*1000px
 		measureSpec = 1001;
 		int specMode = MeasureSpec.getMode(measureSpec);
 		int specSize = MeasureSpec.getSize(measureSpec);
@@ -102,11 +86,13 @@ public class DrawView extends View {
 			// Here we say how high to be
 			result = specSize;
 		}
-
-		System.out.println("SCREEN HEIGHT: " + result);
 		return result;
 	}
 
+	/**
+	 * Main method for handling all drawing interactions. Controlled by global
+	 * booleans.
+	 */
 	@Override
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -206,8 +192,6 @@ public class DrawView extends View {
 					}
 				}
 
-				// DATABASE CHANGE: change for every 15 minute
-				// increment.......!!!!!!....spinner....
 				// Draw events; for use in the TERM fragment
 				if (Globals.drawEventsOn) {
 
@@ -217,7 +201,7 @@ public class DrawView extends View {
 					long endTime = 0;
 					long date = 0;
 
-					// drawCustomEvent(startTime, endTime, date);
+					drawCustomEvent(startTime, endTime, date, canvas);
 
 				}
 
@@ -254,7 +238,6 @@ public class DrawView extends View {
 		switch (period) {
 
 		case Globals.EARLY_DRILL:
-
 			break;
 
 		case Globals.PERIOD_8:
@@ -352,10 +335,7 @@ public class DrawView extends View {
 					Globals.THURSDAY_RIGHT, Globals.TIME_3B_BOTTOM, paint);
 			break;
 
-		case Globals.AFTERNOON_DRILL:
-			break;
-
-		case Globals.EVENING_DRILL:
+		case Globals.ARR:
 			break;
 
 		default:
@@ -453,11 +433,9 @@ public class DrawView extends View {
 	 * @param startTime
 	 * @return
 	 */
-	public float setStartTime(String startTime) {
+	public int setStartTime(String startTime) {
 
-		// parse the start time??
-
-		float top = findTime(startTime);
+		int top = findTime(startTime);
 
 		// take the long time and translate to TOP variable for drawing
 		return top;
@@ -469,11 +447,9 @@ public class DrawView extends View {
 	 * @param endTime
 	 * @return
 	 */
-	public float setEndTime(long endTime) {
-
-		int bottom;
-
-		return bottom = 0;
+	public int setEndTime(String endTime) {
+		int bottom = findTime(endTime);
+		return bottom;
 	}
 
 	/**
@@ -484,16 +460,53 @@ public class DrawView extends View {
 	 * @param endTime
 	 * @param canvas
 	 */
-	public void drawCustomEvent(long startTime, long endTime, Canvas canvas) {
+	public void drawCustomEvent(long startLong, long endLong, long timeInMs,
+			Canvas canvas) {
 
-		String start = CalendarUtils.parseTime(startTime);
-		String end = CalendarUtils.parseTime(endTime);
-		//
-		// int top = setStartTime(startTime);
-		// int bottom = setEndTime(endTime);
+		// grab the start and end times
+		String startString = CalendarUtils.parseTime(startLong);
+		String endString = CalendarUtils.parseTime(endLong);
 
-		// canvas.drawRect(left, right, top, bottom, paint);
+		int top = setStartTime(startString);
+		int bottom = setEndTime(endString);
+		int left = 0, right = 0;
 
+		// grab the day
+		int date = CalendarUtils.parseDayOfWeek(timeInMs);
+		switch (date) {
+		case Calendar.SUNDAY:
+			left = Globals.SUNDAY_LEFT;
+			right = Globals.SUNDAY_RIGHT;
+			break;
+		case Calendar.MONDAY:
+			left = Globals.MONDAY_LEFT;
+			right = Globals.MONDAY_RIGHT;
+			break;
+		case Calendar.TUESDAY:
+			left = Globals.TUESDAY_LEFT;
+			right = Globals.TUESDAY_RIGHT;
+			break;
+		case Calendar.WEDNESDAY:
+			left = Globals.WEDNESDAY_LEFT;
+			right = Globals.WEDNESDAY_RIGHT;
+			break;
+		case Calendar.THURSDAY:
+			left = Globals.THURSDAY_LEFT;
+			right = Globals.THURSDAY_RIGHT;
+			break;
+		case Calendar.FRIDAY:
+			left = Globals.FRIDAY_LEFT;
+			right = Globals.FRIDAY_RIGHT;
+			break;
+		case Calendar.SATURDAY:
+			left = Globals.SATURDAY_LEFT;
+			right = Globals.SATURDAY_RIGHT;
+			break;
+		default:
+			break;
+		}
+
+		canvas.drawRect(left, right, top, bottom, paint);
 	}
 
 	/**
@@ -502,7 +515,7 @@ public class DrawView extends View {
 	 * @param time
 	 * @return where to draw said time
 	 */
-	public float findTime(String time) {
+	public int findTime(String time) {
 
 		if (time == "7:00:00")
 			return Globals.TIME_7AM;
@@ -512,7 +525,7 @@ public class DrawView extends View {
 			return Globals.TIME_730AM;
 		if (time == "7:45:00")
 			return Globals.TIME_745AM;
-		
+
 		if (time == "8:00:00")
 			return Globals.TIME_8AM;
 		if (time == "8:15:00")
@@ -521,7 +534,7 @@ public class DrawView extends View {
 			return Globals.TIME_830AM;
 		if (time == "8:45:00")
 			return Globals.TIME_845AM;
-		
+
 		if (time == "9:00:00")
 			return Globals.TIME_9AM;
 		if (time == "9:15:00")
@@ -530,7 +543,7 @@ public class DrawView extends View {
 			return Globals.TIME_930AM;
 		if (time == "9:45:00")
 			return Globals.TIME_945AM;
-		
+
 		if (time == "10:00:00")
 			return Globals.TIME_10AM;
 		if (time == "10:15:00")
@@ -539,8 +552,7 @@ public class DrawView extends View {
 			return Globals.TIME_1030AM;
 		if (time == "10:45:00")
 			return Globals.TIME_1045AM;
-		
-		
+
 		if (time == "11:00:00")
 			return Globals.TIME_11AM;
 		if (time == "11:15:00")
@@ -549,8 +561,7 @@ public class DrawView extends View {
 			return Globals.TIME_1130AM;
 		if (time == "11:45:00")
 			return Globals.TIME_1145AM;
-		
-		
+
 		if (time == "12:00:00")
 			return Globals.TIME_12PM;
 		if (time == "12:15:00")
@@ -559,7 +570,7 @@ public class DrawView extends View {
 			return Globals.TIME_1230PM;
 		if (time == "12:45:00")
 			return Globals.TIME_1245PM;
-		
+
 		if (time == "13:00:00")
 			return Globals.TIME_1PM;
 		if (time == "13:15:00")
@@ -568,7 +579,7 @@ public class DrawView extends View {
 			return Globals.TIME_130PM;
 		if (time == "13:45:00")
 			return Globals.TIME_145PM;
-		
+
 		if (time == "14:00:00")
 			return Globals.TIME_2PM;
 		if (time == "14:15:00")
@@ -577,7 +588,7 @@ public class DrawView extends View {
 			return Globals.TIME_230PM;
 		if (time == "14:45:00")
 			return Globals.TIME_245PM;
-		
+
 		if (time == "15:00:00")
 			return Globals.TIME_3PM;
 		if (time == "15:15:00")
@@ -586,7 +597,7 @@ public class DrawView extends View {
 			return Globals.TIME_330PM;
 		if (time == "15:45:00")
 			return Globals.TIME_345PM;
-		
+
 		if (time == "16:00:00")
 			return Globals.TIME_4PM;
 		if (time == "16:15:00")
@@ -595,7 +606,7 @@ public class DrawView extends View {
 			return Globals.TIME_430PM;
 		if (time == "16:45:00")
 			return Globals.TIME_445PM;
-		
+
 		if (time == "17:00:00")
 			return Globals.TIME_5PM;
 		if (time == "17:15:00")
@@ -604,7 +615,7 @@ public class DrawView extends View {
 			return Globals.TIME_530PM;
 		if (time == "17:45:00")
 			return Globals.TIME_545PM;
-		
+
 		if (time == "18:00:00")
 			return Globals.TIME_6PM;
 		if (time == "18:15:00")
@@ -613,7 +624,7 @@ public class DrawView extends View {
 			return Globals.TIME_630PM;
 		if (time == "18:45:00")
 			return Globals.TIME_645PM;
-		
+
 		if (time == "19:00:00")
 			return Globals.TIME_7PM;
 		if (time == "19:15:00")
@@ -622,7 +633,7 @@ public class DrawView extends View {
 			return Globals.TIME_730PM;
 		if (time == "19:45:00")
 			return Globals.TIME_745PM;
-		
+
 		if (time == "20:00:00")
 			return Globals.TIME_8PM;
 		if (time == "20:15:00")
@@ -631,7 +642,7 @@ public class DrawView extends View {
 			return Globals.TIME_830PM;
 		if (time == "20:45:00")
 			return Globals.TIME_845PM;
-		
+
 		if (time == "21:00:00")
 			return Globals.TIME_9PM;
 		if (time == "21:15:00")
@@ -640,7 +651,7 @@ public class DrawView extends View {
 			return Globals.TIME_930PM;
 		if (time == "21:45:00")
 			return Globals.TIME_945PM;
-		
+
 		if (time == "22:00:00")
 			return Globals.TIME_10PM;
 		if (time == "22:15:00")
@@ -649,7 +660,7 @@ public class DrawView extends View {
 			return Globals.TIME_1030PM;
 		if (time == "22:45:00")
 			return Globals.TIME_1045PM;
-		
+
 		if (time == "23:00:00")
 			return Globals.TIME_11PM;
 		if (time == "23:15:00")
@@ -658,7 +669,7 @@ public class DrawView extends View {
 			return Globals.TIME_1130PM;
 		if (time == "23:45:00")
 			return Globals.TIME_1145PM;
-		
+
 		if (time == "00:00:00")
 			return Globals.TIME_12AM;
 		if (time == "00:15:00")
@@ -667,7 +678,7 @@ public class DrawView extends View {
 			return Globals.TIME_1230PM;
 		if (time == "00:45:00")
 			return Globals.TIME_1245PM;
-		
+
 		if (time == "1:00:00")
 			return Globals.TIME_1AM;
 		if (time == "1:15:00")
@@ -676,7 +687,7 @@ public class DrawView extends View {
 			return Globals.TIME_130AM;
 		if (time == "1:45:00")
 			return Globals.TIME_145AM;
-		
+
 		if (time == "2:00:00")
 			return Globals.TIME_2AM;
 		if (time == "2:15:00")
@@ -685,7 +696,7 @@ public class DrawView extends View {
 			return Globals.TIME_230AM;
 		if (time == "2:45:00")
 			return Globals.TIME_245AM;
-		
+
 		if (time == "3:00:00")
 			return Globals.TIME_3AM;
 		if (time == "3:15:00")
@@ -694,7 +705,7 @@ public class DrawView extends View {
 			return Globals.TIME_330AM;
 		if (time == "3:45:00")
 			return Globals.TIME_345AM;
-		
+
 		if (time == "4:00:00")
 			return Globals.TIME_4AM;
 		if (time == "4:15:00")
@@ -703,7 +714,7 @@ public class DrawView extends View {
 			return Globals.TIME_430AM;
 		if (time == "4:45:00")
 			return Globals.TIME_445AM;
-		
+
 		if (time == "5:00:00")
 			return Globals.TIME_5AM;
 		if (time == "5:15:00")
@@ -712,12 +723,12 @@ public class DrawView extends View {
 			return Globals.TIME_530AM;
 		if (time == "5:45:00")
 			return Globals.TIME_545AM;
-		
+
 		if (time == "6:00:00")
 			return Globals.TIME_6AM;
 		if (time == "6:15:00")
 			return Globals.TIME_FLOOR;
-		
+
 		// Fix these these are probably jank
 		// WRAPAROUND HERE
 		if (time == "6:30:00")
