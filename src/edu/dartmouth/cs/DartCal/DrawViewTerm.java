@@ -21,7 +21,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 // class to help draw things
-public class DrawView extends View {
+public class DrawViewTerm extends View {
 	private Paint paint = new Paint();
 
 	private boolean isRotated = MainActivity.isRotated;
@@ -31,16 +31,16 @@ public class DrawView extends View {
 
 	private EventDbHelper dbHelper = new EventDbHelper(context);
 
-	public DrawView(Context context) {
+	public DrawViewTerm(Context context) {
 		super(context);
 	}
 
 	// allows for insertion into xml
-	public DrawView(Context context, AttributeSet attrs) {
+	public DrawViewTerm(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public DrawView(Context context, AttributeSet attrs, int defStyle) {
+	public DrawViewTerm(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
@@ -111,9 +111,7 @@ public class DrawView extends View {
 			// check for first time use
 			if (userData != null) {
 
-			
 				ArrayList<Event> courseBlocks = userData.getSchedule();
-
 
 				if (courseBlocks.size() > 0) {
 

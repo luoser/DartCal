@@ -36,15 +36,15 @@ public class WeeklyFragment extends Fragment {
 
 	EventDbHelper dbHelper;
 	ArrayList<Friend> events;
+	View rootView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
 		// Inflate the layout for this fragment
-		View rootView = inflater.inflate(R.layout.weekly_fragment, container,
-				false);
-		drawView = (DrawView) rootView.findViewById(R.id.drawView);
+		rootView = inflater.inflate(R.layout.weekly_fragment, container, false);
+		drawView = (DrawView) rootView.findViewById(R.id.drawViewWeekly);
 		drawView.postInvalidate();
 
 		return rootView;
@@ -66,19 +66,16 @@ public class WeeklyFragment extends Fragment {
 			events = dbHelper.fetchEntries();
 
 			if (events != null) {
-
 				// retreive course times from the database
 				Globals.callOnDraw = true;
+//				Globals.xHoursOn = true;
 			}
 
 		} catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -106,29 +103,28 @@ public class WeeklyFragment extends Fragment {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		System.out.println(item.getItemId());
-
 		int itemId = item.getItemId();
 
 		switch (itemId) {
+		
 		// xHours selected
 		case (XHOURS_SELECTED):
 
 			if (!xHoursOn) {
-				Globals.xHoursOn = true;
 				xHoursOn = true;
+				Globals.xHoursOn = true;
 				Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
 						.show();
 				drawView.postInvalidate();
 			}
 
-//			if (xHoursOn) {
-//				Globals.xHoursOn = false;
-//				xHoursOn = false;
-//				Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
-//						.show();
-//				// drawView.postInvalidate();
-//			}
+			// if (xHoursOn) {
+			// Globals.xHoursOn = false;
+			// xHoursOn = false;
+			// Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
+			// .show();
+			// // drawView.postInvalidate();
+			// }
 
 			break;
 
