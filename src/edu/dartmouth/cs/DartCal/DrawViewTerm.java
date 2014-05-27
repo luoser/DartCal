@@ -95,13 +95,17 @@ public class DrawViewTerm extends View {
 	@Override
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
+		
 		// debugging hour blocks
-		// paint.setStrokeWidth(0);
-		// int mint = getResources().getColor(R.color.dark_green);
-		// paint.setColor(mint);
+//		 paint.setStrokeWidth(0);
+//		 int dark = getResources().getColor(R.color.dark_green);
+//		 paint.setColor(dark);
 		//
 		// canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_8PM,
 		// Globals.SATURDAY_RIGHT, Globals.TIME_9PM, paint);
+		
+
+		
 
 		try {
 
@@ -524,7 +528,7 @@ public class DrawViewTerm extends View {
 		int g = rand.nextInt(255);
 		int b = rand.nextInt(255);
 
-		int randomColor = Color.rgb(r, g, b);
+		int randomColor = Color.argb(100, r, g, b);
 
 		return randomColor;
 	}

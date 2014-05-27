@@ -1,6 +1,9 @@
 package edu.dartmouth.cs.DartCal;
 
 public class Globals {
+	
+	public static final String TAG = "CS 65";
+	public static final String DATE_FORMAT = "H:mm:ss MMM d yyyy";
 
 	// define the spinner types; class periods
 	public final static int EARLY_DRILL = 0;
