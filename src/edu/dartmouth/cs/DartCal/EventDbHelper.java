@@ -99,6 +99,17 @@ public class EventDbHelper extends SQLiteOpenHelper {
 		dbObj.close();
 	}
 	
+	public int removeEntries(){
+		
+		SQLiteDatabase dbObj = getReadableDatabase();
+		
+		int rows = dbObj.delete(TABLE_NAME_ENTRIES, "1", null);
+		
+		dbObj.close();
+		return rows;
+		
+	}
+	
 	public Friend fetchEntryByIndex(long rowId) throws SQLException, StreamCorruptedException, ClassNotFoundException, IOException {
 		SQLiteDatabase dbObj = getReadableDatabase();
 		

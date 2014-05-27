@@ -45,7 +45,8 @@ public class EditProfileActivity extends Activity {
 	private static final String IMAGE_UNSPECIFIED = "image/*";
 	private static final String URI_INSTANCE_STATE_KEY = "saved_uri";
 	private static final String TMP_IMAGE_KEY = "temp";
-
+	public String name;
+	public PersonalEventDbHelper db;
 	private Uri mImageCaptureUri;
 	private ImageView mImageView;
 	private boolean isTakenFromCamera;
@@ -396,7 +397,7 @@ public class EditProfileActivity extends Activity {
 		} catch (Exception ioe) {
 			ioe.printStackTrace();
 		}
-
+		db = new PersonalEventDbHelper(this);
 		// Getting the shared preferences editor
 		String mKey = getString(R.string.preference_name);
 		SharedPreferences mPrefs = getSharedPreferences(mKey, MODE_PRIVATE);
@@ -412,7 +413,7 @@ public class EditProfileActivity extends Activity {
 		String mValue = (String) ((EditText) findViewById(R.id.editName))
 				.getText().toString();
 		mEditor.putString(mKey, mValue);
-
+		name = mValue;
 		user.setName(mValue);
 
 		// Save class information
@@ -456,6 +457,8 @@ public class EditProfileActivity extends Activity {
 
 		// Course 2
 		event1.setEventLocation(mValue);
+		event1.setOwnerName(name);
+		db.insertEntry(event1);
 		list.add(event1);
 
 		// Course 2
@@ -491,6 +494,8 @@ public class EditProfileActivity extends Activity {
 
 		// Course 3
 		event2.setEventLocation(mValue);
+		event2.setOwnerName(name);
+		db.insertEntry(event2);
 		list.add(event2);
 
 		// Course 3
@@ -527,6 +532,8 @@ public class EditProfileActivity extends Activity {
 
 		// Course 4
 		event3.setEventLocation(mValue);
+		event3.setOwnerName(name);
+		db.insertEntry(event3);
 		list.add(event3);
 		// Course 4
 		
@@ -561,8 +568,10 @@ public class EditProfileActivity extends Activity {
 
 
 		event4.setEventLocation(mValue);
-		list.add(event4);
 		
+		list.add(event4);
+		event4.setOwnerName(name);
+		db.insertEntry(event4);
 		user.setSchedule(list);
 		
 		
@@ -572,13 +581,13 @@ public class EditProfileActivity extends Activity {
 		
 		
 		
-		EventDbHelper db = new EventDbHelper(this);
-		try {
-			db.insertEntry(user);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		EventDbHelper db = new EventDbHelper(this);
+//		try {
+//			db.insertEntry(user);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 		// Commit all the changes into the shared preference
 		mEditor.commit();

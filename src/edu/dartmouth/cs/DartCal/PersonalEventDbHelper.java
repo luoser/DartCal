@@ -22,13 +22,17 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 	public static final String KEY_SCHEDULE = "schedule";
 	public static final String KEY_EVENT_NAME = "event_name";
 	public static final String KEY_LOCATION = "location";
+	public static final String KEY_CLASS_PERIOD = "classPeriod";
+	public static final String KEY_REGID = "regid";
+	public static final String KEY_COLOR = "color";
+	public static final String KEY_OWNER_NAME = "ownername";
 	public static final String KEY_DESCRIPTION = "description";
 	public static final String KEY_EVENT_DATE= "date";
 	public static final String KEY_EVENT_START_TIME= "start";
 	public static final String KEY_EVENT_END_TIME= "end";
 	public static final String KEY_IS_REPEATING = "is_repeating";
 	private static String[] allColumns = {KEY_ROWID,KEY_EVENT_NAME,KEY_LOCATION,
-		KEY_EVENT_DATE, KEY_EVENT_START_TIME,KEY_EVENT_END_TIME,KEY_DESCRIPTION,KEY_IS_REPEATING};
+		KEY_EVENT_DATE, KEY_CLASS_PERIOD, KEY_REGID, KEY_OWNER_NAME, KEY_COLOR, KEY_EVENT_START_TIME,KEY_EVENT_END_TIME,KEY_DESCRIPTION,KEY_IS_REPEATING};
 
 	private static final String CREATE_TABLE_ENTRIES = "CREATE TABLE IF NOT EXISTS "
 			+ TABLE_NAME_ENTRIES
@@ -40,6 +44,14 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 			+ KEY_LOCATION
 			+ " TEXT, "
 			+ KEY_EVENT_DATE
+			+ " INTEGER NOT NULL, "
+			+ KEY_CLASS_PERIOD
+			+ " INTEGER NOT NULL, "
+			+ KEY_REGID
+			+ " TEXT, "
+			+ KEY_OWNER_NAME
+			+ " TEXT, "
+			+ KEY_COLOR
 			+ " INTEGER NOT NULL, "
 			+ KEY_EVENT_START_TIME
 			+ " INTEGER NOT NULL, "
@@ -86,6 +98,10 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		value.put(KEY_EVENT_NAME, event.getEventName());
 		value.put(KEY_LOCATION, event.getEventLocation());
 		value.put(KEY_EVENT_START_TIME, event.getStartTime());
+		value.put(KEY_REGID, event.getRegId());
+		value.put(KEY_CLASS_PERIOD, event.getClassPeriod());
+		value.put(KEY_OWNER_NAME, event.getOwnerName());
+		value.put(KEY_COLOR, event.getColor());
 		Log.i("TAG","INSERT ENTRY"+event.getStartTime());
 		Log.i("TAG","INSERT ENTRY VALUE"+value.get(KEY_EVENT_START_TIME));
 		value.put(KEY_EVENT_END_TIME, event.getEndTime());
@@ -133,6 +149,10 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		event.setEndTime(cursor.getLong(cursor.getColumnIndex(KEY_EVENT_END_TIME)));
 		event.setEventDescription(cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
 		event.setIsRepeating(cursor.getInt(cursor.getColumnIndex(KEY_IS_REPEATING)));
+		event.setRegId(cursor.getString(cursor.getColumnIndex(KEY_REGID)));
+		event.setOwnerName(cursor.getString(cursor.getColumnIndex(KEY_OWNER_NAME)));
+		event.setClassPeriod(cursor.getInt(cursor.getColumnIndex(KEY_CLASS_PERIOD)));
+		event.setColor(cursor.getInt(cursor.getColumnIndex(KEY_COLOR)));
 		
 		return event;
 	}

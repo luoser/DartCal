@@ -9,38 +9,42 @@ import android.util.Log;
 
 public class Event implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private long id;
 	private String eventName;
 	private String eventLocation;
 	private String eventDescription;
 	private long startTime;
 	private long endTime;
 	private int	isRepeating;
-	private long id;
 	private long date;
-//	private String classPeriod;
-	private int classPeriod;	// value will come from spinner
+	private int color;
+	private int classPeriod;
+	private String RegId;
+	private String OwnerName;
 
 public Event() {
 	this.eventName = "";
 	this.eventLocation = "";
 	this.eventDescription = "";
-	this.classPeriod = -1;
 	this.startTime = System.currentTimeMillis();
 	this.endTime = System.currentTimeMillis();
 	this.isRepeating = 3;
+	this.classPeriod = -1;
 	this.date=System.currentTimeMillis();
-}
-public int getIsRepeating() {
-	return isRepeating;
-}
-public void setIsRepeating(int isRepeating) {
-	this.isRepeating = isRepeating;
+	this.RegId= MainActivity.regid;
+	this.OwnerName="";
 }
 public int getClassPeriod() {
 	return classPeriod;
 }
 public void setClassPeriod(int classPeriod) {
 	this.classPeriod = classPeriod;
+}
+public int getIsRepeating() {
+	return isRepeating;
+}
+public void setIsRepeating(int isRepeating) {
+	this.isRepeating = isRepeating;
 }
 public long getId(){
 	return id;
@@ -88,6 +92,18 @@ public void setEndTime(long endTime) {
 	this.endTime = endTime;
 }
 
+public String getOwnerName() {
+	return OwnerName;
+}
+public void setOwnerName(String ownerName) {
+	OwnerName = ownerName;
+}
+public String getRegId(){
+	return RegId;
+}
+public void setRegId(String regId) {
+	RegId = regId;
+}
 /*
 public void setStartDateTime(long timeInMS){
 	this.startDateTime = new Date(timeInMS);
@@ -103,6 +119,13 @@ public long getDate(){
 public void setDate(long date){
 	this.date=date;
 }
+public int getColor() {
+	return color;
+}
+public void setColor(int color) {
+	this.color = color;
+}
+
 public JSONObject toJSONObject(){
 	JSONObject myObj=new JSONObject();
 	try{
@@ -115,7 +138,11 @@ public JSONObject toJSONObject(){
 		long myEndTime=getEndTime();
 		String myDescription=getEventDescription();
 		int myRepeating=getIsRepeating();
-		Log.i("TAG","JSON START TIME"+getStartTime());
+		int myColor = getColor();
+		String myRegId=getRegId();
+		String myOwnerName=getOwnerName();
+		int myClassPeriod = getClassPeriod();
+		
 		myObj.put("id", myId);
 		myObj.put("date", myDate);
 		myObj.put("event name", myEventName);
@@ -124,6 +151,10 @@ public JSONObject toJSONObject(){
 		myObj.put("end time", myEndTime);
 		myObj.put("description", myDescription);
 		myObj.put("repeating", myRepeating);
+		myObj.put("classPeriod", myClassPeriod);
+		myObj.put("color", myColor);
+		myObj.put("regId", myRegId);
+		myObj.put("owner name", myOwnerName);
 		
 	}
 	catch (JSONException e){
@@ -141,6 +172,10 @@ public JSONObject fromJSONObject(JSONObject obj){
 		setEndTime(obj.getLong("end time"));
 		setEventDescription(obj.getString("description"));
 		setIsRepeating(obj.getInt("repeating"));
+		setClassPeriod(obj.getInt("classPeriod"));
+		setColor(obj.getInt("color"));
+		setRegId(obj.getString("regId"));
+		setOwnerName(obj.getString("owner name"));
 		
 	}
 	catch(JSONException e){
