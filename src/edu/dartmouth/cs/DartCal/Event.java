@@ -31,7 +31,7 @@ public Event() {
 	this.isRepeating = 3;
 	this.classPeriod = -1;
 	this.date=System.currentTimeMillis();
-	this.RegId="";
+	this.RegId= MainActivity.regid;
 	this.OwnerName="";
 }
 public int getClassPeriod() {
@@ -142,6 +142,7 @@ public JSONObject toJSONObject(){
 		String myRegId=getRegId();
 		String myOwnerName=getOwnerName();
 		int myClassPeriod = getClassPeriod();
+		
 		myObj.put("id", myId);
 		myObj.put("date", myDate);
 		myObj.put("event name", myEventName);
@@ -153,7 +154,7 @@ public JSONObject toJSONObject(){
 		myObj.put("classPeriod", myClassPeriod);
 		myObj.put("color", myColor);
 		myObj.put("regId", myRegId);
-		myObj.put("owner name",myOwnerName);
+		myObj.put("owner name", myOwnerName);
 		
 	}
 	catch (JSONException e){

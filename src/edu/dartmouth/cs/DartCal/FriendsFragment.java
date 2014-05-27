@@ -24,10 +24,11 @@ import android.widget.Toast;
 public class FriendsFragment extends Fragment {
 	MenuItem friends;
 	PersonalEventDbHelper database;
+	EventDbHelper db;
 	ArrayList<String> selectedFriends;
 	HashMap<String, String> nameMap;
 	ArrayList<String> names;
-
+	WeeksCalendar cal;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +42,10 @@ public class FriendsFragment extends Fragment {
 		setHasOptionsMenu(true);
 		database = new PersonalEventDbHelper(getActivity());
 		nameMap = new HashMap<String, String>();
+		db = new EventDbHelper(getActivity());
+		selectedFriends = new ArrayList<String>();
+		//cal = new WeeksCalendar();
+		//cal.AsyncTask();
 	}
 
 	@Override
@@ -54,7 +59,6 @@ public class FriendsFragment extends Fragment {
 
 		ArrayList<Event> values = database.fetchEntries();
 		//this is the thing for updating the local database
-		WeeksCalendar.AsyncTask;
 		//CharSequence[] items;
 		names = new ArrayList<String>();
 
@@ -67,6 +71,7 @@ public class FriendsFragment extends Fragment {
 
 		for(String key : keySet){
 			names.add(key);
+			System.out.println(key + nameMap.get(key));
 		}
 		CharSequence[] items = names.toArray(new CharSequence[names.size()]);
 		//CharSequence[] items = {" Easy "," Medium "," Hard "," Very Hard "};
@@ -100,7 +105,25 @@ public class FriendsFragment extends Fragment {
 				// System.out.println(seletedItems.size());
 
 				for(int i = 0; i < seletedItems.size(); i++){
+					System.out.println(seletedItems.get(i));
+					System.out.println(names.get(seletedItems.get(i)));
 					selectedFriends.add(nameMap.get(names.get(seletedItems.get(i))));
+				}
+				
+				try {
+					displaySchedules();
+				} catch (StreamCorruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 
 			}
@@ -123,18 +146,46 @@ public class FriendsFragment extends Fragment {
 
 		ArrayList<Event> events = database.fetchEntries();
 		
-		ArrayList<Event> selectedEvents = new ArrayList<Event>();
+		//ArrayList<Event> selectedEvents = new ArrayList<Event>();
 		
 		for(int j = 0; j < selectedFriends.size(); j++){
+			ArrayList<Event> selectedEvents = new ArrayList<Event>();
 			for(int i = 0; i < events.size(); i++){
-				if(events.get(i).getRegId() == selectedFriends.get(j)){
+				if(events.get(i).getRegId().equals(selectedFriends.get(j))){
 					selectedEvents.add(events.get(i));
 				}
 			}
-			
+			Friend person = new Friend();
+			person.setName(selectedEvents.get(0).getOwnerName());
+			person.setSchedule(selectedEvents);
+			db.insertEntry(person);
 		}
-
 		selectedFriends.clear();
+		check();
+	}
+	
+	public void check(){
+		ArrayList<Friend> list = null;
+		try {
+			list = db.fetchEntries();
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(list.get(0).getSchedule().get(0).getEventName());
+		System.out.println(list.get(0).getSchedule().get(1).getEventName());
+		System.out.println(list.get(1).getSchedule().get(0).getOwnerName());
+		System.out.println(list.get(0).getSchedule().get(4).getEventName());
+		System.out.println(list.get(0).getSchedule().get(5).getEventName());
+		
+		System.out.println(db.removeEntries());
 	}
 
 }
