@@ -31,7 +31,8 @@ public class WeeksCalendar extends Activity {
 		String myServerURL= mContext.getString(R.string.server_addr)+"/post_data";
 		mEventUploader=new EventUploader(mContext, myServerURL);
 		
-
+		
+		
 	}
 	
 	@Override

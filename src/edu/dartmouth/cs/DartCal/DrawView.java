@@ -118,7 +118,9 @@ public class DrawView extends View {
 			// check for first time use
 			if (userData != null) {
 
+			
 				ArrayList<Event> courseBlocks = userData.getSchedule();
+
 
 				if (courseBlocks.size() > 0) {
 
