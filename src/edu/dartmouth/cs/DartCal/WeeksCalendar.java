@@ -81,6 +81,28 @@ public class WeeksCalendar extends Activity {
 		getMenuInflater().inflate(R.menu.weeks_calendar, menu);
 		return true;
 	}
+	public boolean AsyncTask(){
+		new AsyncTask<Void,Void,String>(){
+			@Override
+			protected String doInBackground(Void... arg0){
+				Log.i("TAG","IN DOINBACKGROUND");
+				Log.i("TAG","IN DA BACKGROUND"+datasource.fetchEntries().toString());
+				ArrayList<Event> entryList = datasource.fetchEntries();
+				
+				String stateOfUpload="";
+				try{
+					mEventUploader.upload(entryList);
+				}
+				catch(IOException e){
+				
+				}
+				//catch(NullPointerException e){}
+				return stateOfUpload;
+			}
+		}.execute();
+		return true;
+
+	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -92,6 +114,8 @@ public class WeeksCalendar extends Activity {
 			return true;
 		case R.id.menuitem_sync:
 			Log.i("TAG","Sync button has been clicked");
+			AsyncTask();
+			/*
 			new AsyncTask<Void,Void,String>(){
 				@Override
 				protected String doInBackground(Void... arg0){
@@ -113,8 +137,10 @@ public class WeeksCalendar extends Activity {
 			return true;
 
 	}
+	*/
+		}
 		return true;
 
-}
-	
+
+	}
 }
