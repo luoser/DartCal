@@ -135,7 +135,6 @@ public class DrawView extends View {
 				}
 
 				// turn the xhours on; for use in the WEEKLY fragment
-				System.out.println("xhours true? " + Globals.xHoursOn);
 				if (Globals.xHoursOn) {
 					int green = getResources().getColor(R.color.dark_green);
 					paint.setColor(green);
@@ -173,24 +172,33 @@ public class DrawView extends View {
 
 					ArrayList<Event> friendCourses = drawingMatrix.get(i);
 
-					// for (int j = 0; j < friendCourses.size(); j++) {
+					 for (int j = 0; j < friendCourses.size(); j++) {
+						 
+						 int course = friendCourses.get(j).getClassPeriod();
+						 drawCourse(course, canvas);
+						 canvas.save();
+					 
+					 }
 
-					int course = friendCourses.get(0).getClassPeriod();
-					int course2 = friendCourses.get(1).getClassPeriod();
-					int course3 = friendCourses.get(2).getClassPeriod();
-					int course4 = friendCourses.get(3).getClassPeriod();
-
-					drawCourse(course, canvas);
-					drawCourse(course2, canvas);
-					drawCourse(course3, canvas);
-					drawCourse(course4, canvas);
-
-					if (Globals.friendXhoursOn) {
-						drawXhour(course, canvas);
-						drawXhour(course2, canvas);
-						drawXhour(course3, canvas);
-						drawXhour(course4, canvas);
-					}
+//					int course = friendCourses.get(0).getClassPeriod();
+//					int course2 = friendCourses.get(1).getClassPeriod();
+//					int course3 = friendCourses.get(2).getClassPeriod();
+//					int course4 = friendCourses.get(3).getClassPeriod();
+//
+//					drawCourse(course, canvas);
+//					drawCourse(course2, canvas);
+//					drawCourse(course3, canvas);
+//					drawCourse(course4, canvas);
+//					canvas.save();
+//
+//					if (Globals.friendXhoursOn) {
+//						
+//						
+//						drawXhour(course, canvas);
+//						drawXhour(course2, canvas);
+//						drawXhour(course3, canvas);
+//						drawXhour(course4, canvas);
+//					}
 
 				}
 			}
