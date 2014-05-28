@@ -57,7 +57,8 @@ public class EditProfileActivity extends Activity {
 
 	// Temporary buffer for storing profile image.
 	private byte[] bytePhoto;
-	//SharedPreferences sharedPreferences;
+
+	// SharedPreferences sharedPreferences;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -65,8 +66,9 @@ public class EditProfileActivity extends Activity {
 		setContentView(R.layout.activity_edit_profile);
 		mImageView = (ImageView) findViewById(R.id.imageProfile);
 		supressKeyboard();
-		
-		//MainActivity.sharedPreferences.edit().putBoolean(MainActivity.FIRST_RUN, true).commit();
+
+		// MainActivity.sharedPreferences.edit().putBoolean(MainActivity.FIRST_RUN,
+		// true).commit();
 
 		// If not loading up for the first time, get the image from the saved
 		// Instance State.
@@ -111,50 +113,47 @@ public class EditProfileActivity extends Activity {
 	// BUTTON CLICKS
 	// Save user data, including picture, and close the application.
 	public void onSaveClicked(View v) {
-		
+
 		String mValue = (String) ((EditText) findViewById(R.id.editName))
 				.getText().toString();
-		
-		if (mValue.equals("")){
-			Toast.makeText(getApplicationContext(), "Please enter your name", Toast.LENGTH_SHORT)
-			.show();
-		}
-		else{
 
-		saveUserData();
-		// Make a Toast informing the user their information is saved.
-		Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT)
-		.show();
-		finish();
+		if (mValue.equals("")) {
+			Toast.makeText(getApplicationContext(), "Please enter your name",
+					Toast.LENGTH_SHORT).show();
+		} else {
+
+			saveUserData();
+			// Make a Toast informing the user their information is saved.
+			Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT)
+					.show();
+			
+
+			finish();
 		}
-		
+
 	}
 
 	// Display a Toast and cancel application.
 	public void onCancelClicked(View v) {
 		Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT)
-		.show();
+				.show();
 		// Close the activity.
 		/*
-		if (MainActivity.sharedPreferences.getBoolean(MainActivity.MY_BOO, true)){
-			Intent i = new Intent(this, MainActivity.class);
-			MainActivity.sharedPreferences.edit().putBoolean(MainActivity.MY_BOO, true).commit();
-	    startActivity(i);
-	    finish();
-		}
-		else{
-			finish();
-		}
-		*/
+		 * if (MainActivity.sharedPreferences.getBoolean(MainActivity.MY_BOO,
+		 * true)){ Intent i = new Intent(this, MainActivity.class);
+		 * MainActivity.sharedPreferences.edit().putBoolean(MainActivity.MY_BOO,
+		 * true).commit(); startActivity(i); finish(); } else{ finish(); }
+		 */
 		finish();
 	}
-	
+
 	@Override
-	public void onPause(){
+	public void onPause() {
 		super.onPause();
-		//MainActivity.sharedPreferences.edit().putBoolean(MainActivity.MY_BOO, true).commit();	
+		// MainActivity.sharedPreferences.edit().putBoolean(MainActivity.MY_BOO,
+		// true).commit();
 	}
-	
+
 	// Display a dialog box to allow user to change profile image.
 	public void onChangePhotoClicked(View v) {
 		displayDialog(DartCalDialogFragment.DIALOG_ID_PHOTO_PICKER);
@@ -231,7 +230,7 @@ public class EditProfileActivity extends Activity {
 			// photo
 			mImageCaptureUri = Uri.fromFile(new File(Environment
 					.getExternalStorageDirectory(), "tmp_"
-							+ String.valueOf(System.currentTimeMillis()) + ".jpg"));
+					+ String.valueOf(System.currentTimeMillis()) + ".jpg"));
 			intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
 					mImageCaptureUri);
 			intent.putExtra("return-data", true);
@@ -391,7 +390,6 @@ public class EditProfileActivity extends Activity {
 		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editCourse3loc)).setText(mValue);
 
-
 		// Course 4
 		mKey = "Course #4 Name";
 		mValue = mPrefs.getString(mKey, "");
@@ -442,7 +440,7 @@ public class EditProfileActivity extends Activity {
 		mEditor.putString(mKey, mValue);
 		name = mValue;
 		user.setName(mValue);
-		
+
 		// PARSE
 		Globals.USER = name;
 
@@ -488,27 +486,27 @@ public class EditProfileActivity extends Activity {
 		// Course 2
 		event1.setEventLocation(mValue);
 		event1.setOwnerName(name);
-//		if (!Globals.classList.contains(event1.getString("objectId"))){
-//			Globals.classList.add(event1.getString("objectId"));
-//			System.out.println(event1.getString("objectId"));
-			event1.saveInBackground();
-//			mEditor.putString(Globals.CLASS_KEY1, event1.getString("objectId"));
-//		}
-//		else{
-//			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
-//			query.whereEqualTo("objectId", Globals.classList.get(0));
-//			try {
-//				Event event = query.getFirst();
-//				event.setClassPeriod(event1.getClassPeriod());
-//				event.setEventLocation(event1.getEventLocation());
-//				event.setEventName(event1.getEventName());
-//				event.saveInBackground();
-//			} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		}
-		
+		// if (!Globals.classList.contains(event1.getString("objectId"))){
+		// Globals.classList.add(event1.getString("objectId"));
+		// System.out.println(event1.getString("objectId"));
+		event1.saveInBackground();
+		// mEditor.putString(Globals.CLASS_KEY1, event1.getString("objectId"));
+		// }
+		// else{
+		// ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+		// query.whereEqualTo("objectId", Globals.classList.get(0));
+		// try {
+		// Event event = query.getFirst();
+		// event.setClassPeriod(event1.getClassPeriod());
+		// event.setEventLocation(event1.getEventLocation());
+		// event.setEventName(event1.getEventName());
+		// event.saveInBackground();
+		// } catch (ParseException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// }
+
 		db.insertEntry(event1);
 		list.add(event1);
 
@@ -546,31 +544,31 @@ public class EditProfileActivity extends Activity {
 		// Course 3
 		event2.setEventLocation(mValue);
 		event2.setOwnerName(name);
-		//System.out.println(event2.getString("objectId"));
-//		if (!Globals.classList.contains(event2.getString("objectId"))){
-//			Globals.classList.add(event2.getString("objectId"));
-			event2.saveInBackground();
-//			mEditor.putString(Globals.CLASS_KEY2, event2.getString("objectId"));
-//		}
-//		else{
-//			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
-//			query.whereEqualTo("objectId", Globals.classList.get(1));
-//			try {
-//				Event event = query.getFirst();
-//				event.setClassPeriod(event2.getClassPeriod());
-//				event.setEventLocation(event2.getEventLocation());
-//				event.setEventName(event2.getEventName());
-//				event.saveInBackground();
-//			} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		}
+		// System.out.println(event2.getString("objectId"));
+		// if (!Globals.classList.contains(event2.getString("objectId"))){
+		// Globals.classList.add(event2.getString("objectId"));
+		event2.saveInBackground();
+		// mEditor.putString(Globals.CLASS_KEY2, event2.getString("objectId"));
+		// }
+		// else{
+		// ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+		// query.whereEqualTo("objectId", Globals.classList.get(1));
+		// try {
+		// Event event = query.getFirst();
+		// event.setClassPeriod(event2.getClassPeriod());
+		// event.setEventLocation(event2.getEventLocation());
+		// event.setEventName(event2.getEventName());
+		// event.saveInBackground();
+		// } catch (ParseException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// }
 		db.insertEntry(event2);
 		list.add(event2);
 
 		// Course 3
-		
+
 		// Save course information
 		// Course name
 		mKey = "Course #3 Name";
@@ -604,29 +602,29 @@ public class EditProfileActivity extends Activity {
 		// Course 4
 		event3.setEventLocation(mValue);
 		event3.setOwnerName(name);
-//		if (!Globals.classList.contains(event3.getString("objectId"))){
-//			Globals.classList.add(event3.getString("objectId"));
-			event3.saveInBackground();
-//			mEditor.putString(Globals.CLASS_KEY3, event3.getString("objectId"));
-//		}
-//		else{
-//			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
-//			query.whereEqualTo("objectId", Globals.classList.get(2));
-//			try {
-//				Event event = query.getFirst();
-//				event.setClassPeriod(event3.getClassPeriod());
-//				event.setEventLocation(event3.getEventLocation());
-//				event.setEventName(event3.getEventName());
-//				event.saveInBackground();
-//			} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		}
+		// if (!Globals.classList.contains(event3.getString("objectId"))){
+		// Globals.classList.add(event3.getString("objectId"));
+		event3.saveInBackground();
+		// mEditor.putString(Globals.CLASS_KEY3, event3.getString("objectId"));
+		// }
+		// else{
+		// ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+		// query.whereEqualTo("objectId", Globals.classList.get(2));
+		// try {
+		// Event event = query.getFirst();
+		// event.setClassPeriod(event3.getClassPeriod());
+		// event.setEventLocation(event3.getEventLocation());
+		// event.setEventName(event3.getEventName());
+		// event.saveInBackground();
+		// } catch (ParseException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// }
 		db.insertEntry(event3);
 		list.add(event3);
 		// Course 4
-		
+
 		// Save course information
 		// Course name
 		mKey = "Course #4 Name";
@@ -656,50 +654,45 @@ public class EditProfileActivity extends Activity {
 				.getText().toString();
 		mEditor.putString(mKey, mValue);
 
-
 		event4.setEventLocation(mValue);
-		
+
 		list.add(event4);
 		event4.setOwnerName(name);
-//		if (!Globals.classList.contains(event4.getString("objectId"))){
-//			Globals.classList.add(event4.getString("objectId"));
-			event4.saveInBackground();
-//			mEditor.putString(Globals.CLASS_KEY4, event4.getString("objectId"));
-//		}
-//		else{
-//			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
-//			query.whereEqualTo("objectId", Globals.classList.get(3));
-//			try {
-//				Event event = query.getFirst();
-//				event.setClassPeriod(event4.getClassPeriod());
-//				event.setEventLocation(event4.getEventLocation());
-//				event.setEventName(event4.getEventName());
-//				event.saveInBackground();
-//			} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		}
+		// if (!Globals.classList.contains(event4.getString("objectId"))){
+		// Globals.classList.add(event4.getString("objectId"));
+		event4.saveInBackground();
+		// mEditor.putString(Globals.CLASS_KEY4, event4.getString("objectId"));
+		// }
+		// else{
+		// ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+		// query.whereEqualTo("objectId", Globals.classList.get(3));
+		// try {
+		// Event event = query.getFirst();
+		// event.setClassPeriod(event4.getClassPeriod());
+		// event.setEventLocation(event4.getEventLocation());
+		// event.setEventName(event4.getEventName());
+		// event.saveInBackground();
+		// } catch (ParseException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// }
 		db.insertEntry(event4);
 		user.setSchedule(list);
-		
-		
-		
-		
-		//Call method to get all entries from the datastore!!!
-		
-		
-		
-//		EventDbHelper db = new EventDbHelper(this);
-//		try {
-//			db.insertEntry(user);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
+		// Call method to get all entries from the datastore!!!
+
+		// EventDbHelper db = new EventDbHelper(this);
+		// try {
+		// db.insertEntry(user);
+		// } catch (IOException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 
 		// Commit all the changes into the shared preference
 		mEditor.commit();
+		Globals.isProfileSet = true;
 	}
 
 }

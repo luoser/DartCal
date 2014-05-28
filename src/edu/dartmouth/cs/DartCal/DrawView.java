@@ -90,7 +90,6 @@ public class DrawView extends View {
 		int dark = getResources().getColor(R.color.black);
 		paint.setColor(dark);
 
-
 		// retrieve user profile information
 		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
 		query.whereEqualTo("ownerName", Globals.USER);
@@ -98,19 +97,10 @@ public class DrawView extends View {
 		try {
 			List<Event> eventList = query.find();
 
-			// check for first time use
-			// if (eventList != null) {
-
+			// Check for the first time
 			if (eventList.size() > 0) {
 
 				for (int i = 0; i < eventList.size(); i++) {
-					System.out.println("here");
-
-					// fetch course information from the database
-					// int course1Time = event.get(0).getClassPeriod();
-					// int course2Time = event.get(1).getClassPeriod();
-					// int course3Time = event.get(2).getClassPeriod();
-					// int course4Time = event.get(3).getClassPeriod();
 
 					int courseTime = eventList.get(i).getClassPeriod();
 
@@ -122,20 +112,13 @@ public class DrawView extends View {
 					int mint = getResources().getColor(R.color.mint_green);
 					paint.setColor(mint);
 					drawCourse(courseTime, canvas);
-					// drawCourse(course1Time, canvas);
-					// drawCourse(course2Time, canvas);
-					// drawCourse(course3Time, canvas);
-					// drawCourse(course4Time, canvas);
 					canvas.save();
-					// }
-
 				}
 
 				// turn the xhours on; for use in the WEEKLY fragment
 				if (Globals.xHoursOn) {
 					int green = getResources().getColor(R.color.dark_green);
 					paint.setColor(green);
-					System.out.println("drawing x hour....");
 
 					for (int i = 0; i < eventList.size(); i++) {
 
@@ -145,32 +128,35 @@ public class DrawView extends View {
 						canvas.save();
 					}
 				}
+
+				// Draw events; for use in the TERM and WEEKLY fragment
+				if (Globals.drawEventsOn) {
+					// fetch the custom events from the database
+					for (int i = 0; i < eventList.size(); i++) {
+						System.out.println("drawevents on");
+										
+						long startTime = eventList.get(i).getStartTime();
+						long endTime = eventList.get(i).getEndTime();
+						long date = eventList.get(i).getDate();
+						drawCustomEvent(startTime, endTime, date, canvas);
+
+						// TESTING drawing custom events
+						long startLong = Calendar.getInstance()
+								.getTimeInMillis();
+						drawCustomEvent(startLong, startLong + 1000000,
+								startLong, canvas);
+
+						// drawCustomEvent(startTime, endTime, date, canvas);
+					}
+
+				}
+
 			}
 
 		} catch (ParseException e) {
 			System.out.println("Parse did not work.");
 		}
 
-
-		// Draw events; for use in the TERM fragment
-		if (Globals.drawEventsOn) {
-
-			// GET THE EVENTS FROM THE DATABASE
-
-			long startTime = 0;
-			long endTime = 0;
-			long date = 0;
-			System.out.println("drawevents on");
-			
-			// TESTING drawing custom events
-			 long startLong = Calendar.getInstance().getTimeInMillis();
-			 drawCustomEvent(startLong, startLong + 1000000, startLong, canvas);
-
-			
-			
-//			drawCustomEvent(startTime, endTime, date, canvas);
-
-		}
 	}
 
 	// invalidate();

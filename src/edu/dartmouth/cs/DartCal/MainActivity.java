@@ -85,14 +85,23 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		if (!parseInitialized) {
+		// let the user know what to do...
+		if (Globals.isProfileSet) {
+			setContentView(R.layout.activity_main);
+		} else {
+			setContentView(R.layout.activity_main);
+			Toast.makeText(getApplicationContext(),
+					"Go to Settings and Edit Your Profile!", Toast.LENGTH_LONG)
+					.show();
+		}
 
+		if (!Globals.parseInitialized) {
 			Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP",
 					"ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
 			ParseObject.registerSubclass(Event.class);
-			parseInitialized = true;
+			Globals.parseInitialized = true;
 		}
-		
+
 		setContentView(R.layout.activity_main);
 		/*
 		 * sharedPreferences = getSharedPreferences(MY_BOO, 0); if
@@ -201,16 +210,9 @@ public class MainActivity extends Activity {
 	}
 
 	// @Override
-	public void onResume() {
-		super.onResume();
-		
-		if (!parseInitialized){
-			Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP",
-					"ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
-			ParseObject.registerSubclass(Event.class);
-			parseInitialized = true;
-		}
-	}
+	// public void onResume() {
+	// super.onResume();
+	// }
 
 	public boolean checkRotation() {
 		Display display = ((WindowManager) this

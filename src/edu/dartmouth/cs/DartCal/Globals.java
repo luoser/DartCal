@@ -245,4 +245,7 @@ public class Globals {
 	public static String CLASS_KEY3 = "classKey3";
 	public static String CLASS_KEY4 = "classKey4";
 	public static ArrayList<String> classList = new ArrayList<String>();
+	public static boolean parseInitialized = false;
+	
+	public static boolean isProfileSet = false;
 }
