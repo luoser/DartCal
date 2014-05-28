@@ -10,14 +10,13 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:text="@string/personal_calendar"
-        android:textSize="25sp"
         android:textColor="@color/white"
-        android:background="@drawable/hsv_lightness" />
-    
-     <View
-            android:layout_width="1dp"
-            android:layout_height="50dp" >
-        </View>
+        android:textSize="25sp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="50dp" >
+    </View>
 
     <Button
         android:id="@+id/btnDartmouthCalendar"
@@ -25,9 +24,8 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="@string/dartmouth_calendar"
-        android:textSize="25sp"
         android:textColor="@color/white"
-         android:background="@drawable/hsv_lightness" >
+        android:textSize="25sp" >
     </Button>
 
 </LinearLayout>

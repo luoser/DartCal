@@ -1,15 +1,12 @@
 package edu.dartmouth.cs.DartCal;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 
 public class DisplayDiagramActivity extends Activity {
 
@@ -17,7 +14,6 @@ public class DisplayDiagramActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_diagram);
-
 	}
 
 	@Override
@@ -38,6 +34,12 @@ public class DisplayDiagramActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void consultORC(View view){
+		Intent launchBrowser = new Intent(android.content.Intent.ACTION_VIEW);
+		launchBrowser.setData(Uri.parse("http://www.dartmouth.edu/~reg/"));
+        startActivity(launchBrowser);
 	}
 
 }

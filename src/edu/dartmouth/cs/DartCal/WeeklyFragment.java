@@ -65,6 +65,12 @@ public class WeeklyFragment extends Fragment {
 		//System.out.println("timetest " + timetest);
 
 
+//		long epoch = System.currentTimeMillis();
+//		String timetest = CalendarUtils.parseTime(epoch);
+//		int dayOfweek = CalendarUtils.parseDayOfWeek(epoch);
+//		System.out.println("timetest " + timetest);
+//		System.out.println("datetest " + dayOfweek);
+		
 		SharedPreferences prefs = mContext.getSharedPreferences(
 				"edu.dartmouth.cs.DartCal", Context.MODE_PRIVATE);
 		System.out.println(prefs.getAll());
@@ -102,7 +108,7 @@ public class WeeklyFragment extends Fragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
 		// add the menu items and set the ids for click listeners
-		xHoursMenuItem = menu.add(0, 0, 0, "X-Hours");
+		xHoursMenuItem = menu.add(0, 0, 0, "Toggle X-Hours");
 		diagramMenuItem = menu.add(0, 1, 1, "View Schedule Diagram");
 		editProfileMenuItem = menu.add(0, 2, 2, "Edit Profile");
 
@@ -127,14 +133,15 @@ public class WeeklyFragment extends Fragment {
 						.show();
 				drawView.postInvalidate();
 			}
-
-			// if (xHoursOn) {
-			// Globals.xHoursOn = false;
-			// xHoursOn = false;
-			// Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
-			// .show();
-			// // drawView.postInvalidate();
-			// }
+		
+			// TOGGLE x-hours
+			if (xHoursOn) {
+				Globals.xHoursOn = false;
+				xHoursOn = false;
+				Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
+						.show();
+				 drawView.postInvalidate();
+			}
 
 			break;
 

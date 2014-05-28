@@ -237,5 +237,7 @@ public class Globals {
 	public static int WEEK_11 = 10;
 	
 	public static ArrayList<ArrayList<Event>> drawingMatrix = new ArrayList<ArrayList<Event>>();
+
 			public static ArrayList<String> selectedFriends = new ArrayList<String>();
 }
+

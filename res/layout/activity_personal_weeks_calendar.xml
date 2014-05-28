@@ -9,6 +9,7 @@
         android:id="@+id/dayLabelsLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:baselineAligned="false" >
 
         <RelativeLayout
@@ -604,14 +605,14 @@
                         android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="12am"
-                        android:textColor="#B2BFBE"
+                        android:textColor="#9AA5A5"
                         android:textSize="12sp" />
 
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="1dp"
                         android:layout_marginTop="9dp"
-                        android:background="#B2BFBE" />
+                        android:background="#9AA5A5" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -749,11 +750,10 @@
 
             <!-- This is the view for drawing over -->
             <edu.dartmouth.cs.DartCal.DrawViewTerm
-                android:id="@+id/sunday7to8"
+                android:id="@+id/drawViewTerm"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp" />
-
 
         </FrameLayout>
     </ScrollView>

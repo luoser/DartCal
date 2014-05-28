@@ -18,10 +18,10 @@ public class WeeksActivity extends ListActivity {
 	
 	ArrayAdapter<String> mAdapter;
 	
-	static final String[] DATES = new String[] {"Week 1: September 15- September 21","Week 2: September 22- September 28",
-		"Week 3: September 19- October 5","Week 4: October 6- October 12", "Week 5: October 13- October 19", 
-		"Week 6: October 20- October 26", "Week 7: October 27- November 2", "Week 8: November 3- November 9", 
-		"Week 9: November 10- November 16", "Week 10: November 17- November 23","Week 11: November 24- November 30"};
+	static final String[] DATES = new String[] {"Week 1: March 22 - March 29","Week 2: March 30 - April 5",
+		"Week 3: April 6 - April 12","Week 4: April 13 - April 19", "Week 5: April 20 - April 26", 
+		"Week 6: April 27 - May 3", "Week 7: May 4 - May 10", "Week 8: May 11 - May 17", 
+		"Week 9: May 18 - May 24", "Week 10: May 25 - May 31","Week 11: June 1 - June 3"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,7 @@ public class WeeksActivity extends ListActivity {
 				
 //				int pos = mAdapter.getPosition();
 				
+				System.out.println("listview position: " + position);
 				
 				//intent.putExtras(extras);
 				if (myActivityType==0){
@@ -63,6 +64,7 @@ public class WeeksActivity extends ListActivity {
 		// Get the ListView and wired the listener
 		ListView listView = getListView();
 		listView.setOnItemClickListener(mListener);
+		
 		
 		
 	}

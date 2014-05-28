@@ -1,11 +1,10 @@
-/**
-* DartCal
-* File: CalendarUtils.java
-* Author: Lisa Luo
-* Modified: 5/27/14
-* Description: Helper functions to help handle 
-* 	calendar and user data.
-*/
+/** DartCal
+ * File: CalendarUtils.java
+ * Author: Lisa Luo
+ * Modified: 5/27/14
+ * Description: Helper functions to help handle 
+ * 	calendar and user data.
+ */
 
 package edu.dartmouth.cs.DartCal;
 
