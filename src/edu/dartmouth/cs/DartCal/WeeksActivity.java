@@ -45,10 +45,10 @@ public class WeeksActivity extends ListActivity {
 				Log.i("TAG",
 						"MYACTIVITY TYPE " + Integer.toString(myActivityType));
 				Intent intent = new Intent();
-				// Bundle extras = new Bundle();
-				// extras.putInt("Week", position);
+				Bundle extras = new Bundle();
+				extras.putInt("Week", position);
 
-				// int pos = mAdapter.getPosition();
+				//int pos = mAdapter.getPosition();
 
 				System.out.println("listview position: " + position);
 
