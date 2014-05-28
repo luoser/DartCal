@@ -130,26 +130,26 @@ public class DrawView extends View {
 				}
 
 				// Draw events; for use in the TERM and WEEKLY fragment
-				if (Globals.drawEventsOn) {
-					// fetch the custom events from the database
-					for (int i = 0; i < eventList.size(); i++) {
-						System.out.println("drawevents on");
-										
-						long startTime = eventList.get(i).getStartTime();
-						long endTime = eventList.get(i).getEndTime();
-						long date = eventList.get(i).getDate();
-						drawCustomEvent(startTime, endTime, date, canvas);
-
-						// TESTING drawing custom events
-//						long startLong = Calendar.getInstance()
-//								.getTimeInMillis();
-//						drawCustomEvent(startLong, startLong + 1000000,
-//								startLong, canvas);
-
-						// drawCustomEvent(startTime, endTime, date, canvas);
-					}
-
-				}
+//				if (Globals.drawEventsOn) {
+//					// fetch the custom events from the database
+//					for (int i = 0; i < eventList.size(); i++) {
+//						System.out.println("drawevents on");
+//										
+//						long startTime = eventList.get(i).getStartTime();
+//						long endTime = eventList.get(i).getEndTime();
+//						long date = eventList.get(i).getDate();
+//						drawCustomEvent(startTime, endTime, date, canvas);
+//
+//						// TESTING drawing custom events
+////						long startLong = Calendar.getInstance()
+////								.getTimeInMillis();
+////						drawCustomEvent(startLong, startLong + 1000000,
+////								startLong, canvas);
+//
+//						// drawCustomEvent(startTime, endTime, date, canvas);
+//					}
+//
+//				}
 
 			}
 
