@@ -29,9 +29,11 @@ public class FriendsFragment extends Fragment {
 	EventDbHelper db;
 	HashMap<String, String> nameMap;
 	// ArrayList<String> names;
+	ArrayList<Integer> prevSelection;
 	WeeksCalendar cal;
 	HashSet<String> names;
 	private static DrawViewFriends drawView;
+	boolean[] checkedItems;
 	View rootView;
 
 	@Override
@@ -62,7 +64,9 @@ public class FriendsFragment extends Fragment {
 		db = new EventDbHelper(getActivity());
 		// selectedFriends = new ArrayList<String>();
 		names = new HashSet<String>();
-
+		prevSelection = new ArrayList<Integer>();
+		checkedItems = new boolean[500];
+		
 		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
 		query.findInBackground(new FindCallback<Event>() {
 			@Override
@@ -97,7 +101,6 @@ public class FriendsFragment extends Fragment {
 		// this is the thing for updating the local database
 		// CharSequence[] items;
 		// names = new ArrayList<String>();
-
 		final CharSequence[] items = names.toArray(new CharSequence[names
 				.size()]);
 		// CharSequence[] items = {" Easy "," Medium "," Hard "," Very Hard "};
@@ -107,16 +110,18 @@ public class FriendsFragment extends Fragment {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle("Select Friends");
-		builder.setMultiChoiceItems(items, null,
+		builder.setMultiChoiceItems(items, checkedItems,
 				new DialogInterface.OnMultiChoiceClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog,
 							int indexSelected, boolean isChecked) {
 						if (isChecked) {
+							checkedItems[indexSelected] = true;
 							// If the user checked the item, add it to the
 							// selected items
 							seletedItems.add(indexSelected);
 						} else if (seletedItems.contains(indexSelected)) {
+							checkedItems[indexSelected] = false;
 							// Else, if the item is already in the array, remove
 							// it
 							seletedItems.remove(Integer.valueOf(indexSelected));
@@ -131,7 +136,11 @@ public class FriendsFragment extends Fragment {
 						// You can write the code to save the selected item here
 
 						// System.out.println(seletedItems.size());
-
+						for(int i = 0; i<checkedItems.length ; i++){
+							if (checkedItems[i] == true)
+								seletedItems.add(i);
+						}
+						prevSelection = seletedItems;
 						for (int i = 0; i < seletedItems.size(); i++) {
 							Globals.selectedFriends
 									.add((String) items[seletedItems.get(i)]);
