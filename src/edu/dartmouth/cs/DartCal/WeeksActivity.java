@@ -47,6 +47,7 @@ public class WeeksActivity extends ListActivity {
 				
 //				int pos = mAdapter.getPosition();
 				
+				System.out.println("listview position: " + position);
 				
 				//intent.putExtras(extras);
 				if (myActivityType==0){
@@ -63,6 +64,7 @@ public class WeeksActivity extends ListActivity {
 		// Get the ListView and wired the listener
 		ListView listView = getListView();
 		listView.setOnItemClickListener(mListener);
+		
 		
 		
 	}

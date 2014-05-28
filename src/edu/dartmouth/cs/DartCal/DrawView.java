@@ -32,6 +32,7 @@ public class DrawView extends View {
 	private Context context = WeeklyFragment.mContext;
 	private ArrayList<Rect> rectangles = new ArrayList<Rect>();
 	private ArrayList<Integer> rectangleTimes = new ArrayList<Integer>();
+	private ArrayList<ArrayList<Event>> drawingMatrix;
 	private EventDbHelper dbHelper = new EventDbHelper(context);
 	// private PersonalEventDbHelper
 
@@ -106,7 +107,6 @@ public class DrawView extends View {
 
 		System.out.println("entered ondraw");
 		
-
 		// debugging hour blocks
 		paint.setStrokeWidth(0);
 		int dark = getResources().getColor(R.color.periwinkle);
@@ -178,18 +178,22 @@ public class DrawView extends View {
 
 				// Draw friends data; for use in the FRIENDS fragment
 				if (Globals.drawFriends) {
-
+					
+					// this matrix: the arraylist within is the 
+					// array of a user's schedule / events, the outer array
+					// is the array of total users
+					drawingMatrix = Globals.drawingMatrix;
+					
 					int color = CalendarUtils.generateRandomColor();
 					paint.setColor(color);
 
-					ArrayList<Friend> friendData = dbHelper.fetchEntries();
+//					ArrayList<Friend> friendData = dbHelper.fetchEntries();
 
-					if (friendData != null) {
+					if (drawingMatrix.get(0) != null) {
 
-						for (int i = 0; i < friendData.size(); i++) {
+						for (int i = 1; i < drawingMatrix.size(); i++) {
 
-							ArrayList<Event> friendCourses = friendData.get(i)
-									.getSchedule();
+							ArrayList<Event> friendCourses = drawingMatrix.get(i);
 
 							int course1 = friendCourses.get(0).getClassPeriod();
 							int course2 = friendCourses.get(1).getClassPeriod();

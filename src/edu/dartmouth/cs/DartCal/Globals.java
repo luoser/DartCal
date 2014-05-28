@@ -9,6 +9,8 @@
 
 package edu.dartmouth.cs.DartCal;
 
+import java.util.ArrayList;
+
 public class Globals {
 
 	public static final String TAG = "CS 65";
@@ -233,6 +235,8 @@ public class Globals {
 	public static int WEEK_9 = 8;
 	public static int WEEK_10 = 9;
 	public static int WEEK_11 = 10;
+	
+	public static ArrayList<ArrayList<Event>> drawingMatrix = new ArrayList<ArrayList<Event>>();
 
 
 }
