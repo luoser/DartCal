@@ -25,6 +25,7 @@ import com.parse.ParseQuery;
 
 public class FriendsFragment extends Fragment {
 	MenuItem friends;
+	MenuItem friendsX;
 	PersonalEventDbHelper database;
 	EventDbHelper db;
 	HashMap<String, String> nameMap;
@@ -41,8 +42,10 @@ public class FriendsFragment extends Fragment {
 			Bundle savedInstanceState) {
 
 		// Inflate the layout for this fragment
-		rootView = inflater.inflate(R.layout.friends_fragment, container, false);
-		drawView = (DrawViewFriends) rootView.findViewById(R.id.drawViewFriends);
+		rootView = inflater
+				.inflate(R.layout.friends_fragment, container, false);
+		drawView = (DrawViewFriends) rootView
+				.findViewById(R.id.drawViewFriends);
 		drawView.postInvalidate();
 
 		return rootView;
@@ -66,7 +69,7 @@ public class FriendsFragment extends Fragment {
 		names = new HashSet<String>();
 		prevSelection = new ArrayList<Integer>();
 		checkedItems = new boolean[500];
-		
+
 		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
 		query.findInBackground(new FindCallback<Event>() {
 			@Override
@@ -89,8 +92,8 @@ public class FriendsFragment extends Fragment {
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		friends = menu.add("View Friends");
-		menu.add("View Friends' X-Hours");
+		friends = menu.add(0, 0, 0, "View Friends");
+		friendsX = menu.add(0, 1, 1, "View Friends' X-Hours");
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -108,75 +111,93 @@ public class FriendsFragment extends Fragment {
 
 		final ArrayList<Integer> seletedItems = new ArrayList<Integer>();
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setTitle("Select Friends");
-		builder.setMultiChoiceItems(items, checkedItems,
-				new DialogInterface.OnMultiChoiceClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog,
-							int indexSelected, boolean isChecked) {
-						if (isChecked) {
-							checkedItems[indexSelected] = true;
-							// If the user checked the item, add it to the
-							// selected items
-							seletedItems.add(indexSelected);
-						} else if (seletedItems.contains(indexSelected)) {
-							checkedItems[indexSelected] = false;
-							// Else, if the item is already in the array, remove
-							// it
-							seletedItems.remove(Integer.valueOf(indexSelected));
-						}
-					}
-				})
-				// Set the action buttons
-				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int id) {
-						// Your code when user clicked on OK
-						// You can write the code to save the selected item here
+		int itemId = item.getItemId();
+		System.out.println("itemid in friends " + itemId);
 
-						// System.out.println(seletedItems.size());
-						for(int i = 0; i<checkedItems.length ; i++){
-							if (checkedItems[i] == true)
-								seletedItems.add(i);
-						}
-						prevSelection = seletedItems;
-						for (int i = 0; i < seletedItems.size(); i++) {
-							Globals.selectedFriends
-									.add((String) items[seletedItems.get(i)]);
-						}
+		switch (itemId) {
 
-						try {
-							displaySchedules();
-						} catch (StreamCorruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (SQLException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (ClassNotFoundException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					}
-				})
-				.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int id) {
-								// Your code when user clicked on Cancel
-
+		case 0:
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			builder.setTitle("Select Friends");
+			builder.setMultiChoiceItems(items, checkedItems,
+					new DialogInterface.OnMultiChoiceClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog,
+								int indexSelected, boolean isChecked) {
+							if (isChecked) {
+								checkedItems[indexSelected] = true;
+								// If the user checked the item, add it to the
+								// selected items
+								seletedItems.add(indexSelected);
+							} else if (seletedItems.contains(indexSelected)) {
+								checkedItems[indexSelected] = false;
+								// Else, if the item is already in the array,
+								// remove
+								// it
+								seletedItems.remove(Integer
+										.valueOf(indexSelected));
 							}
-						});
-		AlertDialog dialog;
-		dialog = builder.create(); // create like this outside onClick
-		dialog.show();
+						}
+					})
+					// Set the action buttons
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int id) {
+									// Your code when user clicked on OK
+									// You can write the code to save the
+									// selected item here
 
-		return true;
+									// System.out.println(seletedItems.size());
+									for (int i = 0; i < checkedItems.length; i++) {
+										if (checkedItems[i] == true)
+											seletedItems.add(i);
+									}
+									prevSelection = seletedItems;
+									for (int i = 0; i < seletedItems.size(); i++) {
+										Globals.selectedFriends
+												.add((String) items[seletedItems
+														.get(i)]);
+									}
+
+									try {
+										displaySchedules();
+									} catch (StreamCorruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (SQLException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (ClassNotFoundException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+
+								}
+							})
+					.setNegativeButton("Cancel",
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int id) {
+									// Your code when user clicked on Cancel
+
+								}
+							});
+			AlertDialog dialog;
+			dialog = builder.create(); // create like this outside onClick
+			dialog.show();
+
+			return true;
+		case 1:
+			return true;
+		}
+
+		return false;
 	}
 
 	public static void displaySchedules() throws StreamCorruptedException,
