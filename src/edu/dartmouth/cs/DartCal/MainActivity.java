@@ -21,6 +21,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
@@ -37,7 +38,7 @@ public class MainActivity extends Activity {
 
 	private static final String TAB_KEY_INDEX = "tab_key";
 
-	private String SENDER_ID = "661817626973"; //"286158326826";
+	private String SENDER_ID = "661817626973"; // "286158326826";
 	CheckBox xHourCheckBox;
 	CheckBox officeHoursCheckBox;
 	private GoogleCloudMessaging gcm;
@@ -47,7 +48,7 @@ public class MainActivity extends Activity {
 	private static final String PROPERTY_APP_VERSION = "appVersion";
 	private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 	protected static final String TAG = null;
-	
+
 	DrawView drawView;
 	public static boolean isRotated;
 	public static final String PREFS_NAME = "MyPrefsFile";
@@ -72,13 +73,13 @@ public class MainActivity extends Activity {
 	// }
 	// };
 
-
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP", "ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
+
+		Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP",
+				"ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
 		ParseObject.registerSubclass(Event.class);
 		setContentView(R.layout.activity_main);
 		/*
@@ -109,6 +110,26 @@ public class MainActivity extends Activity {
 //		 drawView.postInvalidate();
 		
 
+		sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
+		if (sharedPreferences.getBoolean(FIRST_RUN, false)) {
+			setContentView(R.layout.activity_main);
+		} else {
+			setContentView(R.layout.activity_main);
+			Intent i = new Intent(this, EditProfileActivity.class);
+			startActivity(i);
+			finish();
+		}
+
+		context = this;
+
+		// go to shared preferences, grab the name and set it to Globals.USER
+		String mKey = getString(R.string.preference_name);
+		SharedPreferences mPrefs = getSharedPreferences(mKey, MODE_PRIVATE);
+		mKey = getString(R.string.name_field);
+		String mValue = mPrefs.getString(mKey, "");
+		Globals.USER = mValue;
+		System.out.println("mainactivity " + mValue);
+
 		// ActionBar
 		ActionBar actionbar = getActionBar();
 		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -138,7 +159,7 @@ public class MainActivity extends Activity {
 		actionbar.addTab(mWeeklyTab);
 		actionbar.addTab(mFriendsTab);
 		actionbar.addTab(mTermTab);
-		
+
 		// check for screen rotation to know how to draw things...
 		checkRotation();
 
@@ -157,36 +178,36 @@ public class MainActivity extends Activity {
 
 		// Check device for Play Services APK. If check succeeds, proceed with
 		// GCM registration.
-		
-		 if (checkPlayServices()) { 
-			 gcm =GoogleCloudMessaging.getInstance(this); 
-			 regid =getRegistrationId(context);
-			 Log.i("TAG","WHY ISNT THIS FUCKING SHIT WORKING");
-		 
-		 if (regid.isEmpty()) {
-			 registerInBackground(); 
-			 Log.i("TAG","WHAT THE FUCK ABOUT HERE");
-		 }
-		  
-		  }
-		 
+
+		// if (checkPlayServices()) {
+		// gcm =GoogleCloudMessaging.getInstance(this);
+		// regid =getRegistrationId(context);
+		// Log.i("TAG","WHY ISNT THIS FUCKING SHIT WORKING");
+		//
+		// if (regid.isEmpty()) {
+		// registerInBackground();
+		// Log.i("TAG","WHAT THE FUCK ABOUT HERE");
+		// }
+		//
+		// }
+
 	}
-	
-//	@Override
-//	public void onResume(){
-//		super.onResume();
-//		
-//	}
-	
-	public boolean checkRotation(){
-		Display display = ((WindowManager) this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+
+	// @Override
+	// public void onResume(){
+	// super.onResume();
+	//
+	// }
+
+	public boolean checkRotation() {
+		Display display = ((WindowManager) this
+				.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 		int rotation = display.getRotation();
-		
+
 		// there is no rotation
 		if (rotation == 0)
 			return false;
-			
-		
+
 		// can be rotated 180 or 270 i believe
 		System.out.println("rotated");
 		return true;
@@ -291,7 +312,6 @@ public class MainActivity extends Activity {
 			throw new RuntimeException("Could not get package name: " + e);
 		}
 	}
-
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
