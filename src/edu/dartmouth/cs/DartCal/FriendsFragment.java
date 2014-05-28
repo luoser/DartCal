@@ -74,12 +74,13 @@ public class FriendsFragment extends Fragment {
 				for (int i = 0; i < events.size(); i++) {
 					names.add(events.get(i).getOwnerName());
 				}
-
+				names.remove(Globals.USER);
 			}
 		});
 
 		// cal = new WeeksCalendar();
 		// cal.AsyncTask();
+
 	}
 
 	@Override
@@ -165,8 +166,6 @@ public class FriendsFragment extends Fragment {
 		AlertDialog dialog;
 		dialog = builder.create(); // create like this outside onClick
 		dialog.show();
-		
-		
 
 		return true;
 	}
