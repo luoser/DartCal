@@ -137,8 +137,11 @@ public class FriendsFragment extends Fragment {
 
 						// System.out.println(seletedItems.size());
 						for(int i = 0; i<checkedItems.length ; i++){
-							if (checkedItems[i] == true)
-								seletedItems.add(i);
+							if (checkedItems[i] == true){
+								if (!seletedItems.contains(i))
+									seletedItems.add(i);
+							}
+								
 						}
 						prevSelection = seletedItems;
 						for (int i = 0; i < seletedItems.size(); i++) {

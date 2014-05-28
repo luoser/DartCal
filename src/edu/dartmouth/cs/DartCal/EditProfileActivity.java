@@ -126,6 +126,13 @@ public class EditProfileActivity extends Activity {
 			// Make a Toast informing the user their information is saved.
 			Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT)
 					.show();
+			
+			int size = Globals.drawingMatrix.size();
+			for (int i = 0; i < size; i++) {
+				Globals.drawingMatrix.get(i).clear();
+			}
+			Globals.drawingMatrix.clear();
+			
 			finish();
 		}
 
