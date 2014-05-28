@@ -31,7 +31,7 @@ public class FriendsFragment extends Fragment {
 	// ArrayList<String> names;
 	WeeksCalendar cal;
 	HashSet<String> names;
-	private static DrawView drawView;
+	private static DrawViewFriends drawView;
 	View rootView;
 
 	@Override
@@ -39,8 +39,8 @@ public class FriendsFragment extends Fragment {
 			Bundle savedInstanceState) {
 
 		// Inflate the layout for this fragment
-		rootView = inflater.inflate(R.layout.weekly_fragment, container, false);
-		drawView = (DrawView) rootView.findViewById(R.id.drawViewWeekly);
+		rootView = inflater.inflate(R.layout.friends_fragment, container, false);
+		drawView = (DrawViewFriends) rootView.findViewById(R.id.drawViewFriends);
 		drawView.postInvalidate();
 
 		return rootView;

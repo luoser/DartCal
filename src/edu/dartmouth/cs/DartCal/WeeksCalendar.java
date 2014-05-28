@@ -1,26 +1,37 @@
 package edu.dartmouth.cs.DartCal;
 
 import java.io.IOException;
-import java.io.StreamCorruptedException;
 import java.util.ArrayList;
-import android.os.AsyncTask;
-import android.os.Bundle;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.SQLException;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.view.ViewGroup;
 
 public class WeeksCalendar extends Activity {
 	public PersonalEventDbHelper datasource;
 	public Context mContext;
 	private EventUploader mEventUploader;
-	//private ActivityEntriesAdapter adapter;
+	private DrawView drawView;
+	View rootView;
+	
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState){
+		
+		rootView = inflater.inflate(R.layout.activity_weeks, container, false);
+		drawView = (DrawView) rootView.findViewById(R.id.drawViewTerm);
+		drawView.postInvalidate();
+		
+		return rootView;
+	}
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +41,7 @@ public class WeeksCalendar extends Activity {
 		datasource = new PersonalEventDbHelper(this);
 		String myServerURL= mContext.getString(R.string.server_addr)+"/post_data";
 		mEventUploader=new EventUploader(mContext, myServerURL);
-		
+		Globals.drawEventsOn = true;
 	}
 	
 	@Override

@@ -9,6 +9,7 @@
         android:id="@+id/dayLabelsLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:baselineAligned="false" >
 
         <RelativeLayout
@@ -748,12 +749,12 @@
             </LinearLayout>
 
             <!-- This is the view for drawing over -->
-            <edu.dartmouth.cs.DartCal.DrawView
+
+            <edu.dartmouth.cs.DartCal.DrawViewFriends
                 android:id="@+id/drawViewFriends"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="15dp" />
-
         </FrameLayout>
     </ScrollView>
 

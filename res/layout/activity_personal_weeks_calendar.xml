@@ -750,7 +750,7 @@
 
             <!-- This is the view for drawing over -->
             <edu.dartmouth.cs.DartCal.DrawView
-                android:id="@+id/drawViewTerm"
+                android:id="@+id/drawViewPersonal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp" />

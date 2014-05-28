@@ -56,6 +56,8 @@ public class MainActivity extends Activity {
 	public static final String MY_BOO = "MyBoo";
 	public static SharedPreferences sharedPreferences;
 
+	private boolean parseInitialized = false;
+
 	// final OnClickListener mClickListener = new OnClickListener(){
 	// public void onClick(View v){
 	// updateFragmentView();
@@ -73,14 +75,24 @@ public class MainActivity extends Activity {
 	// }
 	// };
 
+	// @Override
+	// public void onBackPressed() {
+	// super.onPause();
+	// }
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP",
-				"ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
-		ParseObject.registerSubclass(Event.class);
+		if (!parseInitialized) {
+
+			Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP",
+					"ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
+			ParseObject.registerSubclass(Event.class);
+			parseInitialized = true;
+		}
+		
 		setContentView(R.layout.activity_main);
 		/*
 		 * sharedPreferences = getSharedPreferences(MY_BOO, 0); if
@@ -106,16 +118,16 @@ public class MainActivity extends Activity {
 		// drawView = (DrawView) findViewById(R.id.drawView); // !!!!!!
 		// drawView.postInvalidate();
 
-//		sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
-//		if (sharedPreferences.getBoolean(FIRST_RUN, false)) {
-//			setContentView(R.layout.activity_main);
-//		} else {
-//			setContentView(R.layout.activity_main);
-//			Intent i = new Intent(this, EditProfileActivity.class);
-//			startActivity(i);
-//			finish();
-//		}
-//
+		// sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
+		// if (sharedPreferences.getBoolean(FIRST_RUN, false)) {
+		// setContentView(R.layout.activity_main);
+		// } else {
+		// setContentView(R.layout.activity_main);
+		// Intent i = new Intent(this, EditProfileActivity.class);
+		// startActivity(i);
+		// finish();
+		// }
+		//
 
 		// go to shared preferences, grab the name and set it to Globals.USER
 		String mKey = getString(R.string.preference_name);
@@ -189,10 +201,16 @@ public class MainActivity extends Activity {
 	}
 
 	// @Override
-	// public void onResume(){
-	// super.onResume();
-	//
-	// }
+	public void onResume() {
+		super.onResume();
+		
+		if (!parseInitialized){
+			Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP",
+					"ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
+			ParseObject.registerSubclass(Event.class);
+			parseInitialized = true;
+		}
+	}
 
 	public boolean checkRotation() {
 		Display display = ((WindowManager) this
