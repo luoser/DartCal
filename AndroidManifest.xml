@@ -30,14 +30,14 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="edu.dartmouth.cs.DartCal.EditProfileActivity"
-            android:noHistory="true"
-            android:label="Edit Your Profile" >
+            android:label="Edit Your Profile"
+            android:noHistory="true" >
         </activity>
         <activity
             android:name="edu.dartmouth.cs.DartCal.WeeksActivity"
