@@ -14,6 +14,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -456,7 +460,26 @@ public class EditProfileActivity extends Activity {
 		// Course 2
 		event1.setEventLocation(mValue);
 		event1.setOwnerName(name);
-		event1.saveInBackground();
+		if (!Globals.classList.contains(event1.getString("objectId"))){
+			Globals.classList.add(event1.getString("objectId"));
+			event1.saveInBackground();
+			mEditor.putString(Globals.CLASS_KEY1, event1.getString("objectId"));
+		}
+		else{
+			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+			query.whereEqualTo("objectId", Globals.classList.get(0));
+			try {
+				Event event = query.getFirst();
+				event.setClassPeriod(event1.getClassPeriod());
+				event.setEventLocation(event1.getEventLocation());
+				event.setEventName(event1.getEventName());
+				event.saveInBackground();
+			} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		
 		db.insertEntry(event1);
 		list.add(event1);
 
@@ -494,7 +517,25 @@ public class EditProfileActivity extends Activity {
 		// Course 3
 		event2.setEventLocation(mValue);
 		event2.setOwnerName(name);
-		event2.saveInBackground();
+		if (!Globals.classList.contains(event2.getString("objectId"))){
+			Globals.classList.add(event2.getString("objectId"));
+			event2.saveInBackground();
+			mEditor.putString(Globals.CLASS_KEY2, event2.getString("objectId"));
+		}
+		else{
+			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+			query.whereEqualTo("objectId", Globals.classList.get(1));
+			try {
+				Event event = query.getFirst();
+				event.setClassPeriod(event2.getClassPeriod());
+				event.setEventLocation(event2.getEventLocation());
+				event.setEventName(event2.getEventName());
+				event.saveInBackground();
+			} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 		db.insertEntry(event2);
 		list.add(event2);
 
@@ -533,7 +574,25 @@ public class EditProfileActivity extends Activity {
 		// Course 4
 		event3.setEventLocation(mValue);
 		event3.setOwnerName(name);
-		event3.saveInBackground();
+		if (!Globals.classList.contains(event3.getString("objectId"))){
+			Globals.classList.add(event3.getString("objectId"));
+			event3.saveInBackground();
+			mEditor.putString(Globals.CLASS_KEY3, event3.getString("objectId"));
+		}
+		else{
+			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+			query.whereEqualTo("objectId", Globals.classList.get(2));
+			try {
+				Event event = query.getFirst();
+				event.setClassPeriod(event3.getClassPeriod());
+				event.setEventLocation(event3.getEventLocation());
+				event.setEventName(event3.getEventName());
+				event.saveInBackground();
+			} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 		db.insertEntry(event3);
 		list.add(event3);
 		// Course 4
@@ -572,7 +631,25 @@ public class EditProfileActivity extends Activity {
 		
 		list.add(event4);
 		event4.setOwnerName(name);
-		event4.saveInBackground();
+		if (!Globals.classList.contains(event4.getString("objectId"))){
+			Globals.classList.add(event4.getString("objectId"));
+			event4.saveInBackground();
+			mEditor.putString(Globals.CLASS_KEY4, event4.getString("objectId"));
+		}
+		else{
+			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+			query.whereEqualTo("objectId", Globals.classList.get(3));
+			try {
+				Event event = query.getFirst();
+				event.setClassPeriod(event4.getClassPeriod());
+				event.setEventLocation(event4.getEventLocation());
+				event.setEventName(event4.getEventName());
+				event.saveInBackground();
+			} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 		db.insertEntry(event4);
 		user.setSchedule(list);
 		

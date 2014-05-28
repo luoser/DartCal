@@ -240,4 +240,9 @@ public class Globals {
 	public static ArrayList<ArrayList<Event>> drawingMatrix = new ArrayList<ArrayList<Event>>();
 	public static ArrayList<String> selectedFriends = new ArrayList<String>();
 	public static String USER = "";
+	public static String CLASS_KEY1 = "classKey1";
+	public static String CLASS_KEY2 = "classKey2";
+	public static String CLASS_KEY3 = "classKey3";
+	public static String CLASS_KEY4 = "classKey4";
+	public static ArrayList<String> classList = new ArrayList<String>();
 }
