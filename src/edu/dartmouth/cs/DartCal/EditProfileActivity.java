@@ -335,23 +335,23 @@ public class EditProfileActivity extends Activity {
 
 		// Load name
 		mKey = getString(R.string.name_field);
-		String mValue = mPrefs.getString(mKey, " ");
+		String mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editName)).setText(mValue);
 
 		// Load class info
 		mKey = getString(R.string.class_field);
-		mValue = mPrefs.getString(mKey, " ");
+		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editClass)).setText(mValue);
 
 		// Load Major
 		mKey = getString(R.string.major_field);
-		mValue = mPrefs.getString(mKey, " ");
+		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editMajor)).setText(mValue);
 
 		// Load course information
 		// Course 1 name
 		mKey = "Course #1 Name";
-		mValue = mPrefs.getString(mKey, " ");
+		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editCourse1name)).setText(mValue);
 
 		// Course 1 Time
@@ -360,12 +360,12 @@ public class EditProfileActivity extends Activity {
 		mSpinnerSelection.setSelection(mPrefs.getInt(mKey, 0));
 
 		mKey = "Course #1 Location";
-		mValue = mPrefs.getString(mKey, " ");
+		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editCourse1loc)).setText(mValue);
 
 		// Course 2
 		mKey = "Course #2 Name";
-		mValue = mPrefs.getString(mKey, " ");
+		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editCourse2name)).setText(mValue);
 
 		// Course 2 Time
@@ -374,12 +374,12 @@ public class EditProfileActivity extends Activity {
 		mSpinnerSelection.setSelection(mPrefs.getInt(mKey, 0));
 
 		mKey = "Course #2 Location";
-		mValue = mPrefs.getString(mKey, " ");
+		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editCourse2loc)).setText(mValue);
 
 		// Course 3
 		mKey = "Course #3 Name";
-		mValue = mPrefs.getString(mKey, " ");
+		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editCourse2name)).setText(mValue);
 
 		// Course 3 Time
@@ -388,13 +388,13 @@ public class EditProfileActivity extends Activity {
 		mSpinnerSelection.setSelection(mPrefs.getInt(mKey, 0));
 
 		mKey = "Course #3 Location";
-		mValue = mPrefs.getString(mKey, " ");
+		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editCourse3loc)).setText(mValue);
 
 
 		// Course 4
 		mKey = "Course #4 Name";
-		mValue = mPrefs.getString(mKey, " ");
+		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editCourse4name)).setText(mValue);
 
 		// Course 4 Time
@@ -403,7 +403,7 @@ public class EditProfileActivity extends Activity {
 		mSpinnerSelection.setSelection(mPrefs.getInt(mKey, 0));
 
 		mKey = "Course #4 Location";
-		mValue = mPrefs.getString(mKey, " ");
+		mValue = mPrefs.getString(mKey, "");
 		((EditText) findViewById(R.id.editCourse4loc)).setText(mValue);
 	}
 
