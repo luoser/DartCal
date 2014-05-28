@@ -113,32 +113,7 @@ public class WeeksCalendar extends Activity {
 			intent.setClass(this,ManualAddEvent.class);
 			startActivity(intent);
 			return true;
-		case R.id.menuitem_sync:
-			Log.i("TAG","Sync button has been clicked");
-			AsyncTask();
-			/*
-			new AsyncTask<Void,Void,String>(){
-				@Override
-				protected String doInBackground(Void... arg0){
-					Log.i("TAG","IN DOINBACKGROUND");
-					Log.i("TAG","IN DA BACKGROUND"+datasource.fetchEntries().toString());
-					ArrayList<Event> entryList = datasource.fetchEntries();
-					
-					String stateOfUpload="";
-					try{
-						mEventUploader.upload(entryList);
-					}
-					catch(IOException e){
-					
-					}
-					//catch(NullPointerException e){}
-					return stateOfUpload;
-				}
-			}.execute();
-			return true;
-
-	}
-	*/
+		
 		}
 		return true;
 

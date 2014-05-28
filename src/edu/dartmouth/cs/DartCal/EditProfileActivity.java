@@ -57,6 +57,7 @@ public class EditProfileActivity extends Activity {
 
 	// Temporary buffer for storing profile image.
 	private byte[] bytePhoto;
+	//SharedPreferences sharedPreferences;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,8 @@ public class EditProfileActivity extends Activity {
 		setContentView(R.layout.activity_edit_profile);
 		mImageView = (ImageView) findViewById(R.id.imageProfile);
 		supressKeyboard();
+		
+		MainActivity.sharedPreferences.edit().putBoolean(MainActivity.FIRST_RUN, true).commit();
 
 		// If not loading up for the first time, get the image from the saved
 		// Instance State.
