@@ -749,7 +749,7 @@
             </LinearLayout>
 
             <!-- This is the view for drawing over -->
-            <edu.dartmouth.cs.DartCal.DrawView
+            <edu.dartmouth.cs.DartCal.DrawViewPersonal
                 android:id="@+id/drawViewPersonal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

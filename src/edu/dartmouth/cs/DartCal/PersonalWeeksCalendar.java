@@ -26,48 +26,12 @@ public class PersonalWeeksCalendar extends Activity {
 		mContext=this;
 		setContentView(R.layout.activity_personal_weeks_calendar);
 		datasource = new PersonalEventDbHelper(this);
-		//String myServerURL= mContext.getString(R.string.server_addr)+"/post_data";
-		//mEventUploader=new EventUploader(mContext, myServerURL);
+
 
 	}
 	@Override
 	public void onResume() {
 		super.onResume();
-		datasource = new PersonalEventDbHelper(this);
-		/*
-		try {
-			Log.i("TAG","MY ID BE ALL LIKE "+Long.toString(datasource.fetchEntryByIndex(0).getId())+"MY NAME IS "+
-					datasource.fetchEntryByIndex(0).getSchedule().get(0).getEventName());
-		}
-		catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		
-		
-		//NEED TO PASS IN THE VALUES
-		//ArrayList<ExerciseEntry> values = datasource.fetchEntries();
-		/*	
-		adapter=new ActivityEntriesAdapter(mContext);
-		ArrayList<ExerciseEntry> values = datasource.fetchEntries();
-		
-		setListAdapter(adapter);
-		adapter.addAll(values);
-		adapter.notifyDataSetChanged();
-		*/
 	}
 
 	@Override
