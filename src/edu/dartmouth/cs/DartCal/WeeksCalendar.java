@@ -40,7 +40,6 @@ public class WeeksCalendar extends Activity {
 		setContentView(R.layout.activity_weeks_calendar);
 		mContext = this;
 		Globals.drawFriendsEventsOn = true;
-
 	}
 
 	@Override

@@ -59,6 +59,7 @@ public class Globals {
 	public static boolean xHoursOn = false;
 	public static boolean drawEventsOn = false;
 	public static boolean drawFriendsEventsOn = false;
+	public static boolean drawPersonalEvents = false;
 	public static boolean drawFriends = false;
 	public static boolean isRotated;
 	public static boolean friendXhoursOn = false;

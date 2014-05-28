@@ -26,7 +26,7 @@ public class PersonalWeeksCalendar extends Activity {
 		mContext=this;
 		setContentView(R.layout.activity_personal_weeks_calendar);
 		datasource = new PersonalEventDbHelper(this);
-
+		Globals.drawPersonalEvents = true;
 
 	}
 	@Override

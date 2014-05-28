@@ -92,32 +92,36 @@ public class DrawViewPersonal extends View {
 			// Check for the first time
 			if (eventList.size() > 0) {
 
-				for (int i = 0; i < eventList.size(); i++) {
+				if (Globals.drawPersonalEvents) {
 
-					// set color (defined in methods)
-					paint.setStrokeWidth(0);
+					for (int i = 0; i < eventList.size(); i++) {
 
-					int mint = getResources().getColor(R.color.mint_green);
-					paint.setColor(mint);
+						// set color (defined in methods)
+						paint.setStrokeWidth(0);
 
-					// fetch the custom events from the database
-					System.out.println("drawevents on");
+						int mint = getResources().getColor(R.color.mint_green);
+						paint.setColor(mint);
 
-					long startTime = eventList.get(i).getStartTime();
-					long endTime = eventList.get(i).getEndTime();
-					long date = eventList.get(i).getDate();
-					drawCustomEvent(startTime, endTime, date, canvas);
+						// fetch the custom events from the database
+						System.out.println("drawevents on");
 
+						long startTime = eventList.get(i).getStartTime();
+						long endTime = eventList.get(i).getEndTime();
+						long date = eventList.get(i).getDate();
+						drawCustomEvent(startTime, endTime, date, canvas);
+
+					}
 				}
-				
-				System.out.println("draw friend events? " + Globals.drawEventsOn);
+
+				System.out.println("draw friend events? "
+						+ Globals.drawEventsOn);
 				if (Globals.drawFriendsEventsOn) {
 
 					drawingMatrix = Globals.drawingMatrix;
 					paint.setStrokeWidth(0);
 
 					for (int i = 0; i < drawingMatrix.size(); i++) {
-						
+
 						ArrayList<Event> friendEvents = drawingMatrix.get(i);
 
 						for (int j = 0; j < friendEvents.size(); j++) {
@@ -125,8 +129,7 @@ public class DrawViewPersonal extends View {
 							int color = friendEvents.get(j).getColor();
 							paint.setColor(color);
 
-							long startTime = friendEvents.get(j)
-									.getStartTime();
+							long startTime = friendEvents.get(j).getStartTime();
 							long endTime = friendEvents.get(j).getEndTime();
 							long date = friendEvents.get(j).getDate();
 
