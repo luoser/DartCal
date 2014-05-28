@@ -170,7 +170,13 @@ public class FriendsFragment extends Fragment {
 	}
 
 	public static void displaySchedules() throws StreamCorruptedException, SQLException, ClassNotFoundException, IOException{
-
+		System.out.println("clearing the drawing matrix!!!");
+		int size = Globals.drawingMatrix.size();
+		 for (int i = 0; i < size; i++) {
+		 Globals.drawingMatrix.get(i).clear();
+		 }
+		 Globals.drawingMatrix.clear();
+		
 		for(int i = 0; i < Globals.selectedFriends.size(); i++){
 		
 		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
@@ -188,6 +194,7 @@ public class FriendsFragment extends Fragment {
 		}
 		
 		System.out.println("setting boolean to true");
+		Globals.selectedFriends.clear();
 		Globals.drawFriends = true;
 	}
 	
