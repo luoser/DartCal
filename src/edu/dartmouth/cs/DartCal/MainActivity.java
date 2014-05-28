@@ -20,6 +20,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
@@ -80,8 +81,12 @@ public class MainActivity extends Activity {
 		
 		context=this;
 		
-//		 drawView = (DrawView) findViewById(R.id.drawView); // !!!!!!
-//		 drawView.postInvalidate();
+		// go to shared preferences, grab the name and set it to Globals.USER
+//		String mKey = getString(R.string.name_field);
+//		SharedPreferences mPrefs = getSharedPreferences(mKey, MODE_PRIVATE);
+//		String mValue = mPrefs.getString(mKey, " ");
+//		Globals.USER = mValue;
+//		System.out.println("mainactivity " + mValue);
 		
 
 		// ActionBar
@@ -133,17 +138,17 @@ public class MainActivity extends Activity {
 		// Check device for Play Services APK. If check succeeds, proceed with
 		// GCM registration.
 		
-		 if (checkPlayServices()) { 
-			 gcm =GoogleCloudMessaging.getInstance(this); 
-			 regid =getRegistrationId(context);
-			 Log.i("TAG","WHY ISNT THIS FUCKING SHIT WORKING");
-		 
-		 if (regid.isEmpty()) {
-			 registerInBackground(); 
-			 Log.i("TAG","WHAT THE FUCK ABOUT HERE");
-		 }
-		  
-		  }
+//		 if (checkPlayServices()) { 
+//			 gcm =GoogleCloudMessaging.getInstance(this); 
+//			 regid =getRegistrationId(context);
+//			 Log.i("TAG","WHY ISNT THIS FUCKING SHIT WORKING");
+//		 
+//		 if (regid.isEmpty()) {
+//			 registerInBackground(); 
+//			 Log.i("TAG","WHAT THE FUCK ABOUT HERE");
+//		 }
+//		  
+//		  }
 		 
 	}
 	

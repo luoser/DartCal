@@ -101,7 +101,7 @@ public class WeeklyFragment extends Fragment {
 		super.onResume();
 
 		// redraw...
-		drawView.postInvalidate();
+		drawView.invalidate();
 	}
 
 	@Override
@@ -131,17 +131,17 @@ public class WeeklyFragment extends Fragment {
 				Globals.xHoursOn = true;
 				Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
 						.show();
-				drawView.postInvalidate();
+//				drawView.postInvalidate();
 			}
 		
 			// TOGGLE x-hours
-			if (xHoursOn) {
-				Globals.xHoursOn = false;
-				xHoursOn = false;
-				Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
-						.show();
-				 drawView.postInvalidate();
-			}
+//			if (xHoursOn) {
+//				Globals.xHoursOn = false;
+//				xHoursOn = false;
+//				Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
+//						.show();
+////				 drawView.postInvalidate();
+//			}
 
 			break;
 
