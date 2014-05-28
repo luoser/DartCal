@@ -31,7 +31,7 @@ public class FriendsFragment extends Fragment {
 	// ArrayList<String> names;
 	WeeksCalendar cal;
 	HashSet<String> names;
-	DrawView drawView;
+	private static DrawView drawView;
 	View rootView;
 
 	@Override
@@ -41,7 +41,7 @@ public class FriendsFragment extends Fragment {
 		// Inflate the layout for this fragment
 		rootView = inflater.inflate(R.layout.weekly_fragment, container, false);
 		drawView = (DrawView) rootView.findViewById(R.id.drawViewWeekly);
-		drawView.invalidate();
+		drawView.postInvalidate();
 
 		return rootView;
 	}
@@ -198,6 +198,7 @@ public class FriendsFragment extends Fragment {
 		System.out.println("setting boolean to true");
 		Globals.selectedFriends.clear();
 		Globals.drawFriends = true;
+		drawView.invalidate();
 	}
 
 	public void check() {
