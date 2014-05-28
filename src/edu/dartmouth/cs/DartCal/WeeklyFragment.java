@@ -61,16 +61,15 @@ public class WeeklyFragment extends Fragment {
 
 		// TEST PARSING TIME
 		long epoch = System.currentTimeMillis();
-		//String timetest = DrawView.parseTime(epoch);
-		//System.out.println("timetest " + timetest);
+		// String timetest = DrawView.parseTime(epoch);
+		// System.out.println("timetest " + timetest);
 
+		// long epoch = System.currentTimeMillis();
+		// String timetest = CalendarUtils.parseTime(epoch);
+		// int dayOfweek = CalendarUtils.parseDayOfWeek(epoch);
+		// System.out.println("timetest " + timetest);
+		// System.out.println("datetest " + dayOfweek);
 
-//		long epoch = System.currentTimeMillis();
-//		String timetest = CalendarUtils.parseTime(epoch);
-//		int dayOfweek = CalendarUtils.parseDayOfWeek(epoch);
-//		System.out.println("timetest " + timetest);
-//		System.out.println("datetest " + dayOfweek);
-		
 		SharedPreferences prefs = mContext.getSharedPreferences(
 				"edu.dartmouth.cs.DartCal", Context.MODE_PRIVATE);
 		System.out.println(prefs.getAll());
@@ -129,19 +128,21 @@ public class WeeklyFragment extends Fragment {
 			if (!xHoursOn) {
 				xHoursOn = true;
 				Globals.xHoursOn = true;
+
 				Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
 						.show();
-//				drawView.postInvalidate();
+
+				drawView.postInvalidate();
 			}
-		
+
 			// TOGGLE x-hours
-//			if (xHoursOn) {
-//				Globals.xHoursOn = false;
-//				xHoursOn = false;
-//				Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
-//						.show();
-////				 drawView.postInvalidate();
-//			}
+			if (xHoursOn) {
+				Globals.xHoursOn = false;
+				xHoursOn = false;
+				Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
+						.show();
+				drawView.postInvalidate();
+			}
 
 			break;
 

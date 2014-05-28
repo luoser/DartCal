@@ -93,6 +93,7 @@ public class DrawView extends View {
 		// TESTING drawing custom events
 		// long startLong = Calendar.getInstance().getTimeInMillis();
 		// drawCustomEvent(startLong, startLong + 1000000, startLong, canvas);
+		
 
 		// retrieve user profile information
 		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
@@ -102,11 +103,12 @@ public class DrawView extends View {
 			List<Event> eventList = query.find();
 
 			// check for first time use
-			if (eventList != null) {
+//			if (eventList != null) {
 
 				if (eventList.size() > 0) {
 
 					for (int i = 0; i < eventList.size(); i++) {
+						System.out.println("here");
 
 						// fetch course information from the database
 						// int course1Time = event.get(0).getClassPeriod();
@@ -115,8 +117,6 @@ public class DrawView extends View {
 						// int course4Time = event.get(3).getClassPeriod();
 
 						int courseTime = eventList.get(i).getClassPeriod();
-
-						System.out.println("my course: " + courseTime);
 
 						// set color (defined in methods)
 						paint.setStrokeWidth(0);
@@ -134,6 +134,7 @@ public class DrawView extends View {
 						// }
 
 						// turn the xhours on; for use in the WEEKLY fragment
+						System.out.println("xhours true? " + Globals.xHoursOn);
 						if (Globals.xHoursOn) {
 							int green = getResources().getColor(
 									R.color.dark_green);
@@ -152,16 +153,16 @@ public class DrawView extends View {
 						}
 					}
 				}
-			}
+//			}
 
 		} catch (ParseException e) {
 			System.out.println("Parse did not work.");
 		}
 
 		// Draw friends data; for use in the FRIENDS fragment
-		System.out.println(Globals.drawFriends);
 		if (Globals.drawFriends) {
-
+			
+			System.out.println("drawing friemds");
 			// this matrix: the arraylist within is the
 			// array of a user's schedule / events, the outer array
 			// is the array of total users
@@ -194,7 +195,7 @@ public class DrawView extends View {
 						drawXhour(course3, canvas);
 						drawXhour(course4, canvas);
 					}
-					// }
+					
 				}
 			}
 
