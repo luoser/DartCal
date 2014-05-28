@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -50,6 +51,9 @@ public class MainActivity extends Activity {
 	
 	DrawView drawView;
 	public static boolean isRotated;
+	public static final String PREFS_NAME = "MyPrefsFile";
+  public static final String FIRST_RUN = "FirstRun";
+	public static SharedPreferences sharedPreferences;
 
 	// final OnClickListener mClickListener = new OnClickListener(){
 	// public void onClick(View v){
@@ -76,8 +80,18 @@ public class MainActivity extends Activity {
 		
 		Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP", "ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
 		ParseObject.registerSubclass(Event.class);
-
-		setContentView(R.layout.activity_main);
+		
+		
+		sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
+		if (sharedPreferences.getBoolean(FIRST_RUN, false)) {
+	    setContentView(R.layout.activity_main);
+		} else {
+			setContentView(R.layout.activity_main);
+	    Intent i = new Intent(this, EditProfileActivity.class);
+	    startActivity(i);
+	    finish();
+		}
+		
 		
 		context=this;
 		
