@@ -120,7 +120,7 @@ public class EditProfileActivity extends Activity {
 			.show();
 		}
 		else{
-
+		Globals.USER_COLOR = CalendarUtils.generateRandomColor();
 		saveUserData();
 		// Make a Toast informing the user their information is saved.
 		Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT)
@@ -470,7 +470,7 @@ public class EditProfileActivity extends Activity {
 
 		Event event1 = new Event();
 		event1.setEventName(mValue);
-
+		event1.setColor(Globals.USER_COLOR);
 		// Course time period
 		mKey = "Course #1 Time";
 		Spinner mSpinnerSelection = (Spinner) findViewById(R.id.course1TimeSpinner);
@@ -528,6 +528,7 @@ public class EditProfileActivity extends Activity {
 		mEditor.putInt(mKey, selectedCourse);
 		Event event2 = new Event();
 		event2.setEventName(mValue);
+		event2.setColor(Globals.USER_COLOR);
 
 		// Course time period
 		mKey = "Course #2 Time";
@@ -586,6 +587,7 @@ public class EditProfileActivity extends Activity {
 
 		Event event3 = new Event();
 		event3.setEventName(mValue);
+		event3.setColor(Globals.USER_COLOR);
 
 		// Course time period
 		mKey = "Course #3 Time";
@@ -641,7 +643,8 @@ public class EditProfileActivity extends Activity {
 		mEditor.putInt(mKey, selectedCourse);
 		Event event4 = new Event();
 		event4.setEventName(mValue);
-
+		event4.setColor(Globals.USER_COLOR);
+		
 		// Course time period
 		mKey = "Course #4 Time";
 		Spinner mSpinnerSelection4 = (Spinner) findViewById(R.id.course4TimeSpinner);
