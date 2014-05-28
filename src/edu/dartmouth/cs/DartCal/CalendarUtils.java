@@ -30,7 +30,7 @@ public class CalendarUtils {
 		int r = rand.nextInt(255);
 		int g = rand.nextInt(255);
 		int b = rand.nextInt(255);
-
+		
 		int randomColor = Color.argb(100, r, g, b);
 
 		return randomColor;
