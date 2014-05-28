@@ -451,6 +451,7 @@ public class EditProfileActivity extends Activity {
 		// Course 2
 		event1.setEventLocation(mValue);
 		event1.setOwnerName(name);
+		event1.saveInBackground();
 		db.insertEntry(event1);
 		list.add(event1);
 
@@ -488,6 +489,7 @@ public class EditProfileActivity extends Activity {
 		// Course 3
 		event2.setEventLocation(mValue);
 		event2.setOwnerName(name);
+		event2.saveInBackground();
 		db.insertEntry(event2);
 		list.add(event2);
 
@@ -526,6 +528,7 @@ public class EditProfileActivity extends Activity {
 		// Course 4
 		event3.setEventLocation(mValue);
 		event3.setOwnerName(name);
+		event3.saveInBackground();
 		db.insertEntry(event3);
 		list.add(event3);
 		// Course 4
@@ -564,6 +567,7 @@ public class EditProfileActivity extends Activity {
 		
 		list.add(event4);
 		event4.setOwnerName(name);
+		event4.saveInBackground();
 		db.insertEntry(event4);
 		user.setSchedule(list);
 		

@@ -95,7 +95,7 @@ public class DrawViewTerm extends View {
 	@Override
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		
+	
 		// debugging hour blocks
 //		 paint.setStrokeWidth(0);
 //		 int dark = getResources().getColor(R.color.dark_green);
@@ -106,7 +106,7 @@ public class DrawViewTerm extends View {
 		
 
 		
-
+		
 		try {
 
 			// retrieve user profile information

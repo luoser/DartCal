@@ -31,8 +31,6 @@ public class WeeksCalendar extends Activity {
 		String myServerURL= mContext.getString(R.string.server_addr)+"/post_data";
 		mEventUploader=new EventUploader(mContext, myServerURL);
 		
-		
-		
 	}
 	
 	@Override
@@ -88,7 +86,10 @@ public class WeeksCalendar extends Activity {
 				Log.i("TAG","IN DOINBACKGROUND");
 				Log.i("TAG","IN DA BACKGROUND"+datasource.fetchEntries().toString());
 				ArrayList<Event> entryList = datasource.fetchEntries();
-				
+				for (int i=0;i<entryList.size();i++){
+					Event myEvent=entryList.get(i);
+					Log.i("TAG","MY DATABASE"+myEvent.getEventName());
+				}
 				String stateOfUpload="";
 				try{
 					mEventUploader.upload(entryList);

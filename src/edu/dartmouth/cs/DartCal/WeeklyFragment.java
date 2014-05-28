@@ -61,8 +61,8 @@ public class WeeklyFragment extends Fragment {
 
 		// TEST PARSING TIME
 		long epoch = System.currentTimeMillis();
-		String timetest = DrawView.parseTime(epoch);
-		System.out.println("timetest " + timetest);
+		//String timetest = DrawView.parseTime(epoch);
+		//System.out.println("timetest " + timetest);
 
 
 		SharedPreferences prefs = mContext.getSharedPreferences(
