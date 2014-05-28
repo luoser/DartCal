@@ -19,7 +19,7 @@ public class WeeksActivity extends ListActivity {
 	ArrayAdapter<String> mAdapter;
 	
 	static final String[] DATES = new String[] {"Week 1: March 22 - March 29","Week 2: March 30 - April 5",
-		"Week 3: April 6 - April 12","Week 4: April 13 - April 19", "Week 5: April 20 - 26", 
+		"Week 3: April 6 - April 12","Week 4: April 13 - April 19", "Week 5: April 20 - April 26", 
 		"Week 6: April 27 - May 3", "Week 7: May 4 - May 10", "Week 8: May 11 - May 17", 
 		"Week 9: May 18 - May 24", "Week 10: May 25 - May 31","Week 11: June 1 - June 3"};
 	

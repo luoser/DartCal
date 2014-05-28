@@ -60,11 +60,11 @@ public class WeeklyFragment extends Fragment {
 		mContext = getActivity();
 
 		// TEST PARSING TIME
-		long epoch = System.currentTimeMillis();
-		String timetest = CalendarUtils.parseTime(epoch);
-		int dayOfweek = CalendarUtils.parseDayOfWeek(epoch);
-		System.out.println("timetest " + timetest);
-		System.out.println("datetest " + dayOfweek);
+//		long epoch = System.currentTimeMillis();
+//		String timetest = CalendarUtils.parseTime(epoch);
+//		int dayOfweek = CalendarUtils.parseDayOfWeek(epoch);
+//		System.out.println("timetest " + timetest);
+//		System.out.println("datetest " + dayOfweek);
 		
 		SharedPreferences prefs = mContext.getSharedPreferences(
 				"edu.dartmouth.cs.DartCal", Context.MODE_PRIVATE);

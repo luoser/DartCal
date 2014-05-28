@@ -220,5 +220,19 @@ public class Globals {
 	public static int FRIDAY_RIGHT = 631;
 	public static int SATURDAY_LEFT = 657;
 	public static int SATURDAY_RIGHT = 739;
+	
+	// weeks; for TERM fragment
+	public static int WEEK_1 = 0;
+	public static int WEEK_2 = 1;
+	public static int WEEK_3 = 2;
+	public static int WEEK_4 = 3;
+	public static int WEEK_5 = 4;
+	public static int WEEK_6 = 5;
+	public static int WEEK_7 = 6;
+	public static int WEEK_8 = 7;
+	public static int WEEK_9 = 8;
+	public static int WEEK_10 = 9;
+	public static int WEEK_11 = 10;
+
 
 }
