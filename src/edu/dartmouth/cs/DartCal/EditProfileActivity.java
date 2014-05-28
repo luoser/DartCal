@@ -62,7 +62,7 @@ public class EditProfileActivity extends Activity {
 		mImageView = (ImageView) findViewById(R.id.imageProfile);
 		supressKeyboard();
 		
-		MainActivity.sharedPreferences.edit().putBoolean(MainActivity.FIRST_RUN, true).commit();
+		//MainActivity.sharedPreferences.edit().putBoolean(MainActivity.FIRST_RUN, true).commit();
 
 		// If not loading up for the first time, get the image from the saved
 		// Instance State.
@@ -112,6 +112,17 @@ public class EditProfileActivity extends Activity {
 		// Make a Toast informing the user their information is saved.
 		Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT)
 		.show();
+		/*
+		if (MainActivity.sharedPreferences.getBoolean(MainActivity.MY_BOO, true)){
+			MainActivity.sharedPreferences.edit().putBoolean(MainActivity.MY_BOO, true).commit();
+			Intent i = new Intent(this, MainActivity.class);
+	    startActivity(i);
+	    finish();
+		}
+		else{
+			finish();
+		}	
+		*/
 		finish();
 	}
 
@@ -120,9 +131,26 @@ public class EditProfileActivity extends Activity {
 		Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT)
 		.show();
 		// Close the activity.
+		/*
+		if (MainActivity.sharedPreferences.getBoolean(MainActivity.MY_BOO, true)){
+			Intent i = new Intent(this, MainActivity.class);
+			MainActivity.sharedPreferences.edit().putBoolean(MainActivity.MY_BOO, true).commit();
+	    startActivity(i);
+	    finish();
+		}
+		else{
+			finish();
+		}
+		*/
 		finish();
 	}
-
+	
+	@Override
+	public void onPause(){
+		super.onPause();
+		//MainActivity.sharedPreferences.edit().putBoolean(MainActivity.MY_BOO, true).commit();	
+	}
+	
 	// Display a dialog box to allow user to change profile image.
 	public void onChangePhotoClicked(View v) {
 		displayDialog(DartCalDialogFragment.DIALOG_ID_PHOTO_PICKER);

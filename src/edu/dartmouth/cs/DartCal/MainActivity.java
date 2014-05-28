@@ -52,6 +52,7 @@ public class MainActivity extends Activity {
 	public static boolean isRotated;
 	public static final String PREFS_NAME = "MyPrefsFile";
   public static final String FIRST_RUN = "FirstRun";
+  public static final String MY_BOO= "MyBoo";
 	public static SharedPreferences sharedPreferences;
 
 	// final OnClickListener mClickListener = new OnClickListener(){
@@ -79,18 +80,28 @@ public class MainActivity extends Activity {
 		
 		Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP", "ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
 		ParseObject.registerSubclass(Event.class);
+		setContentView(R.layout.activity_main);
+		/*
+		sharedPreferences = getSharedPreferences(MY_BOO, 0);
+		if (!(sharedPreferences.getBoolean(MY_BOO, false))){
+			Log.i("TAG", "INSIDE OF INITIALLIZEEING");
 		
+		}
 		
 		sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
 		if (sharedPreferences.getBoolean(FIRST_RUN, false)) {
 	    setContentView(R.layout.activity_main);
-		} else {
+		} 
+		else {
+			Log.i("TAG", "INSIDE OF INITIALLIZEEING");
+			Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP", "ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
 			setContentView(R.layout.activity_main);
+			sharedPreferences.edit().putBoolean(MainActivity.MY_BOO, true).commit();
 	    Intent i = new Intent(this, EditProfileActivity.class);
 	    startActivity(i);
 	    finish();
 		}
-		
+		*/
 		
 		context=this;
 		
