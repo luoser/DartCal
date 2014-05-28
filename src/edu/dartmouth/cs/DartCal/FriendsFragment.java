@@ -117,6 +117,7 @@ public class FriendsFragment extends Fragment {
 		switch (itemId) {
 
 		case 0:
+
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			builder.setTitle("Select Friends");
 			builder.setMultiChoiceItems(items, checkedItems,
@@ -151,9 +152,15 @@ public class FriendsFragment extends Fragment {
 
 									// System.out.println(seletedItems.size());
 									for (int i = 0; i < checkedItems.length; i++) {
-										if (checkedItems[i] == true)
-											seletedItems.add(i);
+										if (checkedItems[i] == true) {
+											if (!seletedItems.contains(i))
+												seletedItems.add(i);
+										}
+
 									}
+									
+									// clear the list and checked items if you
+									// reset your profile
 									prevSelection = seletedItems;
 									for (int i = 0; i < seletedItems.size(); i++) {
 										Globals.selectedFriends
@@ -179,6 +186,7 @@ public class FriendsFragment extends Fragment {
 
 								}
 							})
+
 					.setNegativeButton("Cancel",
 							new DialogInterface.OnClickListener() {
 								@Override
