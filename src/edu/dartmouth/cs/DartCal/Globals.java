@@ -248,4 +248,5 @@ public class Globals {
 	public static boolean parseInitialized = false;
 	
 	public static boolean isProfileSet = false;
+	public static int USER_COLOR;
 }

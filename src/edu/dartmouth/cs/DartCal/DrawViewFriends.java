@@ -34,8 +34,6 @@ public class DrawViewFriends extends View {
 	private ArrayList<ArrayList<Event>> drawingMatrix;
 	private EventDbHelper dbHelper = new EventDbHelper(context);
 
-	int rColor = CalendarUtils.generateRandomColor();
-
 	public DrawViewFriends(Context context) {
 		super(context);
 	}
@@ -87,12 +85,6 @@ public class DrawViewFriends extends View {
 
 		// debugging hour blocks
 		paint.setStrokeWidth(0);
-		int dark = getResources().getColor(R.color.black);
-		paint.setColor(dark);
-
-		// TESTING drawing custom events
-		// long startLong = Calendar.getInstance().getTimeInMillis();
-		// drawCustomEvent(startLong, startLong + 1000000, startLong, canvas);
 
 		// retrieve user profile information
 		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
@@ -100,9 +92,6 @@ public class DrawViewFriends extends View {
 
 		try {
 			List<Event> eventList = query.find();
-
-			// check for first time use
-			// if (eventList != null) {
 
 			if (eventList.size() > 0) {
 
@@ -149,78 +138,80 @@ public class DrawViewFriends extends View {
 					}
 				}
 			}
+			
+			// Draw friends data; for use in the FRIENDS fragment
+			if (Globals.drawFriends) {
+				
+				System.out.println("drawing friemds");
+				// this matrix: the arraylist within is the
+				// array of a user's schedule / events, the outer array
+				// is the array of total users
+				drawingMatrix = Globals.drawingMatrix;
+				paint.setStrokeWidth(0);
+				int color = eventList.get(0).getColor();
+				paint.setColor(color);
 
+				if (drawingMatrix.size() > 0) {
+
+					for (int i = 0; i < drawingMatrix.size(); i++) {
+
+						ArrayList<Event> friendCourses = drawingMatrix.get(i);
+
+						 for (int j = 0; j < friendCourses.size(); j++) {
+							 
+							 int course = friendCourses.get(j).getClassPeriod();
+							 drawCourse(course, canvas);
+							 canvas.save();
+						 
+						 }
+
+//						int course = friendCourses.get(0).getClassPeriod();
+//						int course2 = friendCourses.get(1).getClassPeriod();
+//						int course3 = friendCourses.get(2).getClassPeriod();
+//						int course4 = friendCourses.get(3).getClassPeriod();
+	//
+//						drawCourse(course, canvas);
+//						drawCourse(course2, canvas);
+//						drawCourse(course3, canvas);
+//						drawCourse(course4, canvas);
+//						canvas.save();
+	//
+//						if (Globals.friendXhoursOn) {
+//							
+//							
+//							drawXhour(course, canvas);
+//							drawXhour(course2, canvas);
+//							drawXhour(course3, canvas);
+//							drawXhour(course4, canvas);
+//						}
+
+					}
+				}
+
+				// for (int i = 0; i < drawingMatrix.size(); i++) {
+				// Globals.drawingMatrix.get(i).clear();
+				// }
+			}
+
+			// Draw events; for use in the TERM fragment
+			if (Globals.drawEventsOn) {
+
+				// GET THE EVENTS FROM THE DATABASE
+
+				long startTime = 0;
+				long endTime = 0;
+				long date = 0;
+
+				drawCustomEvent(startTime, endTime, date, canvas);
+
+			}
+		
 		} catch (ParseException e) {
 			System.out.println("Parse did not work.");
 		}
-
-		// Draw friends data; for use in the FRIENDS fragment
-		if (Globals.drawFriends) {
-
-			System.out.println("drawing friemds");
-			// this matrix: the arraylist within is the
-			// array of a user's schedule / events, the outer array
-			// is the array of total users
-			drawingMatrix = Globals.drawingMatrix;
-			paint.setStrokeWidth(0);
-			int color = CalendarUtils.generateRandomColor();
-			paint.setColor(color);
-
-			if (drawingMatrix.size() > 0) {
-
-				for (int i = 0; i < drawingMatrix.size(); i++) {
-
-					ArrayList<Event> friendCourses = drawingMatrix.get(i);
-
-					 for (int j = 0; j < friendCourses.size(); j++) {
-						 
-						 int course = friendCourses.get(j).getClassPeriod();
-						 drawCourse(course, canvas);
-						 canvas.save();
-					 
-					 }
-
-//					int course = friendCourses.get(0).getClassPeriod();
-//					int course2 = friendCourses.get(1).getClassPeriod();
-//					int course3 = friendCourses.get(2).getClassPeriod();
-//					int course4 = friendCourses.get(3).getClassPeriod();
-//
-//					drawCourse(course, canvas);
-//					drawCourse(course2, canvas);
-//					drawCourse(course3, canvas);
-//					drawCourse(course4, canvas);
-//					canvas.save();
-//
-//					if (Globals.friendXhoursOn) {
-//						
-//						
-//						drawXhour(course, canvas);
-//						drawXhour(course2, canvas);
-//						drawXhour(course3, canvas);
-//						drawXhour(course4, canvas);
-//					}
-
-				}
-			}
-
-			// for (int i = 0; i < drawingMatrix.size(); i++) {
-			// Globals.drawingMatrix.get(i).clear();
-			// }
-		}
-
-		// Draw events; for use in the TERM fragment
-		if (Globals.drawEventsOn) {
-
-			// GET THE EVENTS FROM THE DATABASE
-
-			long startTime = 0;
-			long endTime = 0;
-			long date = 0;
-
-			drawCustomEvent(startTime, endTime, date, canvas);
-
-		}
 	}
+
+		
 
 	// invalidate();
 	// }

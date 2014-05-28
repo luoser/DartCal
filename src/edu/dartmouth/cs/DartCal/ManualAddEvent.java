@@ -113,6 +113,7 @@ public class ManualAddEvent extends Activity {
 		mEvent.setEndTime(myCalEnd.getTimeInMillis());
 		mEvent.setEventDescription(description);
 		mEvent.setIsRepeating(repeating);
+		mEvent.setColor(Globals.USER_COLOR);
 		mEvent.saveInBackground();
 		
 		Globals.drawEventsOn = true;
