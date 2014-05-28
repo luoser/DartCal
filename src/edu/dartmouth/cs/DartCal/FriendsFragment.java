@@ -88,6 +88,7 @@ public class FriendsFragment extends Fragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		friends = menu.add("View Friends");
+		menu.add("View Friends' X-Hours");
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 

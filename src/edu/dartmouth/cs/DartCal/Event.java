@@ -32,10 +32,10 @@ public Event() {
 //	this.startTime = System.currentTimeMillis();
 //	this.endTime = System.currentTimeMillis();
 //	this.isRepeating = 3;
-	setClassPeriod(-1);
+//	setClassPeriod(-1);
 //	this.date=System.currentTimeMillis();
 //	this.RegId= MainActivity.regid;
-	setOwnerName(Globals.USER);
+//	setOwnerName(Globals.USER);
 }
 public int getClassPeriod() {
 	return getInt("classPeriod");
