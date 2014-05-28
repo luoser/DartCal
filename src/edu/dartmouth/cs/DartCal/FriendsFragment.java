@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -36,6 +37,7 @@ public class FriendsFragment extends Fragment {
 	private static DrawViewFriends drawView;
 	boolean[] checkedItems;
 	View rootView;
+	private boolean showFriendXhours = false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,7 +95,7 @@ public class FriendsFragment extends Fragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		friends = menu.add(0, 0, 0, "View Friends");
-		friendsX = menu.add(0, 1, 1, "View Friends' X-Hours");
+		friendsX = menu.add(0, 1, 1, "Toggle Friends' X-Hours");
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -119,7 +121,7 @@ public class FriendsFragment extends Fragment {
 		case 0:
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-			builder.setTitle("Select Friends");
+			builder.setTitle("Select Friend(s) to Display Schedule");
 			builder.setMultiChoiceItems(items, checkedItems,
 					new DialogInterface.OnMultiChoiceClickListener() {
 						@Override
@@ -158,7 +160,7 @@ public class FriendsFragment extends Fragment {
 										}
 
 									}
-									
+
 									// clear the list and checked items if you
 									// reset your profile
 									prevSelection = seletedItems;
@@ -201,7 +203,30 @@ public class FriendsFragment extends Fragment {
 			dialog.show();
 
 			return true;
+
+			// toggle x hours of selected friends
 		case 1:
+
+			if (!showFriendXhours) {
+				showFriendXhours = true;
+				Globals.friendXhoursOn = true;
+
+				Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
+						.show();
+
+				drawView.invalidate();
+				break;
+			}
+
+			if (showFriendXhours) {
+				showFriendXhours = false;
+				Globals.friendXhoursOn = false;
+				Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
+						.show();
+				drawView.invalidate();
+				break;
+			}
+
 			return true;
 		}
 

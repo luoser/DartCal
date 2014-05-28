@@ -151,18 +151,21 @@ public class DrawViewFriends extends View {
 						}
 					}
 				}
-				
-				if (Globals.friendXhoursOn) {
+			}
+			
+			System.out.println("draw friends x hours ? " + Globals.friendXhoursOn);
+			if (Globals.friendXhoursOn) {
 
-					for (int i = 0; i < eventList.size(); i++) {
+				System.out.println("entered drawxhours");
 
-						// canvas.save();
-						int courseTime = eventList.get(i).getClassPeriod();
-						drawXhour(courseTime, canvas);
-						canvas.save();
-					}
+				for (int i = 0; i < eventList.size(); i++) {
 
+					// canvas.save();
+					int courseTime = eventList.get(i).getClassPeriod();
+					drawXhour(courseTime, canvas);
+					canvas.save();
 				}
+
 			}
 
 			// Draw events; for use in the TERM fragment
@@ -175,7 +178,6 @@ public class DrawViewFriends extends View {
 				long date = 0;
 
 				drawCustomEvent(startTime, endTime, date, canvas);
-
 			}
 
 		} catch (ParseException e) {
