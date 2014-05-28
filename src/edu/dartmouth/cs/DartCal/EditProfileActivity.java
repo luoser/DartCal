@@ -81,15 +81,13 @@ public class EditProfileActivity extends Activity {
 		}
 	}
 
-	// avoid popping up right away.........???
+	// keep the keyboard from popping up right away
 	public void supressKeyboard() {
 		getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	}
 
 	@Override
-	// This function is called before onCreate(); together they handle the data
-	// loaded when the function is called or recalled.
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		// Save the image capture uri before the activity goes into background

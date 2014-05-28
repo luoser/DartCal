@@ -17,19 +17,26 @@ import java.util.Calendar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 // class to help draw things
 public class DrawView extends View {
 	private Paint paint = new Paint();
 	private Context context = WeeklyFragment.mContext;
-
+	private ArrayList<Rect> rectangles = new ArrayList<Rect>();
+	private ArrayList<Integer> rectangleTimes = new ArrayList<Integer>();
 	private EventDbHelper dbHelper = new EventDbHelper(context);
 	// private PersonalEventDbHelper
 
 	int rColor = CalendarUtils.generateRandomColor();
+	private PopupWindow popUp = new PopupWindow(context);
 
 	public DrawView(Context context) {
 		super(context);
@@ -101,9 +108,14 @@ public class DrawView extends View {
 		paint.setStrokeWidth(0);
 		int dark = getResources().getColor(R.color.dark_green);
 		paint.setColor(dark);
+		//
+		// canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_915AM,
+		// Globals.SATURDAY_RIGHT, Globals.TIME_530PM, paint);
 
-		canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_915AM,
-				Globals.SATURDAY_RIGHT, Globals.TIME_530PM, paint);
+		drawCourse(Globals.PERIOD_8, canvas);
+		drawCourse(Globals.PERIOD_9L, canvas);
+		drawCourse(Globals.PERIOD_12, canvas);
+		drawCourse(Globals.PERIOD_3B, canvas);
 
 		try {
 
@@ -217,14 +229,72 @@ public class DrawView extends View {
 		}
 
 		// debugging random color generator
-		paint.setStrokeWidth(0);
-		paint.setColor(rColor);
-		drawCourse(Globals.PERIOD_10, canvas);
+		// paint.setStrokeWidth(0);
+		// paint.setColor(rColor);
+		// drawCourse(Globals.PERIOD_10, canvas);
 	}
 
-	public boolean onTouch(View v, MotionEvent event) {
-		invalidate();
-		return true;
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		int touchX = (int) event.getX();
+		int touchY = (int) event.getY();
+
+		for (int i = 0; i < rectangles.size(); i++) {
+			if (rectangles.get(i).contains(touchX, touchY)) {
+
+				int time = rectangleTimes.get(i);
+				if (time == Globals.PERIOD_8) {
+					Toast.makeText(context, "8", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_9L) {
+					Toast.makeText(context, "9L", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_9S) {
+					Toast.makeText(context, "9S", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_10) {
+					Toast.makeText(context, "10", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_10A) {
+					Toast.makeText(context, "10A", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_11) {
+					Toast.makeText(context, "11", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_12) {
+					Toast.makeText(context, "12", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_2A) {
+					Toast.makeText(context, "2A", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_2) {
+					Toast.makeText(context, "2", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_2A) {
+					Toast.makeText(context, "2A", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_3A) {
+					Toast.makeText(context, "3A", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+				if (time == Globals.PERIOD_3B) {
+					Toast.makeText(context, "3B", Toast.LENGTH_SHORT).show();
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -235,12 +305,15 @@ public class DrawView extends View {
 	 */
 	public void drawCourse(int period, Canvas canvas) {
 
+		Rect rect1, rect2, rect3, rect4;
+
 		switch (period) {
 
 		case Globals.EARLY_DRILL:
 			break;
 
 		case Globals.PERIOD_8:
+
 			canvas.drawRect(Globals.MONDAY_LEFT, Globals.TIME_8_TOP,
 					Globals.MONDAY_RIGHT, Globals.TIME_8_BOTTOM, paint);
 			canvas.drawRect(Globals.TUESDAY_LEFT, Globals.TIME_8_TOP,
@@ -249,6 +322,27 @@ public class DrawView extends View {
 					Globals.THURSDAY_RIGHT, Globals.TIME_8_BOTTOM, paint);
 			canvas.drawRect(Globals.FRIDAY_LEFT, Globals.TIME_8_TOP,
 					Globals.FRIDAY_RIGHT, Globals.TIME_8_BOTTOM, paint);
+
+			// add the rectangle objects, to be clicked on
+			rect1 = new Rect(Globals.MONDAY_LEFT, Globals.TIME_8_TOP,
+					Globals.MONDAY_RIGHT, Globals.TIME_8_BOTTOM);
+			rect2 = new Rect(Globals.TUESDAY_LEFT, Globals.TIME_8_TOP,
+					Globals.TUESDAY_RIGHT, Globals.TIME_8_BOTTOM);
+			rect3 = new Rect(Globals.THURSDAY_LEFT, Globals.TIME_8_TOP,
+					Globals.THURSDAY_RIGHT, Globals.TIME_8_BOTTOM);
+			rect4 = new Rect(Globals.FRIDAY_LEFT, Globals.TIME_8_TOP,
+					Globals.FRIDAY_RIGHT, Globals.TIME_8_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+			rectangles.add(rect3);
+			rectangles.add(rect4);
+
+			rectangleTimes.add(Globals.PERIOD_8);
+			rectangleTimes.add(Globals.PERIOD_8);
+			rectangleTimes.add(Globals.PERIOD_8);
+			rectangleTimes.add(Globals.PERIOD_8);
+
 			break;
 
 		case Globals.PERIOD_9L:
@@ -258,6 +352,22 @@ public class DrawView extends View {
 					Globals.WEDNESDAY_RIGHT, Globals.TIME_9L_BOTTOM, paint);
 			canvas.drawRect(Globals.FRIDAY_LEFT, Globals.TIME_9L_TOP,
 					Globals.FRIDAY_RIGHT, Globals.TIME_9L_BOTTOM, paint);
+
+			rect1 = new Rect(Globals.MONDAY_LEFT, Globals.TIME_9L_TOP,
+					Globals.MONDAY_RIGHT, Globals.TIME_9L_BOTTOM);
+			rect2 = new Rect(Globals.WEDNESDAY_LEFT, Globals.TIME_9L_TOP,
+					Globals.WEDNESDAY_RIGHT, Globals.TIME_9L_BOTTOM);
+			rect3 = new Rect(Globals.FRIDAY_LEFT, Globals.TIME_9L_TOP,
+					Globals.FRIDAY_RIGHT, Globals.TIME_9L_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+			rectangles.add(rect3);
+
+			rectangleTimes.add(Globals.PERIOD_9L);
+			rectangleTimes.add(Globals.PERIOD_9L);
+			rectangleTimes.add(Globals.PERIOD_9L);
+
 			break;
 
 		case Globals.PERIOD_9S:
@@ -269,6 +379,26 @@ public class DrawView extends View {
 					Globals.THURSDAY_RIGHT, Globals.TIME_9L_BOTTOM, paint);
 			canvas.drawRect(Globals.FRIDAY_LEFT, Globals.TIME_9AM,
 					Globals.FRIDAY_RIGHT, Globals.TIME_9L_BOTTOM, paint);
+
+			rect1 = new Rect(Globals.MONDAY_LEFT, Globals.TIME_9AM,
+					Globals.MONDAY_RIGHT, Globals.TIME_9L_BOTTOM);
+			rect2 = new Rect(Globals.TUESDAY_LEFT, Globals.TIME_9AM,
+					Globals.TUESDAY_RIGHT, Globals.TIME_9L_BOTTOM);
+			rect3 = new Rect(Globals.THURSDAY_LEFT, Globals.TIME_9AM,
+					Globals.THURSDAY_RIGHT, Globals.TIME_9L_BOTTOM);
+			rect4 = new Rect(Globals.FRIDAY_LEFT, Globals.TIME_9AM,
+					Globals.FRIDAY_RIGHT, Globals.TIME_9L_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+			rectangles.add(rect3);
+			rectangles.add(rect4);
+
+			rectangleTimes.add(Globals.PERIOD_9S);
+			rectangleTimes.add(Globals.PERIOD_9S);
+			rectangleTimes.add(Globals.PERIOD_9S);
+			rectangleTimes.add(Globals.PERIOD_9S);
+
 			break;
 
 		case Globals.PERIOD_10:
@@ -278,6 +408,22 @@ public class DrawView extends View {
 					Globals.WEDNESDAY_RIGHT, Globals.TIME_10_BOTTOM, paint);
 			canvas.drawRect(Globals.FRIDAY_LEFT, Globals.TIME_10AM,
 					Globals.FRIDAY_RIGHT, Globals.TIME_10_BOTTOM, paint);
+
+			rect1 = new Rect(Globals.MONDAY_LEFT, Globals.TIME_10AM,
+					Globals.MONDAY_RIGHT, Globals.TIME_10_BOTTOM);
+			rect2 = new Rect(Globals.WEDNESDAY_LEFT, Globals.TIME_10AM,
+					Globals.WEDNESDAY_RIGHT, Globals.TIME_10_BOTTOM);
+			rect3 = new Rect(Globals.FRIDAY_LEFT, Globals.TIME_10AM,
+					Globals.FRIDAY_RIGHT, Globals.TIME_10_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+			rectangles.add(rect3);
+
+			rectangleTimes.add(Globals.PERIOD_10);
+			rectangleTimes.add(Globals.PERIOD_10);
+			rectangleTimes.add(Globals.PERIOD_10);
+
 			break;
 
 		case Globals.PERIOD_10A:
@@ -285,6 +431,18 @@ public class DrawView extends View {
 					Globals.TUESDAY_RIGHT, Globals.TIME_10A_BOTTOM, paint);
 			canvas.drawRect(Globals.THURSDAY_LEFT, Globals.TIME_10AM,
 					Globals.THURSDAY_RIGHT, Globals.TIME_10A_BOTTOM, paint);
+
+			rect1 = new Rect(Globals.TUESDAY_LEFT, Globals.TIME_10AM,
+					Globals.TUESDAY_RIGHT, Globals.TIME_10A_BOTTOM);
+			rect2 = new Rect(Globals.THURSDAY_LEFT, Globals.TIME_10AM,
+					Globals.THURSDAY_RIGHT, Globals.TIME_10A_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+
+			rectangleTimes.add(Globals.PERIOD_10A);
+			rectangleTimes.add(Globals.PERIOD_10A);
+
 			break;
 
 		case Globals.PERIOD_11:
@@ -294,6 +452,22 @@ public class DrawView extends View {
 					Globals.WEDNESDAY_RIGHT, Globals.TIME_11_BOTTOM, paint);
 			canvas.drawRect(Globals.FRIDAY_LEFT, Globals.TIME_11_TOP,
 					Globals.FRIDAY_RIGHT, Globals.TIME_11_BOTTOM, paint);
+
+			rect1 = new Rect(Globals.MONDAY_LEFT, Globals.TIME_11_TOP,
+					Globals.MONDAY_RIGHT, Globals.TIME_11_BOTTOM);
+			rect2 = new Rect(Globals.WEDNESDAY_LEFT, Globals.TIME_11_TOP,
+					Globals.WEDNESDAY_RIGHT, Globals.TIME_11_BOTTOM);
+			rect3 = new Rect(Globals.FRIDAY_LEFT, Globals.TIME_11_TOP,
+					Globals.FRIDAY_RIGHT, Globals.TIME_11_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+			rectangles.add(rect3);
+
+			rectangleTimes.add(Globals.PERIOD_11);
+			rectangleTimes.add(Globals.PERIOD_11);
+			rectangleTimes.add(Globals.PERIOD_11);
+
 			break;
 
 		case Globals.PERIOD_12:
@@ -303,6 +477,22 @@ public class DrawView extends View {
 					Globals.WEDNESDAY_RIGHT, Globals.TIME_12_BOTTOM, paint);
 			canvas.drawRect(Globals.FRIDAY_LEFT, Globals.TIME_12_TOP,
 					Globals.FRIDAY_RIGHT, Globals.TIME_12_BOTTOM, paint);
+
+			rect1 = new Rect(Globals.MONDAY_LEFT, Globals.TIME_12_TOP,
+					Globals.MONDAY_RIGHT, Globals.TIME_12_BOTTOM);
+			rect2 = new Rect(Globals.WEDNESDAY_LEFT, Globals.TIME_12_TOP,
+					Globals.WEDNESDAY_RIGHT, Globals.TIME_12_BOTTOM);
+			rect3 = new Rect(Globals.FRIDAY_LEFT, Globals.TIME_12_TOP,
+					Globals.FRIDAY_RIGHT, Globals.TIME_12_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+			rectangles.add(rect3);
+
+			rectangleTimes.add(Globals.PERIOD_12);
+			rectangleTimes.add(Globals.PERIOD_12);
+			rectangleTimes.add(Globals.PERIOD_12);
+
 			break;
 
 		case Globals.PERIOD_2:
@@ -312,6 +502,22 @@ public class DrawView extends View {
 					Globals.WEDNESDAY_RIGHT, Globals.TIME_2_BOTTOM, paint);
 			canvas.drawRect(Globals.FRIDAY_LEFT, Globals.TIME_2_TOP,
 					Globals.FRIDAY_RIGHT, Globals.TIME_2_BOTTOM, paint);
+
+			rect1 = new Rect(Globals.MONDAY_LEFT, Globals.TIME_2_TOP,
+					Globals.MONDAY_RIGHT, Globals.TIME_2_BOTTOM);
+			rect2 = new Rect(Globals.WEDNESDAY_LEFT, Globals.TIME_2_TOP,
+					Globals.WEDNESDAY_RIGHT, Globals.TIME_2_BOTTOM);
+			rect3 = new Rect(Globals.FRIDAY_LEFT, Globals.TIME_2_TOP,
+					Globals.FRIDAY_RIGHT, Globals.TIME_2_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+			rectangles.add(rect3);
+
+			rectangleTimes.add(Globals.PERIOD_2);
+			rectangleTimes.add(Globals.PERIOD_2);
+			rectangleTimes.add(Globals.PERIOD_2);
+
 			break;
 
 		case Globals.PERIOD_2A:
@@ -319,6 +525,18 @@ public class DrawView extends View {
 					Globals.TUESDAY_RIGHT, Globals.TIME_2A_BOTTOM, paint);
 			canvas.drawRect(Globals.THURSDAY_LEFT, Globals.TIME_2PM,
 					Globals.THURSDAY_RIGHT, Globals.TIME_2A_BOTTOM, paint);
+
+			rect1 = new Rect(Globals.TUESDAY_LEFT, Globals.TIME_2PM,
+					Globals.TUESDAY_RIGHT, Globals.TIME_2A_BOTTOM);
+			rect2 = new Rect(Globals.THURSDAY_LEFT, Globals.TIME_2PM,
+					Globals.THURSDAY_RIGHT, Globals.TIME_2A_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+
+			rectangleTimes.add(Globals.PERIOD_2A);
+			rectangleTimes.add(Globals.PERIOD_2A);
+
 			break;
 
 		case Globals.PERIOD_3A:
@@ -326,6 +544,18 @@ public class DrawView extends View {
 					Globals.MONDAY_RIGHT, Globals.TIME_3A_BOTTOM, paint);
 			canvas.drawRect(Globals.THURSDAY_LEFT, Globals.TIME_4PM,
 					Globals.THURSDAY_RIGHT, Globals.TIME_3B_BOTTOM, paint);
+
+			rect1 = new Rect(Globals.MONDAY_LEFT, Globals.TIME_3PM,
+					Globals.MONDAY_RIGHT, Globals.TIME_3A_BOTTOM);
+			rect2 = new Rect(Globals.THURSDAY_LEFT, Globals.TIME_4PM,
+					Globals.THURSDAY_RIGHT, Globals.TIME_3B_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+
+			rectangleTimes.add(Globals.PERIOD_3A);
+			rectangleTimes.add(Globals.PERIOD_3A);
+
 			break;
 
 		case Globals.PERIOD_3B:
@@ -333,6 +563,18 @@ public class DrawView extends View {
 					Globals.TUESDAY_RIGHT, Globals.TIME_3B_BOTTOM, paint);
 			canvas.drawRect(Globals.THURSDAY_LEFT, Globals.TIME_4PM,
 					Globals.THURSDAY_RIGHT, Globals.TIME_3B_BOTTOM, paint);
+
+			rect1 = new Rect(Globals.TUESDAY_LEFT, Globals.TIME_4PM,
+					Globals.TUESDAY_RIGHT, Globals.TIME_3B_BOTTOM);
+			rect2 = new Rect(Globals.THURSDAY_LEFT, Globals.TIME_4PM,
+					Globals.THURSDAY_RIGHT, Globals.TIME_3B_BOTTOM);
+
+			rectangles.add(rect1);
+			rectangles.add(rect2);
+
+			rectangleTimes.add(Globals.PERIOD_3B);
+			rectangleTimes.add(Globals.PERIOD_3B);
+
 			break;
 
 		case Globals.ARR:
@@ -342,6 +584,7 @@ public class DrawView extends View {
 			break;
 		}
 
+		Globals.callOnDraw = false;
 		invalidate();
 	}
 
@@ -422,34 +665,8 @@ public class DrawView extends View {
 			break;
 		}
 
+		Globals.xHoursOn = false;
 		invalidate();
-
-	}
-
-	/**
-	 * For weeks activity in TERM fragment. Take the long time and translate to
-	 * TOP variable for drawing.
-	 * 
-	 * @param startTime
-	 * @return
-	 */
-	public int setStartTime(String startTime) {
-
-		int top = findTime(startTime);
-
-		// take the long time and translate to TOP variable for drawing
-		return top;
-	}
-
-	/**
-	 * Takes the long time and translates to BOTTOM variable for drawing.
-	 * 
-	 * @param endTime
-	 * @return
-	 */
-	public int setEndTime(String endTime) {
-		int bottom = findTime(endTime);
-		return bottom;
 	}
 
 	/**
@@ -467,8 +684,8 @@ public class DrawView extends View {
 		String startString = CalendarUtils.parseTime(startLong);
 		String endString = CalendarUtils.parseTime(endLong);
 
-		int top = setStartTime(startString);
-		int bottom = setEndTime(endString);
+		int top = CalendarUtils.setStartTime(startString);
+		int bottom = CalendarUtils.setEndTime(endString);
 		int left = 0, right = 0;
 
 		// grab the day
@@ -507,237 +724,6 @@ public class DrawView extends View {
 		}
 
 		canvas.drawRect(left, right, top, bottom, paint);
-	}
-
-	/**
-	 * Helper function to translate long time into pixel location to draw block.
-	 * 
-	 * @param time
-	 * @return where to draw said time
-	 */
-	public int findTime(String time) {
-
-		if (time == "7:00:00")
-			return Globals.TIME_7AM;
-		if (time == "7:15:00")
-			return Globals.TIME_715AM;
-		if (time == "7:30:00")
-			return Globals.TIME_730AM;
-		if (time == "7:45:00")
-			return Globals.TIME_745AM;
-
-		if (time == "8:00:00")
-			return Globals.TIME_8AM;
-		if (time == "8:15:00")
-			return Globals.TIME_815AM;
-		if (time == "8:30:00")
-			return Globals.TIME_830AM;
-		if (time == "8:45:00")
-			return Globals.TIME_845AM;
-
-		if (time == "9:00:00")
-			return Globals.TIME_9AM;
-		if (time == "9:15:00")
-			return Globals.TIME_915AM;
-		if (time == "9:30:00")
-			return Globals.TIME_930AM;
-		if (time == "9:45:00")
-			return Globals.TIME_945AM;
-
-		if (time == "10:00:00")
-			return Globals.TIME_10AM;
-		if (time == "10:15:00")
-			return Globals.TIME_1015AM;
-		if (time == "10:30:00")
-			return Globals.TIME_1030AM;
-		if (time == "10:45:00")
-			return Globals.TIME_1045AM;
-
-		if (time == "11:00:00")
-			return Globals.TIME_11AM;
-		if (time == "11:15:00")
-			return Globals.TIME_1115AM;
-		if (time == "11:30:00")
-			return Globals.TIME_1130AM;
-		if (time == "11:45:00")
-			return Globals.TIME_1145AM;
-
-		if (time == "12:00:00")
-			return Globals.TIME_12PM;
-		if (time == "12:15:00")
-			return Globals.TIME_1215PM;
-		if (time == "12:30:00")
-			return Globals.TIME_1230PM;
-		if (time == "12:45:00")
-			return Globals.TIME_1245PM;
-
-		if (time == "13:00:00")
-			return Globals.TIME_1PM;
-		if (time == "13:15:00")
-			return Globals.TIME_115PM;
-		if (time == "13:30:00")
-			return Globals.TIME_130PM;
-		if (time == "13:45:00")
-			return Globals.TIME_145PM;
-
-		if (time == "14:00:00")
-			return Globals.TIME_2PM;
-		if (time == "14:15:00")
-			return Globals.TIME_215PM;
-		if (time == "14:30:00")
-			return Globals.TIME_230PM;
-		if (time == "14:45:00")
-			return Globals.TIME_245PM;
-
-		if (time == "15:00:00")
-			return Globals.TIME_3PM;
-		if (time == "15:15:00")
-			return Globals.TIME_315PM;
-		if (time == "15:30:00")
-			return Globals.TIME_330PM;
-		if (time == "15:45:00")
-			return Globals.TIME_345PM;
-
-		if (time == "16:00:00")
-			return Globals.TIME_4PM;
-		if (time == "16:15:00")
-			return Globals.TIME_415PM;
-		if (time == "16:30:00")
-			return Globals.TIME_430PM;
-		if (time == "16:45:00")
-			return Globals.TIME_445PM;
-
-		if (time == "17:00:00")
-			return Globals.TIME_5PM;
-		if (time == "17:15:00")
-			return Globals.TIME_515PM;
-		if (time == "17:30:00")
-			return Globals.TIME_530PM;
-		if (time == "17:45:00")
-			return Globals.TIME_545PM;
-
-		if (time == "18:00:00")
-			return Globals.TIME_6PM;
-		if (time == "18:15:00")
-			return Globals.TIME_615PM;
-		if (time == "18:30:00")
-			return Globals.TIME_630PM;
-		if (time == "18:45:00")
-			return Globals.TIME_645PM;
-
-		if (time == "19:00:00")
-			return Globals.TIME_7PM;
-		if (time == "19:15:00")
-			return Globals.TIME_715PM;
-		if (time == "19:30:00")
-			return Globals.TIME_730PM;
-		if (time == "19:45:00")
-			return Globals.TIME_745PM;
-
-		if (time == "20:00:00")
-			return Globals.TIME_8PM;
-		if (time == "20:15:00")
-			return Globals.TIME_815PM;
-		if (time == "20:30:00")
-			return Globals.TIME_830PM;
-		if (time == "20:45:00")
-			return Globals.TIME_845PM;
-
-		if (time == "21:00:00")
-			return Globals.TIME_9PM;
-		if (time == "21:15:00")
-			return Globals.TIME_915PM;
-		if (time == "21:30:00")
-			return Globals.TIME_930PM;
-		if (time == "21:45:00")
-			return Globals.TIME_945PM;
-
-		if (time == "22:00:00")
-			return Globals.TIME_10PM;
-		if (time == "22:15:00")
-			return Globals.TIME_1015PM;
-		if (time == "22:30:00")
-			return Globals.TIME_1030PM;
-		if (time == "22:45:00")
-			return Globals.TIME_1045PM;
-
-		if (time == "23:00:00")
-			return Globals.TIME_11PM;
-		if (time == "23:15:00")
-			return Globals.TIME_1115PM;
-		if (time == "23:30:00")
-			return Globals.TIME_1130PM;
-		if (time == "23:45:00")
-			return Globals.TIME_1145PM;
-
-		if (time == "00:00:00")
-			return Globals.TIME_12AM;
-		if (time == "00:15:00")
-			return Globals.TIME_1215AM;
-		if (time == "00:30:00")
-			return Globals.TIME_1230PM;
-		if (time == "00:45:00")
-			return Globals.TIME_1245PM;
-
-		if (time == "1:00:00")
-			return Globals.TIME_1AM;
-		if (time == "1:15:00")
-			return Globals.TIME_115AM;
-		if (time == "1:30:00")
-			return Globals.TIME_130AM;
-		if (time == "1:45:00")
-			return Globals.TIME_145AM;
-
-		if (time == "2:00:00")
-			return Globals.TIME_2AM;
-		if (time == "2:15:00")
-			return Globals.TIME_215AM;
-		if (time == "2:30:00")
-			return Globals.TIME_230AM;
-		if (time == "2:45:00")
-			return Globals.TIME_245AM;
-
-		if (time == "3:00:00")
-			return Globals.TIME_3AM;
-		if (time == "3:15:00")
-			return Globals.TIME_315AM;
-		if (time == "3:30:00")
-			return Globals.TIME_330AM;
-		if (time == "3:45:00")
-			return Globals.TIME_345AM;
-
-		if (time == "4:00:00")
-			return Globals.TIME_4AM;
-		if (time == "4:15:00")
-			return Globals.TIME_415AM;
-		if (time == "4:30:00")
-			return Globals.TIME_430AM;
-		if (time == "4:45:00")
-			return Globals.TIME_445AM;
-
-		if (time == "5:00:00")
-			return Globals.TIME_5AM;
-		if (time == "5:15:00")
-			return Globals.TIME_515AM;
-		if (time == "5:30:00")
-			return Globals.TIME_530AM;
-		if (time == "5:45:00")
-			return Globals.TIME_545AM;
-
-		if (time == "6:00:00")
-			return Globals.TIME_6AM;
-		if (time == "6:15:00")
-			return Globals.TIME_FLOOR;
-
-		// Fix these these are probably jank
-		// WRAPAROUND HERE?????
-		if (time == "6:30:00")
-			return Globals.TIME_FLOOR;
-		if (time == "6:45:00")
-			return Globals.BLOCK_CEILING;
-
-		// error code
-		return -1;
 	}
 
 }
