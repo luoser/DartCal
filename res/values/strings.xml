@@ -11,9 +11,9 @@
     <string name="title_activity_term_fragment">TermFragment</string>
     <string name="title_activity_friends_fragment">FriendsFragment</string>
     <string name="personal_calendar">Personal Calendar</string>
-    <string name="dartmouth_calendar">Dartmouth Calendar</string>
+    <string name="dartmouth_calendar">Social Calendar</string>
     <string name="title_activity_weeks">WeeksActivity</string>
-    <string name="title_activity_weeks_calendar">WeeksCalendar</string>
+    <string name="title_activity_weeks_calendar">Weekly Social Events</string>
     <string name="add_button">Add Event</string>
     <string name="title_activity_add_event">AddEvent</string>
     <string name="title_repeating_event">Repeating Event?</string>
@@ -95,7 +95,7 @@
         <item>ARR</item>
     </string-array>
 
-    <string name="title_activity_personal_weeks_calendar">PersonalWeeksCalendar</string>
+    <string name="title_activity_personal_weeks_calendar">Weekly Personal Events</string>
     <string name="title_activity_display_diagram">DisplayDiagramActivity</string>
 
 </resources>

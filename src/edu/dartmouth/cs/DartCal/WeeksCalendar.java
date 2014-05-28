@@ -28,6 +28,7 @@ public class WeeksCalendar extends Activity {
 		rootView = inflater.inflate(R.layout.activity_weeks, container, false);
 		drawView = (DrawView) rootView.findViewById(R.id.drawViewTerm);
 		drawView.postInvalidate();
+		Globals.drawFriendsEventsOn = true;
 		
 		return rootView;
 	}
@@ -48,40 +49,6 @@ public class WeeksCalendar extends Activity {
 	public void onResume() {
 		super.onResume();
 		datasource = new PersonalEventDbHelper(this);
-		/*
-		try {
-			Log.i("TAG","MY ID BE ALL LIKE "+Long.toString(datasource.fetchEntryByIndex(0).getId())+"MY NAME IS "+
-					datasource.fetchEntryByIndex(0).getSchedule().get(0).getEventName());
-		}
-		catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		
-		
-		//NEED TO PASS IN THE VALUES
-		//ArrayList<ExerciseEntry> values = datasource.fetchEntries();
-		/*	
-		adapter=new ActivityEntriesAdapter(mContext);
-		ArrayList<ExerciseEntry> values = datasource.fetchEntries();
-		
-		setListAdapter(adapter);
-		adapter.addAll(values);
-		adapter.notifyDataSetChanged();
-		*/
 	}
 
 	@Override
@@ -94,7 +61,6 @@ public class WeeksCalendar extends Activity {
 		new AsyncTask<Void,Void,String>(){
 			@Override
 			protected String doInBackground(Void... arg0){
-				Log.i("TAG","IN DOINBACKGROUND");
 				Log.i("TAG","IN DA BACKGROUND"+datasource.fetchEntries().toString());
 				ArrayList<Event> entryList = datasource.fetchEntries();
 				for (int i=0;i<entryList.size();i++){
