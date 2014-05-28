@@ -1,11 +1,11 @@
 /**
-* DartCal
-* File: Globals.java
-* Author: Lisa Luo
-* Modified: 5/27/14
-* Description: Global variables for use
-* 	throughout application.
-*/
+ * DartCal
+ * File: Globals.java
+ * Author: Lisa Luo
+ * Modified: 5/27/14
+ * Description: Global variables for use
+ * 	throughout application.
+ */
 
 package edu.dartmouth.cs.DartCal;
 
@@ -222,7 +222,7 @@ public class Globals {
 	public static int FRIDAY_RIGHT = 631;
 	public static int SATURDAY_LEFT = 657;
 	public static int SATURDAY_RIGHT = 739;
-	
+
 	// weeks; for TERM fragment
 	public static int WEEK_1 = 0;
 	public static int WEEK_2 = 1;
@@ -235,9 +235,9 @@ public class Globals {
 	public static int WEEK_9 = 8;
 	public static int WEEK_10 = 9;
 	public static int WEEK_11 = 10;
-	
+
+	// for PARSE
 	public static ArrayList<ArrayList<Event>> drawingMatrix = new ArrayList<ArrayList<Event>>();
-
-			public static ArrayList<String> selectedFriends = new ArrayList<String>();
+	public static ArrayList<String> selectedFriends = new ArrayList<String>();
+	public static String USER = "";
 }
-

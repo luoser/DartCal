@@ -407,6 +407,9 @@ public class EditProfileActivity extends Activity {
 		mEditor.putString(mKey, mValue);
 		name = mValue;
 		user.setName(mValue);
+		
+		// PARSE
+		Globals.USER = name;
 
 		// Save class information
 		mKey = getString(R.string.class_field);
