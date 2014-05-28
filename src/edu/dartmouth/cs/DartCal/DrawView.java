@@ -141,10 +141,10 @@ public class DrawView extends View {
 						drawCustomEvent(startTime, endTime, date, canvas);
 
 						// TESTING drawing custom events
-						long startLong = Calendar.getInstance()
-								.getTimeInMillis();
-						drawCustomEvent(startLong, startLong + 1000000,
-								startLong, canvas);
+//						long startLong = Calendar.getInstance()
+//								.getTimeInMillis();
+//						drawCustomEvent(startLong, startLong + 1000000,
+//								startLong, canvas);
 
 						// drawCustomEvent(startTime, endTime, date, canvas);
 					}
