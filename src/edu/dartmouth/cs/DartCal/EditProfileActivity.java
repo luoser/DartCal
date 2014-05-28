@@ -111,23 +111,23 @@ public class EditProfileActivity extends Activity {
 	// BUTTON CLICKS
 	// Save user data, including picture, and close the application.
 	public void onSaveClicked(View v) {
+		
+		String mValue = (String) ((EditText) findViewById(R.id.editName))
+				.getText().toString();
+		
+		if (mValue.equals("")){
+			Toast.makeText(getApplicationContext(), "Please enter your name", Toast.LENGTH_SHORT)
+			.show();
+		}
+		else{
 
 		saveUserData();
 		// Make a Toast informing the user their information is saved.
 		Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT)
 		.show();
-		/*
-		if (MainActivity.sharedPreferences.getBoolean(MainActivity.MY_BOO, true)){
-			MainActivity.sharedPreferences.edit().putBoolean(MainActivity.MY_BOO, true).commit();
-			Intent i = new Intent(this, MainActivity.class);
-	    startActivity(i);
-	    finish();
-		}
-		else{
-			finish();
-		}	
-		*/
 		finish();
+		}
+		
 	}
 
 	// Display a Toast and cancel application.
