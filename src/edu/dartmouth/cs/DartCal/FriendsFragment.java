@@ -78,6 +78,8 @@ public class FriendsFragment extends Fragment {
 					  for (int i = 0; i < events.size(); i++){
 						  names.add(events.get(i).getOwnerName());
 		          }
+					  
+					  names.remove(Globals.USER);
 			}
 		  });
 		  
