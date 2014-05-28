@@ -23,7 +23,7 @@ public class CalendarUtils {
 	/**
 	 * Helper function to return a random color for assignment to friend.
 	 * 
-	 * @return
+	 * @return a randomly generated color
 	 */
 	public static int generateRandomColor() {
 
@@ -90,7 +90,6 @@ public class CalendarUtils {
 		System.out.println("df " + dateFormat.parse(timeString).getTime());
 
 		return dateFormat.parse(timeString).getTime();
-
 	}
 
 	/**
