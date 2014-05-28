@@ -101,55 +101,14 @@ public class ManualAddEvent extends Activity {
 			repeating=2;
 		}
 		mEvent.setEventName(eventName);
+		mEvent.setOwnerName(Globals.USER);
 		mEvent.setDate(myCalStart.getTimeInMillis());
 		mEvent.setEventLocation(location);
 		mEvent.setStartTime(myCalStart.getTimeInMillis());
 		mEvent.setEndTime(myCalEnd.getTimeInMillis());
 		mEvent.setEventDescription(description);
 		mEvent.setIsRepeating(repeating);
-		
-		datasource.insertEntry(mEvent);
-		Log.i("TAG","STARTTIME"+Long.toString(myCalStart.getTimeInMillis()));
-		Log.i("TAG","STARTTIME IM LOOKING AT "+Long.toString(mEvent.getStartTime()));
-		Log.i("TAG","DATE IM LOOKING AT "+Long.toString(mEvent.getDate()));
-		Log.i("TAG","END TIME IM LOOKING AT "+Long.toString(mEvent.getEndTime()));
-		
-		
-		for (int i=0;i<datasource.fetchEntries().size();i++){
-			Log.i("TAG","INSIDE"+datasource.fetchEntries().get(i).getIsRepeating());
-			Log.i("TAG","INSIDE DATABASE StartTime"+datasource.fetchEntries().get(i).getStartTime());
-			Log.i("TAG","INSIDE DATABASE EndTime"+datasource.fetchEntries().get(i).getEndTime());
-			Log.i("TAG","INSIDE DATABASE Date"+datasource.fetchEntries().get(i).getDate());
-			//Log.i("TAG","MY ENTRY "+datasource.fetchEntryByIndex(0).getDate());
-			
-		}
-		
-		//db.insertEntry(mFriend);
-		//Log.i("TAG",Integer.toString(mFriend.getSchedule().size()));
-		
-		/*
-		ArrayList<Event> mySchedule=new ArrayList<Event>();
-		mySchedule.add(mEvent);
-		mFriend.setSchedule(mySchedule);
-		Friend fr=null;
-		//fr  = datasource.fetchEntryByIndex(0);
-		//Log.i("TAG","FRIEND"+fr.toString());
-		//if(fr == null)
-		
-		if (){
-			datasource.insertEntry(mFriend);
-		}
-		else{
-		
-			Log.i("TAG","ALL UP IN DIS BITCH");
-			fr = datasource.fetchEntryByIndex(0);
-			Log.i("TAG",Integer.toString(fr.getSchedule().size()));
-			fr.getSchedule().add(fr.getSchedule().size(), mEvent);
-			datasource.insertEntry(fr);
-		
-		Log.i("TAG","MY ID BE ALL LIKE "+Long.toString(datasource.fetchEntryByIndex(0).getId())+"MY NAME IS "+
-				datasource.fetchEntryByIndex(0).getSchedule());
-			*/
+		mEvent.saveInBackground();
 		finish();
 	}
 
