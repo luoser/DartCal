@@ -132,7 +132,8 @@ public class WeeklyFragment extends Fragment {
 				Toast.makeText(getActivity(), "X-Hours on", Toast.LENGTH_SHORT)
 						.show();
 
-				drawView.postInvalidate();
+				drawView.invalidate();
+				break;
 			}
 
 			// TOGGLE x-hours
@@ -141,7 +142,8 @@ public class WeeklyFragment extends Fragment {
 				xHoursOn = false;
 				Toast.makeText(getActivity(), "X-Hours off", Toast.LENGTH_SHORT)
 						.show();
-				drawView.postInvalidate();
+				drawView.invalidate();
+				break;
 			}
 
 			break;

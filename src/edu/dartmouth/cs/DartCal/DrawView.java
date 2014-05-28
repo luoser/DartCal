@@ -93,7 +93,6 @@ public class DrawView extends View {
 		// TESTING drawing custom events
 		// long startLong = Calendar.getInstance().getTimeInMillis();
 		// drawCustomEvent(startLong, startLong + 1000000, startLong, canvas);
-		
 
 		// retrieve user profile information
 		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
@@ -103,57 +102,54 @@ public class DrawView extends View {
 			List<Event> eventList = query.find();
 
 			// check for first time use
-//			if (eventList != null) {
+			// if (eventList != null) {
 
-				if (eventList.size() > 0) {
+			if (eventList.size() > 0) {
+
+				for (int i = 0; i < eventList.size(); i++) {
+					System.out.println("here");
+
+					// fetch course information from the database
+					// int course1Time = event.get(0).getClassPeriod();
+					// int course2Time = event.get(1).getClassPeriod();
+					// int course3Time = event.get(2).getClassPeriod();
+					// int course4Time = event.get(3).getClassPeriod();
+
+					int courseTime = eventList.get(i).getClassPeriod();
+
+					// set color (defined in methods)
+					paint.setStrokeWidth(0);
+
+					// if (Globals.callOnDraw) {
+
+					int mint = getResources().getColor(R.color.mint_green);
+					paint.setColor(mint);
+					drawCourse(courseTime, canvas);
+					// drawCourse(course1Time, canvas);
+					// drawCourse(course2Time, canvas);
+					// drawCourse(course3Time, canvas);
+					// drawCourse(course4Time, canvas);
+					canvas.save();
+					// }
+
+				}
+
+				// turn the xhours on; for use in the WEEKLY fragment
+				System.out.println("xhours true? " + Globals.xHoursOn);
+				if (Globals.xHoursOn) {
+					int green = getResources().getColor(R.color.dark_green);
+					paint.setColor(green);
+					System.out.println("drawing x hour....");
 
 					for (int i = 0; i < eventList.size(); i++) {
-						System.out.println("here");
 
-						// fetch course information from the database
-						// int course1Time = event.get(0).getClassPeriod();
-						// int course2Time = event.get(1).getClassPeriod();
-						// int course3Time = event.get(2).getClassPeriod();
-						// int course4Time = event.get(3).getClassPeriod();
-
+						// canvas.save();
 						int courseTime = eventList.get(i).getClassPeriod();
-
-						// set color (defined in methods)
-						paint.setStrokeWidth(0);
-
-						// if (Globals.callOnDraw) {
-
-						int mint = getResources().getColor(R.color.mint_green);
-						paint.setColor(mint);
-						drawCourse(courseTime, canvas);
-						// drawCourse(course1Time, canvas);
-						// drawCourse(course2Time, canvas);
-						// drawCourse(course3Time, canvas);
-						// drawCourse(course4Time, canvas);
+						drawXhour(courseTime, canvas);
 						canvas.save();
-						// }
-
-						// turn the xhours on; for use in the WEEKLY fragment
-						System.out.println("xhours true? " + Globals.xHoursOn);
-						if (Globals.xHoursOn) {
-							int green = getResources().getColor(
-									R.color.dark_green);
-							paint.setColor(green);
-							System.out.println("drawing x hour....");
-
-							// canvas.save();
-							// drawXhour(course1Time, canvas);
-							// drawXhour(course2Time, canvas);
-							// drawXhour(course3Time, canvas);
-							// drawXhour(course4Time, canvas);
-							drawXhour(courseTime, canvas);
-
-							canvas.restore();
-							// invalidate();
-						}
 					}
 				}
-//			}
+			}
 
 		} catch (ParseException e) {
 			System.out.println("Parse did not work.");
@@ -161,7 +157,7 @@ public class DrawView extends View {
 
 		// Draw friends data; for use in the FRIENDS fragment
 		if (Globals.drawFriends) {
-			
+
 			System.out.println("drawing friemds");
 			// this matrix: the arraylist within is the
 			// array of a user's schedule / events, the outer array
@@ -195,7 +191,7 @@ public class DrawView extends View {
 						drawXhour(course3, canvas);
 						drawXhour(course4, canvas);
 					}
-					
+
 				}
 			}
 
