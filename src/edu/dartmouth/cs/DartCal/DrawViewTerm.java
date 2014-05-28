@@ -84,6 +84,17 @@ public class DrawViewTerm extends View {
 	@Override
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
+	
+		// debugging hour blocks
+//		 paint.setStrokeWidth(0);
+//		 int dark = getResources().getColor(R.color.dark_green);
+//		 paint.setColor(dark);
+		//
+		// canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_8PM,
+		// Globals.SATURDAY_RIGHT, Globals.TIME_9PM, paint);
+		
+
+		
 
 		try {
 

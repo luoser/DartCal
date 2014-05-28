@@ -178,7 +178,7 @@ public class PersonalEventDbHelper extends SQLiteOpenHelper {
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			Event entry = cursorToEntry(cursor);
-			//Log.i("TAG","INSIDE FETCH"+entry.getStartTime());
+			Log.i("TAG","INSIDE FETCH"+entry.getEventName());
 			entries.add(entry);
 			cursor.moveToNext();
 		}

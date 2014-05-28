@@ -4,105 +4,109 @@ import java.io.Serializable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.util.Log;
 
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
 
-public class Event implements Serializable {
-	private static final long serialVersionUID = 1L;
-	private long id;
-	private String eventName;
-	private String eventLocation;
-	private String eventDescription;
-	private long startTime;
-	private long endTime;
-	private int	isRepeating;
-	private long date;
-	private int color;
-	private int classPeriod;
-	private String RegId;
-	private String OwnerName;
+@ParseClassName("Event")
+
+public class Event extends ParseObject {
+//	private static final long serialVersionUID = 1L;
+//	private long id;
+//	private String eventName;
+//	private String eventLocation;
+//	private String eventDescription;
+//	private long startTime;
+//	private long endTime;
+//	private int	isRepeating;
+//	private long date;
+//	private int color;
+//	private int classPeriod;
+//	private String RegId;
+//	private String OwnerName;
 
 public Event() {
-	this.eventName = "";
-	this.eventLocation = "";
-	this.eventDescription = "";
-	this.startTime = System.currentTimeMillis();
-	this.endTime = System.currentTimeMillis();
-	this.isRepeating = 3;
-	this.classPeriod = -1;
-	this.date=System.currentTimeMillis();
-	this.RegId= MainActivity.regid;
-	this.OwnerName="";
+//	this.eventName = "";
+//	this.eventLocation = "";
+//	this.eventDescription = "";
+//	this.startTime = System.currentTimeMillis();
+//	this.endTime = System.currentTimeMillis();
+//	this.isRepeating = 3;
+//	this.classPeriod = -1;
+//	this.date=System.currentTimeMillis();
+//	this.RegId= MainActivity.regid;
+//	this.OwnerName="";
 }
 public int getClassPeriod() {
-	return classPeriod;
+	return getInt("classPeriod");
 }
 public void setClassPeriod(int classPeriod) {
-	this.classPeriod = classPeriod;
+	put("classPeriod", classPeriod);
 }
 public int getIsRepeating() {
-	return isRepeating;
+	
+	return getInt("isRepeating");
 }
 public void setIsRepeating(int isRepeating) {
-	this.isRepeating = isRepeating;
+	put("isRepeating", isRepeating);
 }
 public long getId(){
-	return id;
+	return getLong("id");
 }
 public void setId(long id){
-	this.id=id;
+	put("id", id);
 }
 public String getEventName() {
-	return eventName;
+	return getString("eventName");
 }
 
 public void setEventName(String eventName) {
-	this.eventName = eventName;
+	put("eventName", eventName);
 }
 
 public String getEventLocation() {
-	return eventLocation;
+	return getString("eventLocation");
 }
 
 public void setEventLocation(String eventLocation) {
-	this.eventLocation = eventLocation;
+	put("eventLocation", eventLocation);
 }
 
 public String getEventDescription() {
-	return eventDescription;
+	return getString("eventDescription");
 }
 
 public void setEventDescription(String eventDescription) {
-	this.eventDescription = eventDescription;
+	put("eventDescription", eventDescription);
 }
 
 public long getStartTime() {
-	return startTime;
+	return getLong("startTime");
 }
 
 public void setStartTime(long startTime) {
-	this.startTime = startTime;
+	put("startTime", startTime);
 }
 
 public long getEndTime() {
-	return endTime;
+	return getLong("endTime");
 }
 
 public void setEndTime(long endTime) {
-	this.endTime = endTime;
+	put("endTime", endTime);
 }
 
 public String getOwnerName() {
-	return OwnerName;
+	return getString("ownerName");
 }
 public void setOwnerName(String ownerName) {
-	OwnerName = ownerName;
+	put("ownerName", ownerName);
 }
 public String getRegId(){
-	return RegId;
+	return getString("regId");
 }
 public void setRegId(String regId) {
-	RegId = regId;
+	put("regId", regId);
 }
 /*
 public void setStartDateTime(long timeInMS){
@@ -114,16 +118,16 @@ public void setEndDateTime(long timeInMS){
 }
 */
 public long getDate(){
-	return date;
+	return getLong("date");
 }
 public void setDate(long date){
-	this.date=date;
+	put("date", date);
 }
 public int getColor() {
-	return color;
+	return getInt("color");
 }
 public void setColor(int color) {
-	this.color = color;
+	put("color", color);
 }
 
 public JSONObject toJSONObject(){

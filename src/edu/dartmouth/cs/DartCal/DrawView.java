@@ -106,16 +106,77 @@ public class DrawView extends View {
 		super.onDraw(canvas);
 
 		System.out.println("entered ondraw");
-		
+
 		// debugging hour blocks
 		paint.setStrokeWidth(0);
-		int dark = getResources().getColor(R.color.periwinkle);
+		int dark = getResources().getColor(R.color.black);
 		paint.setColor(dark);
 
 		long startLong = Calendar.getInstance().getTimeInMillis();
 		drawCustomEvent(startLong, startLong + 1000000, startLong, canvas);
-		
-//		canvas.drawLine(startX, startY, stopX, stopY, paint);
+
+		// canvas.drawLine(startX, startY, stopX, stopY, paint);
+
+		// canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_915AM,
+		// Globals.SATURDAY_RIGHT, Globals.TIME_530PM, paint);
+
+		// try {
+		//
+		// // retrieve user profile information
+		// Friend userData = dbHelper.fetchEntryByIndex(1);
+		//
+		// // check for first time use
+		// if (userData != null) {
+		//
+		// ArrayList<Event> courseBlocks = userData.getSchedule();
+		//
+		// if (courseBlocks.size() > 0) {
+		//
+		// // fetch course information from the database
+		// int course1Time = courseBlocks.get(0).getClassPeriod();
+		// int course2Time = courseBlocks.get(1).getClassPeriod();
+		// int course3Time = courseBlocks.get(2).getClassPeriod();
+		// int course4Time = courseBlocks.get(3).getClassPeriod();
+		// // int course1Time = Globals.PERIOD_10;
+		// // int course2Time = Globals.PERIOD_12;
+		// // int course3Time = Globals.PERIOD_2A;
+		// // int course4Time = Globals.ARR;
+		//
+		// // set color (defined in methods)
+		// paint.setStrokeWidth(0);
+		//
+		// // need to distinguish how long to draw the time blocks
+		// // also distinguish rotation
+		//
+		// if (Globals.callOnDraw) {
+		//
+		// int mint = getResources().getColor(R.color.mint_green);
+		// paint.setColor(mint);
+		//
+		// drawCourse(course1Time, canvas);
+		// drawCourse(course2Time, canvas);
+		// drawCourse(course3Time, canvas);
+		// drawCourse(course4Time, canvas);
+		// canvas.save();
+		// }
+		//
+		// // turn the xhours on; for use in the WEEKLY fragment
+		// if (Globals.xHoursOn) {
+		// int green = getResources().getColor(R.color.dark_green);
+		// paint.setColor(green);
+		//
+		// canvas.save();
+		// drawXhour(course1Time, canvas);
+		// drawXhour(course2Time, canvas);
+		// drawXhour(course3Time, canvas);
+		// drawXhour(course4Time, canvas);
+		//
+		// canvas.restore();
+		// // invalidate();
+		// }
+		// }
+
+		// canvas.drawLine(startX, startY, stopX, stopY, paint);
 
 		// canvas.drawRect(Globals.SATURDAY_LEFT, Globals.TIME_915AM,
 		// Globals.SATURDAY_RIGHT, Globals.TIME_530PM, paint);
@@ -177,23 +238,30 @@ public class DrawView extends View {
 				}
 
 				// Draw friends data; for use in the FRIENDS fragment
+				System.out.println(Globals.drawFriends);
 				if (Globals.drawFriends) {
-					
-					// this matrix: the arraylist within is the 
+
+					System.out.println("Inside Globals.drawfriends bool");
+
+					// this matrix: the arraylist within is the
 					// array of a user's schedule / events, the outer array
 					// is the array of total users
 					drawingMatrix = Globals.drawingMatrix;
-					
+					paint.setStrokeWidth(0);
+
 					int color = CalendarUtils.generateRandomColor();
 					paint.setColor(color);
 
-//					ArrayList<Friend> friendData = dbHelper.fetchEntries();
+					// ArrayList<Friend> friendData = dbHelper.fetchEntries();
 
 					if (drawingMatrix.get(0) != null) {
 
+						System.out.println("inside the null check");
+
 						for (int i = 1; i < drawingMatrix.size(); i++) {
 
-							ArrayList<Event> friendCourses = drawingMatrix.get(i);
+							ArrayList<Event> friendCourses = drawingMatrix
+									.get(i);
 
 							int course1 = friendCourses.get(0).getClassPeriod();
 							int course2 = friendCourses.get(1).getClassPeriod();
@@ -227,23 +295,28 @@ public class DrawView extends View {
 					drawCustomEvent(startTime, endTime, date, canvas);
 
 				}
-
-				// invalidate();
 			}
+		} catch (Exception e) {
 
-		} catch (StreamCorruptedException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 
-		// debugging random color generator
-		// paint.setStrokeWidth(0);
-		// paint.setColor(rColor);
-		// drawCourse(Globals.PERIOD_10, canvas);
+		// invalidate();
 	}
+
+	//
+	// } catch (StreamCorruptedException e) {
+	// e.printStackTrace();
+	// } catch (ClassNotFoundException e) {
+	// e.printStackTrace();
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+
+	// debugging random color generator
+	// paint.setStrokeWidth(0);
+	// paint.setColor(rColor);
+	// drawCourse(Globals.PERIOD_10, canvas);
+	// }
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -783,7 +856,6 @@ public class DrawView extends View {
 			right = Globals.SUNDAY_RIGHT;
 			canvas.drawRect(left, top, right, bottom, paint);
 
-			break;
 		case Calendar.MONDAY:
 			left = Globals.MONDAY_LEFT;
 			right = Globals.MONDAY_RIGHT;

@@ -29,12 +29,14 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 public class MainActivity extends Activity {
 
 	private static final String TAB_KEY_INDEX = "tab_key";
 
-	private String SENDER_ID = "286158326826";
+	private String SENDER_ID = "661817626973"; //"286158326826";
 	CheckBox xHourCheckBox;
 	CheckBox officeHoursCheckBox;
 	private GoogleCloudMessaging gcm;
@@ -70,6 +72,10 @@ public class MainActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Parse.initialize(this, "0kMtlp3S97WxHM5MDKsWcrIo1s8VMfb03bWZwqpP", "ZpRiszax8SKQ1K1vgtYEauOdy8PDc77YPfVo2Pr6");
+		ParseObject.registerSubclass(Event.class);
+
 		setContentView(R.layout.activity_main);
 		
 		context=this;

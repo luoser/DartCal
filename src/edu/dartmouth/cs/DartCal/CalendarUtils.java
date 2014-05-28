@@ -1,5 +1,4 @@
-/**
- * DartCal
+/** DartCal
  * File: CalendarUtils.java
  * Author: Lisa Luo
  * Modified: 5/27/14

@@ -1,11 +1,11 @@
 /**
- * DartCal
- * File: Globals.java
- * Author: Lisa Luo
- * Modified: 5/27/14
- * Description: Global variables for use
- * 	throughout application.
- */
+* DartCal
+* File: Globals.java
+* Author: Lisa Luo
+* Modified: 5/27/14
+* Description: Global variables for use
+* 	throughout application.
+*/
 
 package edu.dartmouth.cs.DartCal;
 
@@ -238,5 +238,6 @@ public class Globals {
 	
 	public static ArrayList<ArrayList<Event>> drawingMatrix = new ArrayList<ArrayList<Event>>();
 
-
+			public static ArrayList<String> selectedFriends = new ArrayList<String>();
 }
+

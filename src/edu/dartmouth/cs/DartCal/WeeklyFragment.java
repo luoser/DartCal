@@ -60,6 +60,11 @@ public class WeeklyFragment extends Fragment {
 		mContext = getActivity();
 
 		// TEST PARSING TIME
+		long epoch = System.currentTimeMillis();
+		//String timetest = DrawView.parseTime(epoch);
+		//System.out.println("timetest " + timetest);
+
+
 //		long epoch = System.currentTimeMillis();
 //		String timetest = CalendarUtils.parseTime(epoch);
 //		int dayOfweek = CalendarUtils.parseDayOfWeek(epoch);

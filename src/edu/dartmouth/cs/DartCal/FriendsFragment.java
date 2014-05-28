@@ -4,7 +4,13 @@ import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 
 import android.app.AlertDialog;
 import android.app.DialogFragment;
@@ -25,16 +31,31 @@ public class FriendsFragment extends Fragment {
 	MenuItem friends;
 	PersonalEventDbHelper database;
 	EventDbHelper db;
-	ArrayList<String> selectedFriends;
 	HashMap<String, String> nameMap;
-	ArrayList<String> names;
+	//ArrayList<String> names;
 	WeeksCalendar cal;
-
+	HashSet<String> names;
+	DrawView drawView;
+	View rootView;
+	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.weekly_fragment, container, false);
+		rootView = inflater.inflate(R.layout.weekly_fragment, container, false);
+		drawView = (DrawView) rootView.findViewById(R.id.drawViewWeekly);
+		drawView.invalidate();
+
+		return rootView;
 	}
+	
+	
+//	@Override
+//	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//		// Inflate the layout for this fragment
+//		return inflater.inflate(R.layout.weekly_fragment, container, false);
+//	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +64,23 @@ public class FriendsFragment extends Fragment {
 		database = new PersonalEventDbHelper(getActivity());
 		nameMap = new HashMap<String, String>();
 		db = new EventDbHelper(getActivity());
-		selectedFriends = new ArrayList<String>();
+		//selectedFriends = new ArrayList<String>();
+		names = new HashSet<String>();
+		
+		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+		  query.findInBackground(new FindCallback<Event>() {
+		    @Override
+			public void done(List<Event> events, ParseException error) {
+				// TODO Auto-generated method stub
+				 // System.out.println(events.size());
+				  //System.out.println(events.get(0).getOwnerName());
+				  
+					  for (int i = 0; i < events.size(); i++){
+						  names.add(events.get(i).getOwnerName());
+		          }
+			}
+		  });
+		  
 //		cal = new WeeksCalendar();
 //		cal.AsyncTask();
 	}
@@ -57,24 +94,13 @@ public class FriendsFragment extends Fragment {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		ArrayList<Event> values = database.fetchEntries();
+		//ArrayList<Event> values = database.fetchEntries();
 		//this is the thing for updating the local database
 		//CharSequence[] items;
-		names = new ArrayList<String>();
-
-		for (int i = 0; i < values.size(); i++){
-			if (!nameMap.containsKey(values.get(i).getRegId())){
-				nameMap.put(values.get(i).getOwnerName(), values.get(i).getRegId());
-				System.out.println(values.get(i).getOwnerName());
-			}
-		}
-		Set<String> keySet = nameMap.keySet();
-
-		for(String key : keySet){
-			names.add(key);
-			System.out.println(key + nameMap.get(key));
-		}
-		CharSequence[] items = names.toArray(new CharSequence[names.size()]);
+		//names = new ArrayList<String>();
+		  
+		  
+		  final CharSequence[] items = names.toArray(new CharSequence[names.size()]);
 		//CharSequence[] items = {" Easy "," Medium "," Hard "," Very Hard "};
 		// arraylist to keep the selected items
 
@@ -106,9 +132,7 @@ public class FriendsFragment extends Fragment {
 				// System.out.println(seletedItems.size());
 
 				for(int i = 0; i < seletedItems.size(); i++){
-					System.out.println(seletedItems.get(i));
-					System.out.println(names.get(seletedItems.get(i)));
-					selectedFriends.add(nameMap.get(names.get(seletedItems.get(i))));
+					Globals.selectedFriends.add((String) items[seletedItems.get(i)]);
 				}
 				
 				try {
@@ -139,30 +163,31 @@ public class FriendsFragment extends Fragment {
 		AlertDialog dialog;
 		dialog = builder.create(); //create like this outside onClick
 		dialog.show();
-
+		
+	
 		return true;
 	}
 
-	public void displaySchedules() throws StreamCorruptedException, SQLException, ClassNotFoundException, IOException{
+	public static void displaySchedules() throws StreamCorruptedException, SQLException, ClassNotFoundException, IOException{
 
-		ArrayList<Event> events = database.fetchEntries();
+		for(int i = 0; i < Globals.selectedFriends.size(); i++){
 		
-		//ArrayList<Event> selectedEvents = new ArrayList<Event>();
-		
-		for(int j = 0; j < selectedFriends.size(); j++){
-			ArrayList<Event> selectedEvents = new ArrayList<Event>();
-			for(int i = 0; i < events.size(); i++){
-				if(events.get(i).getRegId().equals(selectedFriends.get(j))){
-					selectedEvents.add(events.get(i));
-				}
-			}
-			Friend person = new Friend();
-			person.setName(selectedEvents.get(0).getOwnerName());
-			person.setSchedule(selectedEvents);
-			db.insertEntry(person);
+		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+		query.whereEqualTo("ownerName", Globals.selectedFriends.get(i));
+		try {
+			List<Event> event = query.find();
+			System.out.println(event.get(0).getOwnerName());
+			System.out.println(event.get(0).getEventName());
+			System.out.println(event.get(0).getClassPeriod());
+			Globals.drawingMatrix.add((ArrayList<Event>)event);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		selectedFriends.clear();
-		check();
+		}
+		
+		System.out.println("setting boolean to true");
+		Globals.drawFriends = true;
 	}
 	
 	public void check(){
@@ -182,9 +207,6 @@ public class FriendsFragment extends Fragment {
 		
 		System.out.println(list.get(0).getSchedule().get(0).getEventName());
 		System.out.println(list.get(0).getSchedule().get(1).getEventName());
-		System.out.println(list.get(1).getSchedule().get(0).getOwnerName());
-		System.out.println(list.get(0).getSchedule().get(4).getEventName());
-		System.out.println(list.get(0).getSchedule().get(5).getEventName());
 		
 		System.out.println(db.removeEntries());
 	}
